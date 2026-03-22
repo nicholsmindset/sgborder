@@ -182,7 +182,15 @@ export function arrivalToMinutes(isoTime: string | null): number | null {
   return Math.max(0, Math.round(diff));
 }
 
-/** Fetches latest traffic snapshots from Supabase, falls back to empty */
+/** Demo traffic data shown when no pipeline data exists yet */
+const DEMO_SNAPSHOTS: TrafficSnapshot[] = [
+  { id: 1, checkpoint: "woodlands", direction: "sg_to_jb", status: "smooth", travel_time_min: 22, updated_at: new Date().toISOString() },
+  { id: 2, checkpoint: "woodlands", direction: "jb_to_sg", status: "moderate", travel_time_min: 38, updated_at: new Date().toISOString() },
+  { id: 3, checkpoint: "tuas", direction: "sg_to_jb", status: "smooth", travel_time_min: 18, updated_at: new Date().toISOString() },
+  { id: 4, checkpoint: "tuas", direction: "jb_to_sg", status: "smooth", travel_time_min: 15, updated_at: new Date().toISOString() },
+];
+
+/** Fetches latest traffic snapshots from Supabase, falls back to demo data */
 export function useLiveTraffic(checkpoint?: string, direction?: string) {
   return useQuery({
     queryKey: ["live-traffic", checkpoint, direction],
@@ -192,7 +200,7 @@ export function useLiveTraffic(checkpoint?: string, direction?: string) {
           .from("traffic_snapshots")
           .select("*")
           .order("created_at", { ascending: false })
-          .limit(8); // fetch enough to cover all combos
+          .limit(8);
 
         if (checkpoint) query = query.eq("checkpoint", checkpoint);
         if (direction) query = query.eq("direction", direction);
@@ -201,7 +209,6 @@ export function useLiveTraffic(checkpoint?: string, direction?: string) {
         if (error) throw error;
 
         if (data && data.length > 0) {
-          // Deduplicate: keep only the latest per checkpoint+direction
           const seen = new Map<string, typeof data[0]>();
           for (const row of data) {
             const key = `${row.checkpoint}:${row.direction}`;
@@ -217,14 +224,31 @@ export function useLiveTraffic(checkpoint?: string, direction?: string) {
           }));
         }
       } catch (e) {
-        console.warn("Live traffic fetch failed:", e);
+        console.warn("Live traffic fetch failed, using demo data:", e);
       }
-      return []; // Empty = components fall back to mock
+      // Return demo data so the dashboard always shows something
+      return DEMO_SNAPSHOTS;
     },
-    refetchInterval: 5 * 60 * 1000, // 5 minutes
+    refetchInterval: 5 * 60 * 1000,
     staleTime: 2 * 60 * 1000,
   });
 }
+
+/** Typical causeway hourly pattern for demo display */
+const DEMO_HOURLY: HourlyPattern[] = Array.from({ length: 24 }, (_, h) => {
+  const patterns: Record<number, { time: number; status: TrafficStatus }> = {
+    0: { time: 15, status: "smooth" }, 1: { time: 14, status: "smooth" }, 2: { time: 13, status: "smooth" },
+    3: { time: 13, status: "smooth" }, 4: { time: 14, status: "smooth" }, 5: { time: 18, status: "smooth" },
+    6: { time: 25, status: "moderate" }, 7: { time: 40, status: "heavy" }, 8: { time: 55, status: "heavy" },
+    9: { time: 45, status: "heavy" }, 10: { time: 35, status: "moderate" }, 11: { time: 28, status: "moderate" },
+    12: { time: 25, status: "moderate" }, 13: { time: 22, status: "smooth" }, 14: { time: 20, status: "smooth" },
+    15: { time: 22, status: "smooth" }, 16: { time: 28, status: "moderate" }, 17: { time: 45, status: "heavy" },
+    18: { time: 55, status: "heavy" }, 19: { time: 50, status: "heavy" }, 20: { time: 38, status: "moderate" },
+    21: { time: 28, status: "moderate" }, 22: { time: 20, status: "smooth" }, 23: { time: 16, status: "smooth" },
+  };
+  const p = patterns[h];
+  return { hour: h, avg_travel_time: p.time, avg_status: p.status };
+});
 
 /** Fetches historical hourly averages for today's day of week */
 export function useLiveHourlyPattern(checkpoint?: string, direction?: string) {
@@ -232,7 +256,7 @@ export function useLiveHourlyPattern(checkpoint?: string, direction?: string) {
     queryKey: ["hourly-pattern", checkpoint, direction],
     queryFn: async (): Promise<HourlyPattern[]> => {
       try {
-        const dow = new Date().getDay(); // 0=Sunday
+        const dow = new Date().getDay();
         let query = supabase
           .from("historical_averages")
           .select("*")
@@ -253,10 +277,10 @@ export function useLiveHourlyPattern(checkpoint?: string, direction?: string) {
           }));
         }
       } catch (e) {
-        console.warn("Hourly pattern fetch failed:", e);
+        console.warn("Hourly pattern fetch failed, using demo data:", e);
       }
-      return []; // Empty = components fall back to mock
+      return DEMO_HOURLY;
     },
-    staleTime: 60 * 60 * 1000, // 1 hour -- historical data changes slowly
+    staleTime: 60 * 60 * 1000,
   });
 }
