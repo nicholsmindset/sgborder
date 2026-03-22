@@ -339,6 +339,12 @@ export const ms: Record<keyof typeof en, string> = {
   fare_duration: "Tempoh",
 
   // General
+  live_ticker_label: "DATA LANGSUNG",
+  live_ticker_updated: "Kemas kini terakhir",
+  live_ticker_just_now: "baru sahaja",
+  live_ticker_ago: "lalu",
+  live_ticker_source: "LTA DataMall",
+  live_ticker_next_refresh: "Seterusnya dalam",
   loading: "Memuatkan...",
   no_data: "Tiada data",
   updated: "Dikemas kini",

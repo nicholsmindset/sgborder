@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { LivePulse } from "@/components/dashboard/LivePulse";
+import { LiveDataTicker } from "@/components/dashboard/LiveDataTicker";
 import { StatusCard } from "@/components/dashboard/StatusCard";
 import { CheckpointToggle, DirectionToggle } from "@/components/dashboard/Toggles";
 import { HourlyHeatmap } from "@/components/dashboard/HourlyHeatmap";
@@ -136,9 +137,19 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Status Cards ── */}
+      {/* ── Live Data Ticker ── */}
       <section className="-mt-1 relative">
-        <div className="container pt-5 pb-2">
+        <div className="container pt-4 pb-1">
+          <LiveDataTicker
+            lastUpdated={filteredSnapshots[0]?.updated_at}
+            status={filteredSnapshots[0]?.status}
+          />
+        </div>
+      </section>
+
+      {/* ── Status Cards ── */}
+      <section className="relative">
+        <div className="container pt-3 pb-2">
           {trafficLoading ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />

@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, MapPin, DollarSign, Clock, Loader2 } from "lucide-react";
 import { SEOHead } from "@/components/shared/SEOHead";
 import { LivePulse } from "@/components/dashboard/LivePulse";
+import { LiveDataTicker } from "@/components/dashboard/LiveDataTicker";
 import { useTranslation } from "@/lib/i18n";
 
 const WoodlandsPage = () => {
@@ -62,6 +63,16 @@ const WoodlandsPage = () => {
               <MapPin className="h-4 w-4 text-accent" /> 21 Woodlands Crossing
             </span>
           </div>
+        </div>
+      </RevealSection>
+
+      {/* Live data ticker */}
+      <RevealSection>
+        <div className="container">
+          <LiveDataTicker
+            lastUpdated={snapshots?.[0]?.updated_at}
+            status={snapshots?.[0]?.status}
+          />
         </div>
       </RevealSection>
 

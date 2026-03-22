@@ -336,6 +336,14 @@ export const en = {
   fare_myr: "MYR",
   fare_duration: "Duration",
 
+  // Live data ticker
+  live_ticker_label: "LIVE DATA",
+  live_ticker_updated: "Last updated",
+  live_ticker_just_now: "just now",
+  live_ticker_ago: "ago",
+  live_ticker_source: "LTA DataMall",
+  live_ticker_next_refresh: "Next refresh in",
+
   // General
   loading: "Loading...",
   no_data: "No data available",

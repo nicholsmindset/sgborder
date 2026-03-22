@@ -339,6 +339,12 @@ export const zh: Record<keyof typeof en, string> = {
   fare_duration: "时长",
 
   // General
+  live_ticker_label: "实时数据",
+  live_ticker_updated: "最后更新",
+  live_ticker_just_now: "刚刚",
+  live_ticker_ago: "前",
+  live_ticker_source: "LTA DataMall",
+  live_ticker_next_refresh: "下次刷新",
   loading: "加载中...",
   no_data: "\u6682\u65e0\u6570\u636e",
   updated: "\u66f4\u65b0\u4e8e",
