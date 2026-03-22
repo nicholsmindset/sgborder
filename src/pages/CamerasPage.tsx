@@ -143,7 +143,6 @@ const CamerasPage = () => {
               { slug: "cte", name: "CTE", full: "Central Expressway" },
               { slug: "sle", name: "SLE", full: "Seletar Expressway", tag: "→ Woodlands" },
               { slug: "tpe", name: "TPE", full: "Tampines Expressway" },
-              { slug: "kpe", name: "KPE", full: "Kallang-Paya Lebar" },
               { slug: "ecp", name: "ECP", full: "East Coast Parkway" },
             ].map((e) => (
               <Link

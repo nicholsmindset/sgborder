@@ -1,7 +1,7 @@
 import { BUS_ROUTES } from "@/lib/bus-data";
 import { BusRouteCard } from "@/components/bus/BusRouteCard";
 import { BusFareTable } from "@/components/bus/BusFareTable";
-import { QuickBusWidget } from "@/components/bus/BusArrivalCard";
+import { QuickBusWidget, CrowdLegend } from "@/components/bus/BusArrivalCard";
 import { FAQAccordion } from "@/components/content/FAQAccordion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { SEOHead } from "@/components/shared/SEOHead";
@@ -89,6 +89,19 @@ const BusHub = () => {
         <div className="container">
           <h2 className="font-heading text-title font-bold mb-3">{t("bus_next_arrivals")}</h2>
           <QuickBusWidget />
+        </div>
+      </RevealSection>
+
+      {/* Crowd info */}
+      <RevealSection>
+        <div className="container">
+          <div className="rounded-xl border border-accent/20 bg-accent/5 p-4">
+            <h3 className="font-heading text-sm font-bold text-foreground mb-2">Live Bus Crowd Levels</h3>
+            <p className="text-label-sm text-muted-foreground mb-3">
+              Real-time crowd data from LTA, updated every 30 seconds. Plan your boarding — pick buses with seats available to travel comfortably.
+            </p>
+            <CrowdLegend />
+          </div>
         </div>
       </RevealSection>
 

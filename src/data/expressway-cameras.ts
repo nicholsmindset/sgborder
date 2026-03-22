@@ -20,7 +20,7 @@ export const EXPRESSWAYS: Record<string, ExpresswayConfig> = {
     title: "BKE Traffic Camera Live — Bukit Timah Expressway CCTV (2026)",
     description: "Live BKE traffic cameras from LTA. Bukit Timah Expressway CCTV feeds updated every 5 min. Check BKE before heading to Woodlands Checkpoint.",
     relevance: "BKE is the direct expressway route to Woodlands Checkpoint. Always check BKE cameras before crossing to JB.",
-    cameraIds: ["2701", "2702", "2704", "9701", "9702", "9703", "9704"],
+    cameraIds: ["2701", "2702", "2703", "2704", "2705", "2706", "2707", "2708", "9701", "9702", "9703", "9704", "9705", "9706"],
     relatedCheckpoint: "woodlands",
     faqs: [
       {
@@ -40,7 +40,7 @@ export const EXPRESSWAYS: Record<string, ExpresswayConfig> = {
     title: "AYE Traffic Camera Live — Ayer Rajah Expressway CCTV (2026)",
     description: "Live AYE traffic cameras from LTA. Ayer Rajah Expressway CCTV feeds updated every 5 min. Check AYE before heading to Tuas Checkpoint.",
     relevance: "AYE connects to Tuas Checkpoint (Second Link). Check AYE cameras before crossing to JB via Second Link.",
-    cameraIds: ["4703", "4707", "4708", "4712", "4714", "1701", "1702", "1703", "1704", "1705", "1706", "1707", "1709", "1711"],
+    cameraIds: ["4701", "4702", "4703", "4704", "4705", "4706", "4707", "4708", "4709", "4710", "4712", "4713", "4714", "4716", "1701", "1702", "1703", "1704", "1705", "1706", "1707", "1709", "1711"],
     relatedCheckpoint: "tuas",
     faqs: [
       {
@@ -60,7 +60,7 @@ export const EXPRESSWAYS: Record<string, ExpresswayConfig> = {
     title: "PIE Traffic Camera Live — Pan Island Expressway CCTV Now",
     description: "Live PIE traffic cameras from LTA. Pan Island Expressway CCTV feeds updated every 5 min. Singapore's busiest expressway — check before you drive.",
     relevance: "PIE intersects with BKE (to Woodlands) and connects to many parts of Singapore. Check PIE if you're coming from the east.",
-    cameraIds: ["5798", "5799", "5800", "5801", "5802", "6701", "6703", "6704", "6705", "6706", "6708", "6710", "6711", "6712", "6713", "6714", "6715", "6716"],
+    cameraIds: ["5794", "5795", "5797", "5798", "5799", "6701", "6703", "6704", "6705", "6706", "6708", "6710", "6711", "6712", "6713", "6714", "6715", "6716"],
     faqs: [
       {
         question: "Is PIE the busiest expressway in Singapore?",
@@ -79,7 +79,7 @@ export const EXPRESSWAYS: Record<string, ExpresswayConfig> = {
     title: "CTE Traffic Camera Live — Central Expressway CCTV Now",
     description: "Live CTE traffic cameras from LTA. Central Expressway CCTV feeds updated every 5 min. Check CTE conditions before heading north to Woodlands.",
     relevance: "CTE runs north-south and connects to SLE, which links to BKE and Woodlands Checkpoint.",
-    cameraIds: ["1001", "1002", "1003", "1004", "1005", "1006", "1501", "1502", "1503", "1504", "1505"],
+    cameraIds: ["1001", "1002", "1003", "1004", "1005", "1006", "1111", "1112", "1113", "1501", "1502", "1503", "1504", "1505"],
     faqs: [
       {
         question: "Does CTE connect to Woodlands?",
@@ -115,21 +115,6 @@ export const EXPRESSWAYS: Record<string, ExpresswayConfig> = {
       {
         question: "How do I get from TPE to the causeway?",
         answer: "Take TPE westbound to SLE, then SLE to BKE towards Woodlands Checkpoint. This is the standard route from Tampines/Pasir Ris area to JB.",
-      },
-    ],
-  },
-  kpe: {
-    slug: "kpe",
-    name: "Kallang-Paya Lebar Expressway",
-    shortName: "KPE",
-    title: "KPE Traffic Camera Live — Kallang-Paya Lebar Expressway CCTV Now",
-    description: "Live KPE traffic cameras from LTA. Kallang-Paya Lebar Expressway CCTV feeds updated every 5 min.",
-    relevance: "KPE connects to ECP and TPE. If you're in the east, check KPE as part of your route planning to the causeway.",
-    cameraIds: ["7101", "7102", "7103", "7104", "7105", "7106"],
-    faqs: [
-      {
-        question: "Is KPE an underground expressway?",
-        answer: "Partially. KPE has a 9km tunnel section, making it one of the longest road tunnels in Southeast Asia. Camera coverage is available at entry/exit points and above-ground sections.",
       },
     ],
   },

@@ -65,12 +65,7 @@
     <changefreq>always</changefreq>
     <priority>0.6</priority>
   </url>
-  <url>
-    <loc>https://www.sgborder.live/cameras/kpe</loc>
-    <changefreq>always</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
+<url>
     <loc>https://www.sgborder.live/cameras/ecp</loc>
     <changefreq>always</changefreq>
     <priority>0.6</priority>
