@@ -1,0 +1,67 @@
+import { Link } from "react-router-dom";
+import { LivePulse } from "../dashboard/LivePulse";
+import { useTranslation } from "@/lib/i18n";
+
+export const Footer = () => {
+  const { t } = useTranslation();
+
+  return (
+    <footer className="border-t border-border bg-primary py-8 text-primary-foreground">
+      <div className="container">
+        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+          {/* Brand */}
+          <div className="sm:col-span-2 md:col-span-1">
+            <div className="flex items-center gap-2">
+              <LivePulse />
+              <p className="font-heading text-sm font-semibold">SG Border Live</p>
+            </div>
+            <p className="mt-2 text-label-sm leading-relaxed text-primary-foreground/60">
+              {t("footer_brand_desc")}
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <p className="text-label-sm font-semibold uppercase tracking-wider text-primary-foreground/40">{t("footer_quick_links")}</p>
+            <nav className="mt-3 flex flex-col gap-2">
+              <Link to="/woodlands" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_woodlands_checkpoint")}</Link>
+              <Link to="/tuas" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_tuas_second_link")}</Link>
+              <Link to="/cameras" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_live_cameras")}</Link>
+              <Link to="/bus" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_cross_border_buses")}</Link>
+            </nav>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <p className="text-label-sm font-semibold uppercase tracking-wider text-primary-foreground/40">{t("footer_resources")}</p>
+            <nav className="mt-3 flex flex-col gap-2">
+              <Link to="/guides" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_commuter_guides")}</Link>
+              <Link to="/holidays" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_holiday_calendar")}</Link>
+              <Link to="/rts-link" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_rts_link")}</Link>
+              <Link to="/calculator" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_trip_calculator")}</Link>
+            </nav>
+          </div>
+
+          {/* Data Sources */}
+          <div>
+            <p className="text-label-sm font-semibold uppercase tracking-wider text-primary-foreground/40">{t("footer_data_sources")}</p>
+            <div className="mt-3 flex flex-col gap-2 text-label-sm text-primary-foreground/60">
+              <span>LTA DataMall</span>
+              <span>Google Routes API</span>
+              <span>ArriveLah Bus API</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 border-t border-primary-foreground/10 pt-4">
+          <p className="text-label-sm text-primary-foreground/40">
+            {t("footer_disclaimer")}
+          </p>
+          <p className="mt-1 text-label-sm text-primary-foreground/40">
+            &copy; {new Date().getFullYear()} {t("footer_copyright")}
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};
