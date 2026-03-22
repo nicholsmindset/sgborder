@@ -83,11 +83,60 @@ async function fetchFromEdge<T>(action: string, params?: Record<string, string>)
   return res.json();
 }
 
-/** Fetches live traffic camera images, falls back to DB cache */
+/** Camera metadata: ID → label + checkpoint */
+const CAMERA_META: Record<string, { label: string; checkpoint: string }> = {
+  "2701": { label: "Woodlands Causeway (SG Side)", checkpoint: "woodlands" },
+  "2702": { label: "BKE (Woodlands Flyover)", checkpoint: "woodlands" },
+  "2704": { label: "BKE Slip Road (Woodlands)", checkpoint: "woodlands" },
+  "4703": { label: "Second Link at Tuas", checkpoint: "tuas" },
+  "4707": { label: "AYE (Tuas West Extension)", checkpoint: "tuas" },
+  "4708": { label: "Tuas Checkpoint", checkpoint: "tuas" },
+};
+
+const ALL_CAMERA_IDS = new Set(Object.keys(CAMERA_META));
+
+interface DataGovCamera {
+  camera_id: string;
+  image: string;
+  image_metadata: { width: number; height: number };
+  location: { latitude: number; longitude: number };
+  timestamp: string;
+}
+
+interface DataGovResponse {
+  items: Array<{ cameras: DataGovCamera[] }>;
+}
+
+/** Fetches cameras directly from data.gov.sg (free, no key, CORS-friendly) */
+async function fetchCamerasFromDataGov(checkpoint?: string): Promise<CameraFeed[]> {
+  const res = await fetch("https://api.data.gov.sg/v1/transport/traffic-images");
+  if (!res.ok) throw new Error(`data.gov.sg error: ${res.status}`);
+  const data: DataGovResponse = await res.json();
+
+  const allCameras = data.items?.[0]?.cameras || [];
+  return allCameras
+    .filter((c) => ALL_CAMERA_IDS.has(c.camera_id))
+    .filter((c) => {
+      const meta = CAMERA_META[c.camera_id];
+      return !checkpoint || meta?.checkpoint === checkpoint;
+    })
+    .map((c) => {
+      const meta = CAMERA_META[c.camera_id];
+      return {
+        camera_id: c.camera_id,
+        label: meta?.label || `Camera ${c.camera_id}`,
+        image_url: c.image,
+        checkpoint: meta?.checkpoint || "unknown",
+      };
+    });
+}
+
+/** Fetches live traffic camera images, falls back to DB cache, then direct API */
 export function useLiveCameras(checkpoint?: string) {
   return useQuery({
     queryKey: ["live-cameras", checkpoint],
     queryFn: async (): Promise<CameraFeed[]> => {
+      // Try edge function first
       try {
         const data = await fetchFromEdge<{ cameras: LiveCamera[] }>("cameras");
         const cameras = data.cameras
@@ -100,23 +149,34 @@ export function useLiveCameras(checkpoint?: string) {
           }));
         if (cameras.length > 0) return cameras;
       } catch (e) {
-        console.warn("Live cameras fetch failed, falling back to DB:", e);
+        console.warn("Edge function cameras failed:", e);
       }
 
-      // Fallback: read from DB cache
-      let query = supabase.from("camera_feeds").select("*");
-      if (checkpoint) query = query.eq("checkpoint", checkpoint);
-      const { data } = await query;
-      if (data && data.length > 0) {
-        return data.map((c: any) => ({
-          camera_id: c.camera_id,
-          label: c.label,
-          image_url: c.image_url,
-          checkpoint: c.checkpoint,
-        }));
+      // Fallback 1: DB cache
+      try {
+        let query = supabase.from("camera_feeds").select("*");
+        if (checkpoint) query = query.eq("checkpoint", checkpoint);
+        const { data } = await query;
+        if (data && data.length > 0) {
+          return data.map((c: any) => ({
+            camera_id: c.camera_id,
+            label: c.label,
+            image_url: c.image_url,
+            checkpoint: c.checkpoint,
+          }));
+        }
+      } catch (e) {
+        console.warn("DB camera cache failed:", e);
       }
 
-      // Final fallback: return empty (components will show mock data)
+      // Fallback 2: Direct data.gov.sg API (free, no key needed)
+      try {
+        const cameras = await fetchCamerasFromDataGov(checkpoint);
+        if (cameras.length > 0) return cameras;
+      } catch (e) {
+        console.warn("data.gov.sg cameras failed:", e);
+      }
+
       return [];
     },
     refetchInterval: 5 * 60 * 1000, // 5 minutes
