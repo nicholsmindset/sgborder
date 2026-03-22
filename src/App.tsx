@@ -8,6 +8,7 @@ import { LanguageProvider } from "@/lib/i18n";
 import { Navbar } from "@/components/layout/Navbar";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { Footer } from "@/components/layout/Footer";
+import { BreadcrumbNav } from "@/components/shared/BreadcrumbNav";
 import Index from "./pages/Index.tsx";
 import BusHub from "./pages/BusHub.tsx";
 import BusRoutePage from "./pages/BusRoutePage.tsx";
@@ -36,6 +37,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Navbar />
+        <BreadcrumbNav />
         <main className="min-h-[calc(100vh-3.5rem)]">
           <Routes>
             <Route path="/" element={<Index />} />

@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "@/lib/i18n";
 
-const SITE_URL = "https://sgborder.live";
+const SITE_URL = "https://www.sgborder.live";
 const SITE_NAME = "SG Border Live";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 

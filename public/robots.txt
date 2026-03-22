@@ -32,4 +32,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://sgborder.live/sitemap.xml
+Sitemap: https://www.sgborder.live/sitemap-index.xml

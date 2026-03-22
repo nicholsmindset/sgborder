@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://www.sgborder.live/sitemap-core.xml</loc>
+    <lastmod>2026-03-22</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.sgborder.live/sitemap-bus.xml</loc>
+    <lastmod>2026-03-22</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.sgborder.live/sitemap-guides.xml</loc>
+    <lastmod>2026-03-22</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.sgborder.live/sitemap-holidays.xml</loc>
+    <lastmod>2026-03-22</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.sgborder.live/sitemap-tools.xml</loc>
+    <lastmod>2026-03-22</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://www.sgborder.live/sitemap-info.xml</loc>
+    <lastmod>2026-03-22</lastmod>
+  </sitemap>
+</sitemapindex>
