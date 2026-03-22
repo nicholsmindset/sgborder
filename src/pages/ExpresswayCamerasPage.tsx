@@ -9,8 +9,8 @@ import { LivePulse } from "@/components/dashboard/LivePulse";
 import { useState } from "react";
 
 const ExpresswayCamerasPage = () => {
-  const { expressway } = useParams<{ expressway: string }>();
-  const config = expressway ? EXPRESSWAYS[expressway] : undefined;
+  const { checkpoint } = useParams<{ checkpoint: string }>();
+  const config = checkpoint ? EXPRESSWAYS[checkpoint] : undefined;
 
   if (!config) {
     return (
