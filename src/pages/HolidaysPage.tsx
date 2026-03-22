@@ -224,6 +224,45 @@ const HolidaysPage = () => {
         </RevealSection>
       )}
 
+      {/* Calendar links */}
+      <RevealSection>
+        <div className="container">
+          <h2 className="font-heading text-title font-bold mb-3">Holiday Calendars</h2>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <Link
+              to="/holidays/singapore-public-holidays-2026"
+              className="rounded-xl border border-border bg-card p-4 shadow-card transition-all hover:shadow-card-hover active:scale-[0.98]"
+            >
+              <p className="font-heading text-sm font-bold text-foreground">Singapore Public Holidays 2026</p>
+              <p className="mt-1 text-label-sm text-muted-foreground">Full calendar with causeway traffic impact</p>
+              <span className="mt-2 inline-flex items-center gap-1 text-label font-medium text-accent">
+                View calendar <ArrowRight className="h-3 w-3" />
+              </span>
+            </Link>
+            <Link
+              to="/holidays/malaysia-public-holidays-2026"
+              className="rounded-xl border border-border bg-card p-4 shadow-card transition-all hover:shadow-card-hover active:scale-[0.98]"
+            >
+              <p className="font-heading text-sm font-bold text-foreground">Malaysia Public Holidays 2026</p>
+              <p className="mt-1 text-label-sm text-muted-foreground">Cuti umum with border crossing impact</p>
+              <span className="mt-2 inline-flex items-center gap-1 text-label font-medium text-accent">
+                View calendar <ArrowRight className="h-3 w-3" />
+              </span>
+            </Link>
+            <Link
+              to="/holidays/malaysia-school-holidays-2026"
+              className="rounded-xl border border-border bg-card p-4 shadow-card transition-all hover:shadow-card-hover active:scale-[0.98]"
+            >
+              <p className="font-heading text-sm font-bold text-foreground">Malaysia School Holidays 2026</p>
+              <p className="mt-1 text-label-sm text-muted-foreground">School break dates & traffic predictions</p>
+              <span className="mt-2 inline-flex items-center gap-1 text-label font-medium text-accent">
+                View calendar <ArrowRight className="h-3 w-3" />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </RevealSection>
+
       {/* All upcoming */}
       <RevealSection>
         <div className="container">

@@ -22,8 +22,8 @@ const TuasPage = () => {
   return (
     <div className="pb-mobile-nav">
       <SEOHead
-        title="Tuas Checkpoint Traffic Today — Live Camera, Second Link Status"
-        description="Tuas Checkpoint traffic today with live CCTV cameras, Second Link wait times & bus info. Less crowded than Woodlands — check status before you cross."
+        title="Tuas Checkpoint Live CCTV Camera & Traffic Today (2026) — Second Link Status"
+        description="Tuas Checkpoint traffic today with live LTA CCTV cameras, Second Link wait times & bus info. Less crowded than Woodlands — check Tuas status before you cross to JB."
         path="/tuas"
         jsonLd={{
           "@context": "https://schema.org",

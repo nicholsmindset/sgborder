@@ -6,193 +6,138 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.sgborder.live/guides/best-time-cross-causeway</loc>
+    <loc>https://www.sgborder.live/guides/best-time-to-cross-causeway</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.sgborder.live/guides/friday-woodlands-rush</loc>
+    <loc>https://www.sgborder.live/guides/friday-woodlands-traffic</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.sgborder.live/guides/saturday-tuas-less-crowded</loc>
+    <loc>https://www.sgborder.live/guides/vep-malaysia-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/cw1-bus-kranji-to-jb</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/myica-qr-code-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/monday-woodlands-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/monday-tuas-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/tuesday-woodlands-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/tuesday-tuas-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/wednesday-woodlands-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/wednesday-tuas-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/thursday-woodlands-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/thursday-tuas-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/saturday-woodlands-traffic</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.sgborder.live/guides/cny-2026-traffic-predictions</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/hari-raya-aidilfitri-2026</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/hari-raya-haji-2026</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/vep-cost-comparison</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/carpool-vs-solo-drive</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/bike-vs-car-causeway</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/ktm-train-alternative</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/rts-link-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/truck-restrictions-causeway</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/student-border-crossing</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/daily-commuter-routes</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/weekend-leisure-traffic</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/peak-hours-by-checkpoint</loc>
+    <loc>https://www.sgborder.live/guides/saturday-tuas-traffic</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.sgborder.live/guides/checkpoint-queuing-strategy</loc>
+    <loc>https://www.sgborder.live/guides/sunday-woodlands-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/sunday-tuas-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/sg-to-jb-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/jb-to-sg-traffic</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/vep-application-step-by-step</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.sgborder.live/guides/night-crossing-advantages</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/fuel-cost-calculator-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/motorcycle-advantages</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/family-trip-planner</loc>
+    <loc>https://www.sgborder.live/guides/vep-rfid-malaysia</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.sgborder.live/guides/holiday-season-traffic-2026</loc>
+    <loc>https://www.sgborder.live/guides/woodlands-checkpoint-guide</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/tuas-checkpoint-guide</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/guides/causeway-traffic-camera-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.sgborder.live/guides/weather-impact-causeway</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/vehicle-documentation-needed</loc>
+    <loc>https://www.sgborder.live/guides/jb-checkpoint-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.sgborder.live/guides/customs-declaration-process</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.sgborder.live/guides/second-link-traffic</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.sgborder.live/guides/mynah-app-setup-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/myica-approval-process</loc>
+    <loc>https://www.sgborder.live/guides/three-quarter-tank-rule</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/fast-lane-eligibility</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/rfid-tag-installation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/vep-tag-usage-guide</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/malaysia-toll-system</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/sg-toll-system</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/best-gas-stations-jb</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/best-gas-stations-sg</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/immigration-interview-tips</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/border-crossing-etiquette</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/causeway-accident-protocols</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.sgborder.live/guides/real-time-alerts-telegram</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
   </url>
 </urlset>

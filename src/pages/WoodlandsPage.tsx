@@ -22,8 +22,8 @@ const WoodlandsPage = () => {
   return (
     <div className="pb-mobile-nav">
       <SEOHead
-        title="Woodlands Checkpoint Traffic Today — Live Camera, Wait Time & Status"
-        description="Woodlands Checkpoint traffic today with live CCTV cameras, real-time wait times, bus arrivals & hourly patterns. Updated every 5 minutes. Plan your crossing now."
+        title="Woodlands Checkpoint Live Camera & Traffic Today (2026) — CCTV, Wait Time"
+        description="Woodlands Checkpoint traffic today with live LTA CCTV cameras, real-time wait times, bus arrivals & hourly patterns. Updated every 5 minutes. Plan your SG to JB crossing now."
         path="/woodlands"
         jsonLd={{
           "@context": "https://schema.org",

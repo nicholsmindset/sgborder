@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -24,9 +24,27 @@ import LivePage from "./pages/LivePage.tsx";
 import RTSLinkPage from "./pages/RTSLinkPage.tsx";
 import CamerasPage from "./pages/CamerasPage.tsx";
 import CamerasCheckpointPage from "./pages/CamerasCheckpointPage.tsx";
+import HolidayCalendarPage from "./pages/HolidayCalendarPage.tsx";
+import ExpresswayCamerasPage from "./pages/ExpresswayCamerasPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import { CALENDAR_PAGES } from "./data/public-holidays";
+import { EXPRESSWAYS } from "./data/expressway-cameras";
 
 const queryClient = new QueryClient();
+
+/** Routes /holidays/:slug to calendar page or holiday detail page */
+const HolidayRouter = () => {
+  const { slug } = useParams<{ slug: string }>();
+  if (slug && slug in CALENDAR_PAGES) return <HolidayCalendarPage />;
+  return <HolidayDetailPage />;
+};
+
+/** Routes /cameras/:checkpoint to expressway page or checkpoint camera page */
+const CameraRouter = () => {
+  const { checkpoint } = useParams<{ checkpoint: string }>();
+  if (checkpoint && checkpoint in EXPRESSWAYS) return <ExpresswayCamerasPage />;
+  return <CamerasCheckpointPage />;
+};
 
 const App = () => (
   <HelmetProvider>
@@ -50,11 +68,11 @@ const App = () => (
             <Route path="/woodlands" element={<WoodlandsPage />} />
             <Route path="/tuas" element={<TuasPage />} />
             <Route path="/holidays" element={<HolidaysPage />} />
-            <Route path="/holidays/:slug" element={<HolidayDetailPage />} />
+            <Route path="/holidays/:slug" element={<HolidayRouter />} />
             <Route path="/live" element={<LivePage />} />
             <Route path="/rts-link" element={<RTSLinkPage />} />
             <Route path="/cameras" element={<CamerasPage />} />
-            <Route path="/cameras/:checkpoint" element={<CamerasCheckpointPage />} />
+            <Route path="/cameras/:checkpoint" element={<CameraRouter />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

@@ -35,4 +35,44 @@
     <changefreq>always</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.sgborder.live/cameras/bke</loc>
+    <changefreq>always</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/cameras/aye</loc>
+    <changefreq>always</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/cameras/pie</loc>
+    <changefreq>always</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/cameras/cte</loc>
+    <changefreq>always</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/cameras/sle</loc>
+    <changefreq>always</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/cameras/tpe</loc>
+    <changefreq>always</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/cameras/kpe</loc>
+    <changefreq>always</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.sgborder.live/cameras/ecp</loc>
+    <changefreq>always</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

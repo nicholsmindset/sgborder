@@ -57,15 +57,15 @@ const Index = () => {
   return (
     <div className="pb-mobile-nav">
       <SEOHead
-        title="Causeway Traffic Live — Woodlands & Tuas Checkpoint Camera Status"
-        description="Live causeway traffic status for Woodlands & Tuas checkpoints. CCTV cameras, bus arrivals, wait times updated every 5 min. Check JB traffic now before you cross."
+        title="Causeway Traffic Live — Woodlands & Tuas Checkpoint CCTV Camera Status"
+        description="Live causeway traffic status for Woodlands & Tuas checkpoints. LTA CCTV cameras, bus arrivals, wait times updated every 5 min. SG to JB traffic — check now before you cross."
         path="/"
         jsonLd={[
           {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             name: "SG Border Live",
-            url: "https://sgborder.live",
+            url: "https://www.sgborder.live",
             description: "Real-time Singapore-JB causeway traffic dashboard with live cameras, bus tracking, and travel predictions.",
             applicationCategory: "TravelApplication",
             operatingSystem: "Web",
@@ -74,15 +74,16 @@ const Index = () => {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "SG Border Live",
-            url: "https://sgborder.live",
+            url: "https://www.sgborder.live",
             description: "Real-time Singapore-JB causeway traffic dashboard with live cameras, bus tracking, and commuter intelligence.",
+            sameAs: ["https://sgborder.live"],
             areaServed: ["SG", "MY"],
           },
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "SG Border Live",
-            url: "https://sgborder.live",
+            url: "https://www.sgborder.live",
             potentialAction: {
               "@type": "SearchAction",
               target: "https://sgborder.live/guides?q={search_term_string}",

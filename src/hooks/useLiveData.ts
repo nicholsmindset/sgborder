@@ -184,6 +184,36 @@ export function useLiveCameras(checkpoint?: string) {
   });
 }
 
+/** Fetches expressway cameras directly from data.gov.sg filtered by camera IDs */
+export function useExpresswayCameras(cameraIds: string[]) {
+  return useQuery({
+    queryKey: ["expressway-cameras", cameraIds.join(",")],
+    queryFn: async (): Promise<CameraFeed[]> => {
+      const idSet = new Set(cameraIds);
+      try {
+        const res = await fetch("https://api.data.gov.sg/v1/transport/traffic-images");
+        if (!res.ok) throw new Error(`data.gov.sg error: ${res.status}`);
+        const data: DataGovResponse = await res.json();
+        const allCameras = data.items?.[0]?.cameras || [];
+        return allCameras
+          .filter((c) => idSet.has(c.camera_id))
+          .map((c) => ({
+            camera_id: c.camera_id,
+            label: `Camera ${c.camera_id}`,
+            image_url: c.image,
+            checkpoint: "expressway",
+          }));
+      } catch (e) {
+        console.warn("Expressway cameras fetch failed:", e);
+        return [];
+      }
+    },
+    refetchInterval: 5 * 60 * 1000,
+    staleTime: 2 * 60 * 1000,
+    enabled: cameraIds.length > 0,
+  });
+}
+
 /** Fetches live bus arrivals from ArriveLah (free, no API key, 15s cache) */
 export function useLiveBusArrivals(stopCode: string = "45009") {
   return useQuery({

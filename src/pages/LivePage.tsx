@@ -29,20 +29,20 @@ const LivePage = () => {
   return (
     <div className="pb-mobile-nav">
       <SEOHead
-        title="JB Traffic Now — Live Causeway Checkpoint Status & Camera"
-        description="Is there a JB jam now? Live causeway traffic status for Woodlands & Tuas checkpoints with CCTV cameras and wait times. Updated every 5 min."
+        title="JB Traffic Now — Live LTA CCTV Camera & Causeway Checkpoint Status"
+        description="Is there a JB jam now? Live causeway traffic status for Woodlands & Tuas checkpoints with LTA CCTV cameras and wait times. Updated every 5 min."
         path="/live"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebPage",
           name: "Causeway Traffic Now — Live JB Checkpoint Status",
-          url: "https://sgborder.live/live",
+          url: "https://www.sgborder.live/live",
           description:
             "Real-time causeway traffic status for Woodlands and Tuas checkpoints. Live cameras, wait times, and congestion levels updated every 5 minutes.",
           isPartOf: {
             "@type": "WebSite",
             name: "SG Border Live",
-            url: "https://sgborder.live",
+            url: "https://www.sgborder.live",
           },
           about: {
             "@type": "Thing",
