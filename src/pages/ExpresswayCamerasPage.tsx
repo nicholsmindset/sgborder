@@ -91,12 +91,22 @@ const ExpresswayContent = ({ config }: { config: typeof EXPRESSWAYS[string] }) =
             <h2 className="font-heading text-title font-bold">
               Live CCTV Feeds
             </h2>
-            <span className="text-label-sm text-muted-foreground">
-              {cameraList.length} camera{cameraList.length !== 1 ? "s" : ""}
-            </span>
+            {config.cameraIds.length > 0 && (
+              <span className="text-label-sm text-muted-foreground">
+                {cameraList.length} camera{cameraList.length !== 1 ? "s" : ""}
+              </span>
+            )}
           </div>
 
-          {isLoading ? (
+          {config.cameraIds.length === 0 ? (
+            <div className="rounded-xl border border-border bg-card p-6 text-center">
+              <Camera className="h-8 w-8 mx-auto mb-2 text-muted-foreground/40" />
+              <p className="text-sm font-medium text-foreground mb-1">No CCTV cameras available for {config.shortName}</p>
+              <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+                LTA does not publish live camera feeds for {config.name} on data.gov.sg. Check a nearby expressway below for current road conditions.
+              </p>
+            </div>
+          ) : isLoading ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
               <span className="ml-2 text-label-sm text-muted-foreground">Loading cameras...</span>

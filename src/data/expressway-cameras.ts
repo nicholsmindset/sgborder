@@ -133,6 +133,33 @@ export const EXPRESSWAYS: Record<string, ExpresswayConfig> = {
       },
     ],
   },
+  kpe: {
+    slug: "kpe",
+    name: "Kallang–Paya Lebar Expressway",
+    shortName: "KPE",
+    title: "KPE Traffic — Kallang Paya Lebar Expressway Live Status (2026)",
+    description: "KPE (Kallang–Paya Lebar Expressway) traffic status and conditions. Check KPE before heading to SLE or TPE towards Woodlands Checkpoint.",
+    relevance: "KPE connects PIE to SLE and TPE in northeastern Singapore. KPE is a common route from the east to reach the SLE–BKE corridor to Woodlands.",
+    cameraIds: [], // LTA does not publish CCTV cameras for KPE tunnels on data.gov.sg
+    faqs: [
+      {
+        question: "Why are there no KPE cameras?",
+        answer: "LTA (Land Transport Authority) does not publish live CCTV camera images for KPE (Kallang–Paya Lebar Expressway) on the public data.gov.sg platform. KPE runs largely underground through tunnels where public camera feeds are not available.",
+      },
+      {
+        question: "Where does KPE go?",
+        answer: "KPE (Kallang–Paya Lebar Expressway) runs from the PIE near Eunos northward to SLE near Tampines. It provides a fast north-south link for motorists in the east, connecting to SLE for access to BKE and Woodlands Checkpoint.",
+      },
+      {
+        question: "How do I get from KPE to Woodlands Checkpoint?",
+        answer: "From KPE, take the SLE westbound, then join BKE heading north to Woodlands Checkpoint. This is the standard route for drivers coming from the Tampines, Pasir Ris, or Changi areas.",
+      },
+      {
+        question: "Is KPE or CTE faster to Woodlands?",
+        answer: "Both routes lead to BKE for Woodlands. KPE → SLE → BKE is typically better from the northeast, while CTE → SLE → BKE suits city-centre traffic. Check the live BKE cameras to see which approach is clearer.",
+      },
+    ],
+  },
 };
 
 export const EXPRESSWAY_LIST = Object.values(EXPRESSWAYS);
