@@ -50,6 +50,10 @@ export const Footer = () => {
               <span>Google Routes API</span>
               <span>ArriveLah Bus API</span>
             </div>
+            <div className="mt-4 flex flex-col gap-2">
+              <Link to="/about" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">About</Link>
+              <Link to="/privacy" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">Privacy Policy</Link>
+            </div>
           </div>
         </div>
 

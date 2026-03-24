@@ -27,6 +27,8 @@ import CamerasCheckpointPage from "./pages/CamerasCheckpointPage.tsx";
 import HolidayCalendarPage from "./pages/HolidayCalendarPage.tsx";
 import ExpresswayCamerasPage from "./pages/ExpresswayCamerasPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import PrivacyPage from "./pages/PrivacyPage.tsx";
+import AboutPage from "./pages/AboutPage.tsx";
 import { CALENDAR_PAGES } from "./data/public-holidays";
 import { EXPRESSWAYS } from "./data/expressway-cameras";
 
@@ -73,6 +75,8 @@ const App = () => (
             <Route path="/rts-link" element={<RTSLinkPage />} />
             <Route path="/cameras" element={<CamerasPage />} />
             <Route path="/cameras/:checkpoint" element={<CameraRouter />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
