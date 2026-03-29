@@ -1,3 +1,4 @@
+"use client";
 import { StatusBadge } from "./StatusBadge";
 import { TravelTimeBar } from "./TravelTimeBar";
 import { LastUpdated } from "./LastUpdated";
@@ -48,7 +49,7 @@ export const StatusCard = ({ snapshot, onViewCameras }: StatusCardProps) => {
             <h3 className="font-heading text-sm font-semibold text-foreground truncate">
               {checkpoint?.name ?? snapshot.checkpoint}
             </h3>
-            <span className="text-label-sm text-muted-foreground">{direction?.short}</span>
+            <span className="text-label-sm text-muted-foreground">{direction}</span>
           </div>
 
           <div className="mt-2 flex items-center gap-3">

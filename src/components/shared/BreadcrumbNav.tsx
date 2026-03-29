@@ -1,4 +1,6 @@
-import { Link, useLocation } from "react-router-dom";
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ChevronRight, Home } from "lucide-react";
 
 const NAME_MAP: Record<string, string> = {
@@ -31,7 +33,7 @@ interface BreadcrumbNavProps {
 }
 
 export const BreadcrumbNav = ({ items }: BreadcrumbNavProps) => {
-  const { pathname } = useLocation();
+  const pathname = usePathname() ?? "/";
 
   // Don't render on homepage
   if (pathname === "/") return null;
@@ -67,7 +69,7 @@ export const BreadcrumbNav = ({ items }: BreadcrumbNavProps) => {
           itemType="https://schema.org/ListItem"
         >
           <Link
-            to="/"
+            href="/"
             className="hover:text-foreground transition-colors"
             itemProp="item"
           >
@@ -88,7 +90,7 @@ export const BreadcrumbNav = ({ items }: BreadcrumbNavProps) => {
             <ChevronRight className="h-3 w-3 text-muted-foreground/50" />
             {crumb.href ? (
               <Link
-                to={crumb.href}
+                href={crumb.href}
                 className="hover:text-foreground transition-colors"
                 itemProp="item"
               >

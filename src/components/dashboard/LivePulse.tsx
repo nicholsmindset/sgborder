@@ -1,3 +1,4 @@
+"use client";
 interface LivePulseProps {
   status?: "smooth" | "moderate" | "heavy" | "jammed";
   size?: "sm" | "md" | "lg";

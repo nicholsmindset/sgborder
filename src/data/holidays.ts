@@ -15,31 +15,35 @@ export interface Holiday {
 
 export const SEVERITY_CONFIG: Record<
   Holiday["severity"],
-  { label: string; bg: string; text: string; border: string }
+  { label: string; bg: string; text: string; border: string; dot: string }
 > = {
   normal: {
     label: "Normal",
     bg: "bg-status-smooth-tint",
     text: "text-status-smooth",
     border: "border-status-smooth",
+    dot: "bg-status-smooth",
   },
   busy: {
     label: "Busy",
     bg: "bg-status-moderate-tint",
     text: "text-status-moderate",
     border: "border-status-moderate",
+    dot: "bg-status-moderate",
   },
   heavy: {
     label: "Heavy",
     bg: "bg-status-heavy-tint",
     text: "text-status-heavy",
     border: "border-status-heavy",
+    dot: "bg-status-heavy",
   },
   extreme: {
     label: "Extreme",
     bg: "bg-status-jammed-tint",
     text: "text-status-jammed",
     border: "border-status-jammed",
+    dot: "bg-status-jammed",
   },
 };
 

@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { Bus, Loader2, ChevronDown, ChevronUp, Users, Armchair, AlertTriangle } from "lucide-react";
 import { useLiveBusArrivals } from "@/hooks/useLiveData";
