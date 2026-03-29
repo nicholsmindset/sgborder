@@ -1,10 +1,11 @@
+"use client";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { CameraFeed, TrafficSnapshot, HourlyPattern } from "@/lib/types";
 import type { TrafficStatus } from "@/lib/constants";
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
 interface LiveCamera {
   camera_id: string;
@@ -274,10 +275,10 @@ export function arrivalToMinutes(isoTime: string | null): number | null {
 
 /** Demo traffic data shown when no pipeline data exists yet */
 const DEMO_SNAPSHOTS: TrafficSnapshot[] = [
-  { id: 1, checkpoint: "woodlands", direction: "sg_to_jb", status: "smooth", travel_time_min: 22, updated_at: new Date().toISOString() },
-  { id: 2, checkpoint: "woodlands", direction: "jb_to_sg", status: "moderate", travel_time_min: 38, updated_at: new Date().toISOString() },
-  { id: 3, checkpoint: "tuas", direction: "sg_to_jb", status: "smooth", travel_time_min: 18, updated_at: new Date().toISOString() },
-  { id: 4, checkpoint: "tuas", direction: "jb_to_sg", status: "smooth", travel_time_min: 15, updated_at: new Date().toISOString() },
+  { id: "1", checkpoint: "woodlands", direction: "sg_to_jb", status: "smooth", travel_time_min: 22, updated_at: new Date().toISOString() },
+  { id: "2", checkpoint: "woodlands", direction: "jb_to_sg", status: "moderate", travel_time_min: 38, updated_at: new Date().toISOString() },
+  { id: "3", checkpoint: "tuas", direction: "sg_to_jb", status: "smooth", travel_time_min: 18, updated_at: new Date().toISOString() },
+  { id: "4", checkpoint: "tuas", direction: "jb_to_sg", status: "smooth", travel_time_min: 15, updated_at: new Date().toISOString() },
 ];
 
 /** Fetches latest traffic snapshots from Supabase, falls back to demo data */

@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import { LivePulse } from "./LivePulse";
 import { useTranslation } from "@/lib/i18n";

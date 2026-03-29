@@ -1,3 +1,4 @@
+"use client";
 import type { TrafficStatus } from "@/lib/constants";
 import { useTranslation } from "@/lib/i18n";
 

@@ -1,5 +1,7 @@
+"use client";
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, Globe } from "lucide-react";
 import { LivePulse } from "../dashboard/LivePulse";
 import { useTranslation, LANGUAGES } from "@/lib/i18n";
@@ -8,13 +10,13 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
-  const location = useLocation();
+  const pathname = usePathname() ?? "/";
   const { lang, setLang, t } = useTranslation();
 
   useEffect(() => {
     setMenuOpen(false);
     setLangOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -41,7 +43,7 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card/95 backdrop-blur-md">
       <div className="container flex h-14 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <LivePulse />
           <span className="font-heading text-title font-bold text-foreground">
             SG Border Live
@@ -52,11 +54,11 @@ export const Navbar = () => {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-0.5 md:flex">
             {links.map((link) => {
-              const isActive = link.to === "/" ? location.pathname === "/" : location.pathname.startsWith(link.to);
+              const isActive = link.to === "/" ? pathname === "/" : pathname.startsWith(link.to);
               return (
                 <Link
                   key={link.to}
-                  to={link.to}
+                  href={link.to}
                   className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-1 ${
                     isActive
                       ? "text-foreground"
@@ -118,9 +120,9 @@ export const Navbar = () => {
           {links.map((link) => (
             <Link
               key={link.to}
-              to={link.to}
+              href={link.to}
               className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                location.pathname === link.to
+                pathname === link.to
                   ? "bg-muted text-foreground"
                   : "text-muted-foreground hover:bg-muted"
               }`}

@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
+"use client";
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react";
 import { en } from "./translations/en";
 import { zh } from "./translations/zh";
 import { ms } from "./translations/ms";
@@ -11,8 +12,9 @@ export const LANGUAGES: { code: Language; label: string; short: string }[] = [
   { code: "ms", label: "Bahasa Melayu", short: "BM" },
 ];
 
-type TranslationDict = typeof en;
-const translations: Record<Language, TranslationDict> = { en, zh, ms };
+type TranslationKeys = keyof typeof en;
+type TranslationDict = Record<TranslationKeys, string>;
+const translations: Record<Language, TranslationDict> = { en, zh: zh as TranslationDict, ms: ms as TranslationDict };
 
 interface I18nContextValue {
   lang: Language;
@@ -27,11 +29,15 @@ const I18nContext = createContext<I18nContextValue>({
 });
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLangState] = useState<Language>(() => {
-    const stored = localStorage.getItem("sgborder-lang");
-    if (stored && (stored === "en" || stored === "zh" || stored === "ms")) return stored;
-    return "en";
-  });
+  const [lang, setLangState] = useState<Language>("en");
+
+  // Hydrate from localStorage on mount
+  useEffect(() => {
+    const stored = typeof window !== "undefined" ? localStorage.getItem("sgborder-lang") : null;
+    if (stored && (stored === "en" || stored === "zh" || stored === "ms")) {
+      setLangState(stored);
+    }
+  }, []);
 
   const setLang = useCallback((newLang: Language) => {
     setLangState(newLang);

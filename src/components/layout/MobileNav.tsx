@@ -1,9 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Car, Bus, Camera, BookOpen, Calculator } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
 export const MobileNav = () => {
-  const location = useLocation();
+  const pathname = usePathname() ?? "/";
   const { t } = useTranslation();
 
   const tabs = [
@@ -20,11 +22,11 @@ export const MobileNav = () => {
     >
       <div className="flex h-14 items-stretch">
         {tabs.map((tab) => {
-          const active = tab.to === "/" ? location.pathname === "/" : location.pathname.startsWith(tab.to);
+          const active = tab.to === "/" ? pathname === "/" : pathname.startsWith(tab.to);
           return (
             <Link
               key={tab.to}
-              to={tab.to}
+              href={tab.to}
               className={`relative flex flex-1 flex-col items-center justify-center gap-0.5 text-label-sm transition-all duration-200 active:scale-95 ${
                 active ? "text-accent" : "text-muted-foreground"
               }`}

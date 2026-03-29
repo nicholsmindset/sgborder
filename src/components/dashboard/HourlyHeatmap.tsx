@@ -1,3 +1,4 @@
+"use client";
 import type { HourlyPattern } from "@/lib/types";
 import type { TrafficStatus } from "@/lib/constants";
 import { useState } from "react";

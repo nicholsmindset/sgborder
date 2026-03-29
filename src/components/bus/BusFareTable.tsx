@@ -1,3 +1,4 @@
+"use client";
 import { BUS_ROUTES } from "@/lib/bus-data";
 import { useTranslation } from "@/lib/i18n";
 

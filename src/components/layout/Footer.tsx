@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+"use client";
+import Link from "next/link";
 import { LivePulse } from "../dashboard/LivePulse";
 import { useTranslation } from "@/lib/i18n";
 
@@ -24,10 +25,10 @@ export const Footer = () => {
           <div>
             <p className="text-label-sm font-semibold uppercase tracking-wider text-primary-foreground/40">{t("footer_quick_links")}</p>
             <nav className="mt-3 flex flex-col gap-2">
-              <Link to="/woodlands" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_woodlands_checkpoint")}</Link>
-              <Link to="/tuas" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_tuas_second_link")}</Link>
-              <Link to="/cameras" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_live_cameras")}</Link>
-              <Link to="/bus" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_cross_border_buses")}</Link>
+              <Link href="/woodlands" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_woodlands_checkpoint")}</Link>
+              <Link href="/tuas" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_tuas_second_link")}</Link>
+              <Link href="/cameras" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_live_cameras")}</Link>
+              <Link href="/bus" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_cross_border_buses")}</Link>
             </nav>
           </div>
 
@@ -35,10 +36,10 @@ export const Footer = () => {
           <div>
             <p className="text-label-sm font-semibold uppercase tracking-wider text-primary-foreground/40">{t("footer_resources")}</p>
             <nav className="mt-3 flex flex-col gap-2">
-              <Link to="/guides" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_commuter_guides")}</Link>
-              <Link to="/holidays" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_holiday_calendar")}</Link>
-              <Link to="/rts-link" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_rts_link")}</Link>
-              <Link to="/calculator" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_trip_calculator")}</Link>
+              <Link href="/guides" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_commuter_guides")}</Link>
+              <Link href="/holidays" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_holiday_calendar")}</Link>
+              <Link href="/rts-link" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_rts_link")}</Link>
+              <Link href="/calculator" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_trip_calculator")}</Link>
             </nav>
           </div>
 
@@ -51,8 +52,8 @@ export const Footer = () => {
               <span>ArriveLah Bus API</span>
             </div>
             <div className="mt-4 flex flex-col gap-2">
-              <Link to="/about" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">About</Link>
-              <Link to="/privacy" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">Privacy Policy</Link>
+              <Link href="/about" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">About</Link>
+              <Link href="/privacy" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">Privacy Policy</Link>
             </div>
           </div>
         </div>

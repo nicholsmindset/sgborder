@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand */
+    --background: 210 20% 98%;
+    --foreground: 220 25% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 14%;
+
+    --primary: 220 25% 18%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 210 16% 93%;
+    --secondary-foreground: 220 25% 18%;
+
+    --muted: 210 14% 94%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 198 70% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 52%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 20% 90%;
+    --input: 214 20% 90%;
+    --ring: 198 70% 45%;
+
+    --radius: 0.75rem;
+
+    /* Status colors */
+    --status-smooth: 152 60% 42%;
+    --status-moderate: 38 85% 52%;
+    --status-heavy: 24 90% 52%;
+    --status-jammed: 0 72% 52%;
+
+    /* Status tints (light backgrounds) */
+    --status-smooth-tint: 152 50% 95%;
+    --status-moderate-tint: 38 70% 95%;
+    --status-heavy-tint: 24 70% 95%;
+    --status-jammed-tint: 0 60% 95%;
+
+    /* Telegram accent */
+    --telegram: 200 80% 50%;
+    --telegram-foreground: 0 0% 100%;
+
+    /* Surfaces */
+    --surface-raised: 0 0% 100%;
+    --surface-overlay: 220 20% 97%;
+
+    /* Sidebar (unused for now) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    overflow-wrap: break-word;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Global focus-visible styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-accent/50 ring-offset-1 ring-offset-background;
+    border-radius: 4px;
+  }
+}
+
+/* ─── Live Pulse Animations ─── */
+
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.5); }
+}
+
+.animate-live-pulse {
+  animation: live-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes live-ring-inner {
+  0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.5); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.animate-live-ring-inner {
+  animation: live-ring-inner 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes live-ring-outer {
+  0% { opacity: 0.4; transform: scale(0.4); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+.animate-live-ring-outer {
+  animation: live-ring-outer 2s cubic-bezier(0, 0, 0.2, 1) infinite 0.3s;
+}
+
+/* ─── Status Animations ─── */
+
+@keyframes jammed-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-jammed-pulse {
+  animation: jammed-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes subtle-glow {
+  0%, 100% { box-shadow: none; }
+  50% { box-shadow: 0 0 12px -3px hsl(var(--accent) / 0.15); }
+}
+
+.animate-subtle-glow {
+  animation: subtle-glow 3s ease-in-out infinite;
+}
+
+@keyframes data-refresh {
+  0% { background-color: hsl(var(--accent) / 0.08); }
+  100% { background-color: transparent; }
+}
+
+.animate-data-refresh {
+  animation: data-refresh 0.6s ease-out;
+}
+
+/* ─── Expand/Collapse ─── */
+
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up-fade {
+  animation: slide-up-fade 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Scroll Reveal ─── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(2px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
+              filter 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ─── Mobile Nav Safe Area ─── */
+
+.pb-mobile-nav {
+  padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .pb-mobile-nav {
+    padding-bottom: 0;
+  }
+}
+
+/* ─── Navbar Mobile Menu Animation ─── */
+
+@keyframes menu-slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-menu-slide-down {
+  animation: menu-slide-down 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}

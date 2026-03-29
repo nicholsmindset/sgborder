@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { useLiveCameras } from "@/hooks/useLiveData";
 import type { CameraFeed } from "@/lib/types";

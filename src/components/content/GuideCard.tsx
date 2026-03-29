@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+"use client";
+import Link from "next/link";
 import { type Guide, getCategoryColor } from "@/data/guides";
 import { Clock } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
@@ -7,7 +8,7 @@ export const GuideCard = ({ guide }: { guide: Guide }) => {
   const { t } = useTranslation();
   return (
   <Link
-    to={`/guides/${guide.slug}`}
+    href={`/guides/${guide.slug}`}
     className="group flex flex-col rounded-xl border border-border bg-card shadow-card transition-all hover:shadow-card-hover active:scale-[0.98]"
   >
     {/* Color bar top */}

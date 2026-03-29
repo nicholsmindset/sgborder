@@ -1,3 +1,4 @@
+"use client";
 import { MapPin, ChevronDown } from "lucide-react";
 
 export const BUS_STOP_OPTIONS = [
