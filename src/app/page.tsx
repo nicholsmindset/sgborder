@@ -6,12 +6,7 @@ export const metadata: Metadata = {
   title: "Causeway Traffic Live — Woodlands & Tuas Checkpoint CCTV Camera Status",
   description:
     "Live causeway traffic status for Woodlands & Tuas checkpoints. LTA CCTV cameras, bus arrivals, wait times updated every 5 min. SG to JB traffic — check now before you cross.",
-  alternates: { canonical: "https://www.sgborder.live/" },
-  openGraph: {
-    title: "Causeway Traffic Live — Woodlands & Tuas Checkpoint CCTV Camera Status",
-    description: "Live causeway traffic status for Woodlands & Tuas checkpoints. Updated every 5 min.",
-    url: "https://www.sgborder.live/",
-  },
+  alternates: { canonical: "/" },
 };
 
 const homeFaqs = [
@@ -69,7 +64,7 @@ export default function HomePage() {
       />
       {/* Static SEO content visible to crawlers */}
       <div className="sr-only">
-        <h1>Singapore to JB Causeway Traffic Live — Real-Time Checkpoint Status</h1>
+        <h2>Singapore to JB Causeway Traffic Live — Real-Time Checkpoint Status</h2>
         <p>Check live causeway traffic conditions at Woodlands and Tuas checkpoints before crossing to Johor Bahru. Real-time LTA CCTV camera feeds, estimated wait times, cross-border bus arrivals, and hourly traffic patterns — all updated every 5 minutes.</p>
         <h2>Live Traffic Status</h2>
         <p>Our dashboard shows real-time congestion levels (Smooth, Moderate, Heavy, Jammed) for both Woodlands Checkpoint and Tuas Second Link, in both directions (SG to JB and JB to SG).</p>

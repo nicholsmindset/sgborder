@@ -17,7 +17,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     return {
       title: page?.title || `${params.slug} — Holiday Calendar`,
       description: page?.description || "Holiday calendar with causeway traffic impact predictions.",
-      alternates: { canonical: `https://www.sgborder.live/holidays/${params.slug}` },
+      alternates: { canonical: `/holidays/${params.slug}` },
     };
   }
 
@@ -28,7 +28,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${holiday.name} 2026 Causeway Traffic — Peak Hours & Best Times`,
     description: `${holiday.name} causeway traffic prediction. ${sev.label} congestion expected. See peak hours, best times to cross, and tips for Woodlands & Tuas.`,
-    alternates: { canonical: `https://www.sgborder.live/holidays/${holiday.slug}` },
+    alternates: { canonical: `/holidays/${holiday.slug}` },
   };
 }
 
@@ -55,7 +55,7 @@ export default function HolidaySlugPage({ params }: { params: { slug: string } }
             }}
           />
           <div className="sr-only">
-            <h1>{holiday.name} 2026 — Causeway Traffic Prediction</h1>
+            <h2>{holiday.name} 2026 — Causeway Traffic Prediction</h2>
             <p>{holiday.description}</p>
             <h2>Peak Hours</h2>
             <p>Woodlands: {holiday.peak_hours_woodlands}</p>

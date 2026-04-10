@@ -14,12 +14,12 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: guide.metaTitle || guide.title,
     description: guide.metaDescription || guide.description,
-    alternates: { canonical: `https://www.sgborder.live/guides/${guide.slug}` },
+    alternates: { canonical: `/guides/${guide.slug}` },
     openGraph: {
-      title: guide.metaTitle || guide.title,
-      description: guide.metaDescription || guide.description,
-      url: `https://www.sgborder.live/guides/${guide.slug}`,
       type: "article",
+      publishedTime: "2026-03-01",
+      modifiedTime: guide.lastUpdated,
+      url: `/guides/${guide.slug}`,
     },
   };
 }
@@ -60,7 +60,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
             ]}
           />
           <div className="sr-only">
-            <h1>{guide.title}</h1>
+            <h2>{guide.title}</h2>
             <p>{guide.description}</p>
             {guide.sections.map((s) => (
               <div key={s.id}>

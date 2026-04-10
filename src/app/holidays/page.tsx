@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Causeway Traffic Holiday Calendar 2026 — Peak Hours & Predictions",
   description:
     "2026 causeway holiday traffic predictions. See peak hours, best times to cross & severity forecasts for every Singapore & Malaysia holiday.",
-  alternates: { canonical: "https://www.sgborder.live/holidays" },
+  alternates: { canonical: "/holidays" },
 };
 
 export default function HolidaysPage() {
@@ -31,7 +31,7 @@ export default function HolidaysPage() {
         }}
       />
       <div className="sr-only">
-        <h1>Causeway Traffic Holiday Calendar 2026</h1>
+        <h2>Causeway Traffic Holiday Calendar 2026</h2>
         <p>Plan your border crossing around Singapore and Malaysia public holidays. Traffic predictions, peak hours, and best times to cross for every major holiday in 2026.</p>
         <h2>2026 Holiday Traffic Predictions</h2>
         <ul>

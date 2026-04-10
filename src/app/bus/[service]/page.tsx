@@ -14,7 +14,7 @@ export function generateMetadata({ params }: { params: { service: string } }): M
   return {
     title: `${route.service_no} Bus to JB — ${route.route_name} Route, Fare & Schedule 2026`,
     description: `Complete ${route.service_no} bus guide: ${route.route_name} with live arrivals, S$${route.fare_sgd}/RM${route.fare_myr} fares, first/last bus timing & tips for crossing via ${route.via_checkpoint === "woodlands" ? "Woodlands" : "Tuas"}.`,
-    alternates: { canonical: `https://www.sgborder.live/bus/${route.slug}` },
+    alternates: { canonical: `/bus/${route.slug}` },
   };
 }
 
@@ -37,7 +37,7 @@ export default function BusRoutePage({ params }: { params: { service: string } }
             }}
           />
           <div className="sr-only">
-            <h1>Bus {route.service_no} — {route.route_name}</h1>
+            <h2>Bus {route.service_no} — {route.route_name}</h2>
             <p>{route.operator} cross-border bus from {route.sg_departure} to {route.jb_arrival} via {route.via_checkpoint === "woodlands" ? "Woodlands Checkpoint" : "Tuas Second Link"}.</p>
             <h2>Schedule & Fares</h2>
             <ul>

@@ -16,17 +16,27 @@ export const metadata: Metadata = {
   description:
     "Live Singapore-to-JB causeway traffic, bus arrivals, camera feeds, and crossing guides. Updated every 5 minutes.",
   alternates: {
-    canonical: "https://www.sgborder.live",
+    canonical: "/",
+    // Note: site uses client-side i18n without URL-based localization.
+    // Cannot use hreflang until we add /en, /zh, /ms routes.
   },
   openGraph: {
     type: "website",
     locale: "en_SG",
+    alternateLocale: ["zh_SG", "ms_MY"],
     siteName: "SG Border Live",
     title: "SG Border Live — Real-Time Causeway Traffic",
     description:
       "Live causeway traffic status for Woodlands & Tuas checkpoints with LTA CCTV cameras, bus arrivals, and travel predictions.",
-    url: "https://www.sgborder.live",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    url: "/",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "SG Border Live — Real-Time Causeway Traffic Dashboard",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -38,8 +48,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    "max-image-preview": "large",
-    "max-snippet": -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   verification: {
     google: "-ssVsE4wM4Vy9jNlw6fKX0l24rkWvcnDIuYOnpBaH6M",

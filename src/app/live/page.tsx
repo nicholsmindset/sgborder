@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "JB Traffic Now — Live LTA CCTV Camera & Causeway Checkpoint Status",
   description:
     "Is there a JB jam now? Live causeway traffic status for Woodlands & Tuas checkpoints with LTA CCTV cameras and wait times. Updated every 5 min.",
-  alternates: { canonical: "https://www.sgborder.live/live" },
+  alternates: { canonical: "/live" },
 };
 
 export default function LivePage() {
@@ -22,7 +22,7 @@ export default function LivePage() {
         }}
       />
       <div className="sr-only">
-        <h1>JB Traffic Now — Live Causeway Checkpoint Status</h1>
+        <h2>JB Traffic Now — Live Causeway Checkpoint Status</h2>
         <p>Real-time Singapore-JB causeway traffic status. Check if there is a jam at Woodlands or Tuas checkpoints right now. Live LTA CCTV cameras and estimated wait times updated every 5 minutes.</p>
       </div>
       <LiveClient />

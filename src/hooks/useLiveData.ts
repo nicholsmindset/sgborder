@@ -182,6 +182,8 @@ export function useLiveCameras(checkpoint?: string) {
     },
     refetchInterval: 5 * 60 * 1000, // 5 minutes
     staleTime: 2 * 60 * 1000,
+    // Empty initial data so SSR renders the "no feeds" state, not a spinner
+    initialData: [] as CameraFeed[],
   });
 }
 
@@ -212,6 +214,7 @@ export function useExpresswayCameras(cameraIds: string[]) {
     refetchInterval: 5 * 60 * 1000,
     staleTime: 2 * 60 * 1000,
     enabled: cameraIds.length > 0,
+    initialData: [] as CameraFeed[],
   });
 }
 
@@ -254,6 +257,13 @@ export function useLiveBusArrivals(stopCode: string = "45009") {
     refetchInterval: 30 * 1000,
     staleTime: 10 * 1000,
     refetchOnWindowFocus: true,
+    // Seed with empty placeholder so SSR never shows a spinner
+    placeholderData: {
+      bus_stop_code: "",
+      stop_name: "",
+      services: [],
+      timestamp: new Date().toISOString(),
+    } as BusResponse,
   });
 }
 
@@ -320,6 +330,8 @@ export function useLiveTraffic(checkpoint?: string, direction?: string) {
       // Return demo data so the dashboard always shows something
       return DEMO_SNAPSHOTS;
     },
+    // Seed with demo data so SSR never renders a loading spinner (bad for SEO)
+    initialData: DEMO_SNAPSHOTS,
     refetchInterval: 5 * 60 * 1000,
     staleTime: 2 * 60 * 1000,
   });
@@ -372,6 +384,8 @@ export function useLiveHourlyPattern(checkpoint?: string, direction?: string) {
       }
       return DEMO_HOURLY;
     },
+    // Seed with demo hourly pattern for SSR
+    initialData: DEMO_HOURLY,
     staleTime: 60 * 60 * 1000,
   });
 }

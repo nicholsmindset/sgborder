@@ -6,14 +6,14 @@ export const metadata: Metadata = {
   title: "Causeway Traffic Guide — Best Time to Cross, VEP, Bus & Tips",
   description:
     "Practical guides for crossing to JB: best time to cross the causeway, VEP Malaysia guide, bus routes, checkpoint tips, and travel costs.",
-  alternates: { canonical: "https://www.sgborder.live/guides" },
+  alternates: { canonical: "/guides" },
 };
 
 export default function GuidesPage() {
   return (
     <>
       <div className="sr-only">
-        <h1>Causeway Traffic Guides — Singapore to JB Crossing Tips</h1>
+        <h2>Causeway Traffic Guides — Singapore to JB Crossing Tips</h2>
         <p>Practical, data-driven guides for crossing the Singapore-JB causeway. Best times to cross, VEP registration, bus routes, and checkpoint-specific advice.</p>
         <h2>Available Guides</h2>
         <ul>

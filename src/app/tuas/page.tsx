@@ -6,12 +6,7 @@ export const metadata: Metadata = {
   title: "Tuas Checkpoint Live CCTV Camera & Traffic Today (2026) — Second Link Status",
   description:
     "Tuas Checkpoint traffic today with live LTA CCTV cameras, Second Link wait times & bus info. Less crowded than Woodlands — check Tuas status before you cross to JB.",
-  alternates: { canonical: "https://www.sgborder.live/tuas" },
-  openGraph: {
-    title: "Tuas Checkpoint Live Traffic — Second Link Status",
-    description: "Real-time Tuas Second Link traffic, cameras, and wait times.",
-    url: "https://www.sgborder.live/tuas",
-  },
+  alternates: { canonical: "/tuas" },
 };
 
 export default function TuasPage() {
@@ -28,7 +23,7 @@ export default function TuasPage() {
         }}
       />
       <div className="sr-only">
-        <h1>Tuas Checkpoint Traffic Today — Second Link Live Status</h1>
+        <h2>Tuas Checkpoint Traffic Today — Second Link Live Status</h2>
         <p>Real-time traffic at Tuas Checkpoint (Second Link). Live LTA cameras, wait times, and bus info. Toll: S$2.10 for cars. Typically 20-40% less congested than Woodlands.</p>
         <h2>Why Choose Tuas over Woodlands?</h2>
         <ul>

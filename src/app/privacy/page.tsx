@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Privacy policy for SG Border Live (sgborder.live). Learn how we collect data, use cookies, and work with Google AdSense and Analytics.",
-  alternates: { canonical: "https://www.sgborder.live/privacy" },
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

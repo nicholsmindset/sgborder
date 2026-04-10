@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "Bus to JB — Singapore to Johor Bahru Cross-Border Bus Routes & Fares",
   description:
     "All buses from Singapore to JB: CW1, CW2, 170, 170X, 950 routes with live arrivals, fares, schedules. Compare Woodlands & Tuas bus options.",
-  alternates: { canonical: "https://www.sgborder.live/bus" },
+  alternates: { canonical: "/bus" },
 };
 
 export default function BusPage() {
@@ -33,7 +33,7 @@ export default function BusPage() {
         }}
       />
       <div className="sr-only">
-        <h1>Bus to JB — Singapore to Johor Bahru Cross-Border Bus Routes</h1>
+        <h2>Bus to JB — Singapore to Johor Bahru Cross-Border Bus Routes</h2>
         <p>Complete guide to all cross-border bus services from Singapore to Johor Bahru. Live arrival times, fares in SGD and MYR, schedules, and route information.</p>
         <h2>Cross-Border Bus Routes via Woodlands</h2>
         {BUS_ROUTES.filter(r => r.via_checkpoint === "woodlands").map(r => (

@@ -16,7 +16,7 @@ export function generateMetadata({ params }: { params: { checkpoint: string } })
     return {
       title: expressway.title,
       description: expressway.description,
-      alternates: { canonical: `https://www.sgborder.live/cameras/${params.checkpoint}` },
+      alternates: { canonical: `/cameras/${params.checkpoint}` },
     };
   }
 
@@ -24,7 +24,7 @@ export function generateMetadata({ params }: { params: { checkpoint: string } })
   return {
     title: `${name} Checkpoint Live Cameras — LTA CCTV Traffic (2026)`,
     description: `Live LTA traffic cameras at ${name} Checkpoint. View real-time CCTV images updated every 5 minutes.`,
-    alternates: { canonical: `https://www.sgborder.live/cameras/${params.checkpoint}` },
+    alternates: { canonical: `/cameras/${params.checkpoint}` },
   };
 }
 
@@ -34,11 +34,11 @@ export default function CheckpointCameraPage({ params }: { params: { checkpoint:
   return (
     <>
       <div className="sr-only">
-        <h1>
+        <h2>
           {isExpressway
             ? `${EXPRESSWAYS[params.checkpoint].name} Traffic Camera Live`
             : `${params.checkpoint === "woodlands" ? "Woodlands" : "Tuas"} Checkpoint Live Cameras`}
-        </h1>
+        </h2>
         <p>
           {isExpressway
             ? EXPRESSWAYS[params.checkpoint].description

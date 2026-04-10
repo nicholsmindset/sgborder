@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "VEP Malaysia Calculator — Toll, Fees & Crossing Cost 2026",
   description:
     "Calculate your VEP Malaysia cost, causeway toll & total crossing fees. Includes Woodlands/Tuas tolls, VEP registration fees, and Malaysia road charges for 2026.",
-  alternates: { canonical: "https://www.sgborder.live/calculator" },
+  alternates: { canonical: "/calculator" },
 };
 
 export default function CalculatorPage() {
@@ -31,7 +31,7 @@ export default function CalculatorPage() {
         }}
       />
       <div className="sr-only">
-        <h1>VEP Malaysia Calculator — Causeway Toll & Crossing Cost</h1>
+        <h2>VEP Malaysia Calculator — Causeway Toll & Crossing Cost</h2>
         <p>Calculate total costs for driving from Singapore to JB. Includes Singapore tolls (Woodlands S$0.80, Tuas S$2.10), VEP daily fee (S$35 cars, S$4 motorcycles), and Malaysia road charge (RM20).</p>
         <h2>Frequently Asked Questions</h2>
         {vepFaqs.map((faq, i) => (
