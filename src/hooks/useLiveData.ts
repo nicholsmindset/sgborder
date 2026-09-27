@@ -132,12 +132,20 @@ async function fetchCamerasFromDataGov(checkpoint?: string): Promise<CameraFeed[
     });
 }
 
-/** Fetches live traffic camera images, falls back to DB cache, then direct API */
+/** Fetches current government camera images, then tries the edge and recent cache. */
 export function useLiveCameras(checkpoint?: string) {
   return useQuery({
     queryKey: ["live-cameras", checkpoint],
     queryFn: async (): Promise<CameraFeed[]> => {
-      // Try edge function first
+      // The public feed avoids an extra proxy round trip on the camera-first dashboard.
+      try {
+        const cameras = await fetchCamerasFromDataGov(checkpoint);
+        if (cameras.length > 0) return cameras;
+      } catch (e) {
+        console.warn("data.gov.sg cameras failed:", e);
+      }
+
+      // Fall back to the proxy if the direct feed is unavailable in this browser.
       try {
         const data = await fetchFromEdge<{ cameras: LiveCamera[] }>("cameras");
         const cameras = data.cameras
@@ -152,14 +160,6 @@ export function useLiveCameras(checkpoint?: string) {
         if (cameras.length > 0) return cameras;
       } catch (e) {
         console.warn("Edge function cameras failed:", e);
-      }
-
-      // Prefer the current government feed before using a cached image.
-      try {
-        const cameras = await fetchCamerasFromDataGov(checkpoint);
-        if (cameras.length > 0) return cameras;
-      } catch (e) {
-        console.warn("data.gov.sg cameras failed:", e);
       }
 
       // Last resort: use only a recently observed database image.
