@@ -27,70 +27,40 @@ export const GUIDES: Guide[] = [
   {
     slug: "best-time-to-cross-causeway",
     title: "Best Time to Cross the Causeway",
-    description: "Hour-by-hour, day-by-day breakdown of when to cross for the shortest wait.",
+    description: "Plan around official peak-period advisories, holidays and current camera images.",
     category: "tips",
-    readTime: 8,
-    lastUpdated: "2026-03-15",
-    metaTitle: "Best Time to Cross the Causeway to JB (2026 Guide)",
-    metaDescription: "Find the best time to cross the Singapore-JB causeway. Hour-by-hour and day-by-day traffic data for Woodlands and Tuas checkpoints.",
-    relatedSlugs: ["friday-woodlands-traffic", "saturday-sg-to-jb"],
+    readTime: 4,
+    lastUpdated: "2026-09-27",
+    metaTitle: "Best Time to Cross the Causeway: A Practical SG–JB Guide",
+    metaDescription: "There is no fixed shortest-queue hour. Use ICA peak-period advisories, holiday dates and timestamped Woodlands and Tuas cameras to plan your crossing.",
+    relatedSlugs: ["myica-qr-code-guide", "vep-malaysia-guide"],
     sections: [
       {
-        id: "overview",
-        heading: "Quick Summary",
-        content: `<p>The causeway handles over 300,000 crossings daily, making timing everything. Based on historical traffic data, here's the short version:</p>
-        <ul>
-          <li><strong>Best days:</strong> Tuesday through Thursday — lowest overall traffic</li>
-          <li><strong>Best hours:</strong> Before 6 AM or after 9 PM on any day</li>
-          <li><strong>Worst time:</strong> Friday 4 PM – 10 PM and Saturday 7 AM – 12 PM</li>
-          <li><strong>Tuas alternative:</strong> Consistently 20-40% less congested than Woodlands</li>
-        </ul>`
+        id: "what-we-know",
+        heading: "What the evidence can tell you",
+        content: `<p>There is no reliable hour that is always the best time to cross. Direction, school holidays, public holidays, incidents and traffic from Malaysia can change queues quickly. ICA warns of heavy traffic during school holiday and long-weekend periods, and recommends checking checkpoint conditions before travelling.</p>
+        <p>For example, <a href="https://www.ica.gov.sg/news-and-publications/newsroom/media-release/heavy-traffic-expected-at-land-checkpoints-during-upcoming-september-school-holidays" target="_blank" rel="noopener noreferrer">ICA's September 2026 advisory</a> expected very heavy traffic across the holiday window and reported car immigration waits of up to three hours during the preceding National Day weekend. That is an event example, not a normal wait estimate.</p>`
       },
       {
-        id: "weekday-breakdown",
-        heading: "Weekday Breakdown",
-        content: `<p><strong>Monday:</strong> Morning rush (7-9 AM) is heavy with commuters. Clears by 10 AM. Evening return (5-7 PM JB→SG) is moderate.</p>
-        <p><strong>Tuesday–Thursday:</strong> The golden window. Both checkpoints stay smooth to moderate throughout the day. Morning rush is lighter than Monday. Best days for a spontaneous JB trip.</p>
-        <p><strong>Friday:</strong> The busiest day of the week. Traffic starts building from 2 PM at Woodlands. By 5 PM, expect 60-90 minute waits. The queue at Tuas also builds but peaks 30-45 minutes later than Woodlands. See our <a href="/guides/friday-woodlands-traffic">Friday traffic guide</a> for strategies.</p>`
-      },
-      {
-        id: "weekend-pattern",
-        heading: "Weekend Pattern",
-        content: `<p><strong>Saturday SG→JB:</strong> Heavy from 7 AM to noon. The 8-10 AM window is the worst — families heading for day trips. If you must go Saturday morning, leave before 6:30 AM or after 12:30 PM.</p>
-        <p><strong>Saturday JB→SG:</strong> Generally smooth until 4 PM. Evening return (6-9 PM) can hit moderate to heavy, especially if there's an event at JB malls.</p>
-        <p><strong>Sunday JB→SG:</strong> The return rush. Builds from 2 PM, peaks 4-8 PM. Woodlands can hit 90+ minute waits. Tuas is your friend — usually 30-40% shorter waits on Sunday evenings.</p>
-        <p><strong>Sunday SG→JB:</strong> Surprisingly smooth all day. One of the best times to cross.</p>`
-      },
-      {
-        id: "tuas-vs-woodlands",
-        heading: "Tuas vs Woodlands: When to Switch",
-        content: `<p>Tuas Second Link is further from the city (30 min drive from CBD) but consistently less crowded. Switch to Tuas when:</p>
-        <ul>
-          <li>Woodlands shows "Heavy" or "Jammed" on our <a href="/">live dashboard</a></li>
-          <li>You're travelling on Friday evening or Saturday morning</li>
-          <li>You're coming from western Singapore (Jurong, Clementi, Bukit Batok)</li>
-          <li>There's a holiday or long weekend</li>
-        </ul>
-        <p>The higher toll at Tuas (S$2.10 vs S$0.80 at Woodlands) is usually worth the time saved. Use our <a href="/calculator">cost calculator</a> to compare.</p>`
-      },
-      {
-        id: "pro-tips",
-        heading: "Pro Tips for Faster Crossings",
+        id: "planning-steps",
+        heading: "A five-minute pre-trip check",
         content: `<ol>
-          <li><strong>Use MyICA QR code</strong> — Skip the passport queue entirely. Set up takes 5 minutes and saves 15-30 minutes per crossing.</li>
-          <li><strong>Check cameras before leaving</strong> — Our <a href="/">live camera feeds</a> show actual queue lengths, not just estimated times.</li>
-          <li><strong>Take the bus during peak hours</strong> — Buses use a dedicated lane through immigration. A <a href="/bus/cw1">CW1 from Kranji</a> can beat driving by 30+ minutes during heavy traffic.</li>
-          <li><strong>Check traffic patterns</strong> — Use our <a href="/holidays">holiday calendar</a> to plan around peak crossing times.</li>
-          <li><strong>3/4 tank rule</strong> — Ensure your fuel tank is at least 3/4 full when leaving Singapore. Fines start at S$500.</li>
+          <li>Check <a href="/holidays">Singapore and Johor holidays</a> and the latest <a href="https://www.ica.gov.sg/news-and-publications/newsroom/media-releases" target="_blank" rel="noopener noreferrer">ICA advisory</a>.</li>
+          <li>Look at timestamped <a href="/cameras/woodlands">Woodlands</a> and <a href="/cameras/tuas">Tuas</a> camera images before choosing a route.</li>
+          <li>Remember that Singapore road speeds and camera views do not measure immigration or Malaysia-side queues. Allow a buffer when arrival time matters.</li>
+          <li>If your schedule is flexible, check again shortly before departure. Consider <a href="/bus">cross-border buses</a> if driving routes are congested.</li>
         </ol>`
+      },
+      {
+        id: "future-history",
+        heading: "How our historical chart will work",
+        content: `<p>We intend to publish an hour-by-weekday road pattern only after continuous samples have been collected and checked. Our <a href="/methodology">methodology</a> explains the distinction between a road speed band and a border wait time. We do not currently have enough recent history to publish a quantitative heatmap.</p>`
       }
     ],
     faqs: [
-      { question: "What is the best time to cross the causeway to JB?", answer: "The best times are before 6 AM or after 9 PM on any day. On weekdays, Tuesday through Thursday offer the lightest traffic throughout the day. Avoid Friday evenings (4-10 PM) and Saturday mornings (7 AM-12 PM)." },
-      { question: "Is Tuas faster than Woodlands?", answer: "Tuas is typically 20-40% less congested than Woodlands, especially during peak hours. The trade-off is a longer drive (30 min from CBD) and higher toll (S$2.10 vs S$0.80). During Friday evenings and Saturday mornings, Tuas can save you 30-60 minutes." },
-      { question: "How long does it take to cross the causeway?", answer: "During off-peak hours (late night, early morning, mid-week), crossing takes 15-25 minutes. During moderate traffic, expect 35-50 minutes. During peak times (Friday evening, Saturday morning), it can take 60-120+ minutes." },
-      { question: "What day has the least traffic at the causeway?", answer: "Tuesday, Wednesday, and Thursday have the least traffic. Sunday SG→JB direction is also surprisingly smooth throughout the day." },
-      { question: "Should I take the bus or drive across the causeway?", answer: "During peak hours, buses are often faster because they use dedicated lanes through immigration. CW1 from Kranji or 950 from Woodlands are the quickest bus options. During off-peak, driving is more convenient if you need a car in JB." }
+      { question: "What is the best time to cross the Causeway?", answer: "No hour consistently guarantees a short queue. Check ICA advisories, holidays and current camera timestamps shortly before travelling." },
+      { question: "Is Tuas always faster than Woodlands?", answer: "No. Compare the current approach conditions and account for the longer drive and different tolls. Camera views do not include every part of the crossing." },
+      { question: "Does a green road status mean a short immigration queue?", answer: "No. Singapore approach road speed does not measure immigration clearance or Malaysia-side congestion." }
     ]
   },
   {
@@ -146,72 +116,46 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: "vep-malaysia-guide",
-    title: "VEP Malaysia: Complete Vehicle Entry Permit Guide",
-    description: "Everything about VEP registration, costs, and the 2027 changes for driving into Malaysia.",
+    title: "Malaysia VEP for Singapore Cars: Registration, RFID & Road Charge",
+    description: "What Singapore registered drivers need before entering Malaysia: JPJ VEP registration, RFID tag fees, and the separate RM20 road charge.",
     category: "regulations",
-    readTime: 10,
-    lastUpdated: "2026-03-10",
-    metaTitle: "VEP Malaysia Guide 2026 — Registration, Costs & 2027 Changes",
-    metaDescription: "Complete guide to Malaysia's Vehicle Entry Permit (VEP). Registration steps, current fees, 2027 rate changes, and what Singapore drivers need to know.",
-    relatedSlugs: ["best-time-to-cross-causeway", "three-quarter-tank-rule"],
+    readTime: 6,
+    lastUpdated: "2026-09-27",
+    metaTitle: "Malaysia VEP for Singapore Cars (2026) — RFID & Road Charge",
+    metaDescription: "Malaysia VEP rules for Singapore cars: how to register, JPJ RFID tag fees and RM20 road charge. Clear distinction from Singapore's VEP for Malaysian cars.",
+    relatedSlugs: ["vep-application-step-by-step", "vep-rfid-malaysia", "three-quarter-tank-rule"],
     sections: [
       {
-        id: "what-is-vep",
-        heading: "What Is the VEP?",
-        content: `<p>The Vehicle Entry Permit (VEP) is Malaysia's system for tracking and charging foreign-registered vehicles entering the country. Since October 2024, all Singapore-registered vehicles must have a VEP RFID tag to enter Malaysia.</p>
-        <p>Think of it as Malaysia's version of an ERP tag — it's attached to your windshield and automatically detected at border crossings.</p>`
+        id: "which-vep",
+        heading: "First: which country is your car registered in?",
+        content: `<p><strong>Singapore registered vehicle entering Malaysia:</strong> register for Malaysia's JPJ VEP RFID tag. A private car also pays Malaysia's RM20 Road Charge per entry.</p>
+        <p><strong>Malaysia registered vehicle entering Singapore:</strong> Singapore LTA has a separate Vehicle Entry Permit with a daily fee. The S$35/day current fee and S$50/day rate from January 2027 belong to that Singapore scheme, not to Singapore cars visiting JB.</p>
+        <p>Check the <a href="https://www.jpj.gov.my/en/rc-vep-faq/" target="_blank" rel="noopener noreferrer">JPJ VEP and Road Charge FAQ</a> and <a href="https://onemotoring.lta.gov.sg/content/onemotoring/home/driving/entering_and_exiting_singapore/cars-and-motorcycles-registered-in-malaysia.html" target="_blank" rel="noopener noreferrer">LTA's foreign vehicle fees</a> for the two systems.</p>`
       },
       {
-        id: "registration",
-        heading: "How to Register for VEP",
+        id: "register",
+        heading: "Register your Singapore vehicle with JPJ",
         content: `<ol>
-          <li><strong>Apply online</strong> at the Malaysian Transport Ministry's VEP portal</li>
-          <li><strong>Pay the RFID tag fee</strong> — RM10 for the tag itself</li>
-          <li><strong>Install the tag</strong> — Can be done at designated centres in JB or at the checkpoint</li>
-          <li><strong>Link payment method</strong> — Touch 'n Go eWallet or credit card</li>
-          <li><strong>Top up your account</strong> — Minimum RM50 recommended</li>
+          <li>Apply through the <a href="https://vep.jpj.gov.my/" target="_blank" rel="noopener noreferrer">official JPJ VEP portal</a> before travelling.</li>
+          <li>Check your vehicle details and follow the portal's instructions for the VEP RFID tag.</li>
+          <li>Pay for collection or delivery and activate the tag through the JPJ process.</li>
+          <li>Keep your road tax, insurance and payment method valid for the crossing.</li>
         </ol>
-        <p>Processing takes 3-5 business days. Plan ahead — don't try to register the day before your trip.</p>`
+        <p>JPJ lists a RM10 tag processing fee and RM29.50 collection agent service fee; courier charges may be extra. A tag is valid for five years after activation and is tied to the vehicle.</p>`
       },
       {
-        id: "current-fees",
-        heading: "Current VEP Fees (2026)",
-        content: `<table>
-          <tr><td>Car / Van</td><td>S$35/day</td></tr>
-          <tr><td>Motorcycle</td><td>S$4/day</td></tr>
-          <tr><td>RFID tag (one-time)</td><td>RM10</td></tr>
-          <tr><td>Malaysia Road Charge</td><td>RM20/entry</td></tr>
-        </table>
-        <p>The daily VEP fee is charged per calendar day — even if you only cross for a few hours. Use our <a href="/calculator">cost calculator</a> to estimate your total crossing cost.</p>`
-      },
-      {
-        id: "2027-changes",
-        heading: "2027 Rate Changes",
-        content: `<p>Starting January 2027, VEP fees will increase significantly:</p>
-        <ul>
-          <li><strong>Cars:</strong> S$35 → S$50/day (43% increase)</li>
-          <li><strong>Motorcycles:</strong> S$4 → S$7/day (75% increase)</li>
-        </ul>
-        <p>This makes each day trip more expensive and may shift more casual visitors toward taking buses instead of driving. The Malaysia Road Charge (RM20) remains unchanged.</p>`
-      },
-      {
-        id: "common-issues",
-        heading: "Common VEP Issues",
-        content: `<ul>
-          <li><strong>Tag not detected:</strong> Ensure tag is properly placed on windshield (behind rearview mirror, metallic side facing out). Tinted windshields can interfere.</li>
-          <li><strong>Insufficient balance:</strong> Top up before crossing. If your balance is zero, you may be stopped at the checkpoint.</li>
-          <li><strong>New vehicle:</strong> VEP is tied to your vehicle registration. If you change cars, you need a new tag.</li>
-          <li><strong>Rental cars:</strong> Most Singapore rental companies now pre-install VEP tags. Confirm before driving across.</li>
-        </ul>`
+        id: "charges",
+        heading: "What you pay on a JB trip",
+        content: `<p>JPJ lists a <strong>RM20 Road Charge per entry</strong> for private foreign registered vehicles entering Malaysia. Motorcycles and commercial vehicles are exempt from this Road Charge. It is separate from checkpoint tolls and any one-time RFID tag costs.</p>
+        <p>Singapore tolls depend on your vehicle and checkpoint. Use our <a href="/calculator">SG to JB driving cost calculator</a> for published Singapore tolls and the JPJ Road Charge. Allow separately for Malaysia road tolls, fuel and parking.</p>
+        <p>Source: <a href="https://www.jpj.gov.my/en/rc-vep-faq/" target="_blank" rel="noopener noreferrer">JPJ official FAQ</a>.</p>`
       }
     ],
     faqs: [
-      { question: "Do I need a VEP to drive into Malaysia?", answer: "Yes, since October 2024, all Singapore-registered vehicles must have a VEP RFID tag to enter Malaysia. You must register online, get the tag installed, and ensure your account is topped up before crossing." },
-      { question: "How much does the VEP cost?", answer: "Currently S$35/day for cars and S$4/day for motorcycles, plus a one-time RM10 RFID tag fee and RM20 Malaysia Road Charge per entry. From 2027, car fees increase to S$50/day and motorcycle fees to S$7/day." },
-      { question: "Can I register for VEP at the checkpoint?", answer: "No, you must register online before your trip. Processing takes 3-5 business days. The RFID tag can be installed at designated centres in JB or at the checkpoint." },
-      { question: "What happens if my VEP tag is not detected?", answer: "You may be stopped at the checkpoint and face delays. Common causes include incorrect tag placement, tinted windshields interfering with the signal, or insufficient account balance. Ensure the tag is behind the rearview mirror with the metallic side facing outward." },
-      { question: "How will the 2027 VEP changes affect me?", answer: "From January 2027, the daily VEP fee for cars increases from S$35 to S$50 (43% increase) and motorcycles from S$4 to S$7 (75% increase). A round trip that currently costs about S$36.60 will cost about S$51.60. Consider taking the bus for short trips." },
-      { question: "Is the VEP charged per day or per trip?", answer: "Per calendar day. If you enter Malaysia at 11 PM and leave at 1 AM, that counts as two days. Plan your return timing to avoid paying for an extra day." }
+      { question: "Does a Singapore car pay S$35 per day to enter Malaysia?", answer: "No. S$35/day is part of Singapore's VEP for foreign registered cars entering Singapore, subject to exemptions. Singapore registered vehicles entering Malaysia follow JPJ's VEP RFID system and eligible private vehicles pay a separate RM20 Road Charge per entry." },
+      { question: "Where do I apply for Malaysia VEP?", answer: "Apply on the official JPJ VEP portal at vep.jpj.gov.my. Registration must be completed online; follow the portal's tag collection or delivery steps." },
+      { question: "How much is Malaysia's Road Charge?", answer: "JPJ states RM20 per entry for private foreign registered vehicles. Motorcycles and commercial vehicles are exempt from the Road Charge." },
+      { question: "What does the VEP RFID tag cost?", answer: "JPJ lists RM10 for tag processing and RM29.50 for the collection agent service. Courier charges can be additional." }
     ]
   },
   {
@@ -278,75 +222,49 @@ export const GUIDES: Guide[] = [
   },
   {
     slug: "myica-qr-code-guide",
-    title: "MyICA QR Code: Passport-Free Clearance Guide",
-    description: "Set up MyICA QR code for faster immigration clearance — skip the passport queue.",
+    title: "MyICA QR Code at Woodlands & Tuas: Who Can Use It",
+    description: "Use MyICA QR for Singapore land checkpoint clearance, with eligibility rules and why you must still carry your passport.",
     category: "tips",
     readTime: 5,
-    lastUpdated: "2026-03-05",
-    metaTitle: "MyICA QR Code Setup Guide — Passport-Free Immigration",
-    metaDescription: "How to set up and use MyICA QR code for passport-free immigration clearance at Woodlands and Tuas checkpoints. Step-by-step guide.",
+    lastUpdated: "2026-09-27",
+    metaTitle: "MyICA QR Code Guide — Woodlands & Tuas Eligibility",
+    metaDescription: "Who can use MyICA QR at Woodlands and Tuas, how to generate a code, and why travellers must still carry a passport for Malaysia.",
     relatedSlugs: ["best-time-to-cross-causeway", "cw1-bus-kranji-to-jb"],
     sections: [
       {
         id: "what-is-myica",
-        heading: "What Is MyICA QR Code?",
-        content: `<p>MyICA is ICA's mobile app that lets Singapore Citizens and Permanent Residents clear immigration using a QR code instead of a physical passport. It works at automated immigration gates at Woodlands and Tuas checkpoints.</p>
-        <p><strong>Key benefits:</strong></p>
-        <ul>
-          <li>No need to carry your passport for land crossings</li>
-          <li>Use the automated QR lanes — typically shorter queues</li>
-          <li>Works for both car and bus crossings</li>
-          <li>Free to use</li>
-        </ul>`
+        heading: "What MyICA QR clearance does",
+        content: `<p>The MyICA mobile app generates an individual or group QR code for immigration clearance at Singapore's <strong>Woodlands and Tuas land checkpoints</strong>. You scan the code instead of presenting a passport at the Singapore clearance point.</p>
+        <p><strong>Carry your physical passport.</strong> ICA may ask for it to verify your identity, and you need it at Malaysia's immigration checkpoint. The QR code is a Singapore land checkpoint clearance method, not a travel document.</p>
+        <p>Source: <a href="https://www.ica.gov.sg/enter-transit-depart/at-our-checkpoints/use-of-qr-code-for-immigration-clearance-at-woodlands-and-tuas-checkpoints" target="_blank" rel="noopener noreferrer">ICA QR code eligibility and procedure</a>.</p>`
+      },
+      {
+        id: "eligibility",
+        heading: "Who can use MyICA QR?",
+        content: `<p>ICA says Singapore citizens, Permanent Residents, Long-Term Pass holders and eligible foreign visitors can use QR codes at land checkpoints when travelling by car, motorcycle, lorry or bus.</p>
+        <p>First-time foreign visitors entering Singapore and travellers re-entering with a different passport from their last visit must present their passport. Travellers using a passport that has never been used to enter Singapore can use QR clearance on a subsequent trip.</p>
+        <p>Automated lanes may also require enrolled biometrics. Follow the signs and officer instructions at your lane.</p>`
       },
       {
         id: "setup",
-        heading: "How to Set Up MyICA QR Code",
+        heading: "Prepare your code before the queue",
         content: `<ol>
-          <li><strong>Download the MyICA app</strong> — Available on iOS App Store and Google Play Store</li>
-          <li><strong>Register with Singpass</strong> — You'll need your Singpass credentials to verify your identity</li>
-          <li><strong>Enable QR code</strong> — Go to "Immigration QR Code" in the app and activate it</li>
-          <li><strong>Set up biometrics</strong> — Enable Face ID or fingerprint for quick access</li>
-          <li><strong>Generate QR code</strong> — The QR code is generated fresh each time you need to cross</li>
+          <li>Download the official MyICA mobile app.</li>
+          <li>Create a traveller profile using your passport details, or Singpass if eligible.</li>
+          <li>Generate an individual or group QR code for the people travelling together.</li>
+          <li>Check the code expiry and update your profile if your passport has changed.</li>
+          <li>Scan the code at the applicable Singapore land checkpoint lane.</li>
         </ol>
-        <p>Setup takes about 5 minutes. Do it at home before your trip — don't try to set it up in the immigration queue.</p>`
-      },
-      {
-        id: "how-to-use",
-        heading: "Using MyICA at the Checkpoint",
-        content: `<ol>
-          <li>Open the MyICA app and generate your QR code</li>
-          <li>Walk to the <strong>automated immigration gates</strong> (look for "QR Code" signage)</li>
-          <li>Scan your QR code at the reader</li>
-          <li>Look at the camera for facial recognition</li>
-          <li>Gate opens — you're cleared</li>
-        </ol>
-        <p>The entire process takes 10-15 seconds per person. Compare that to 2-3 minutes at the manual counter.</p>
-        <p><strong>Note:</strong> MyICA QR only works for Singapore departure/arrival. You still need your passport for Malaysia immigration (JB CIQ side).</p>`
-      },
-      {
-        id: "which-checkpoints",
-        heading: "Supported Checkpoints",
-        content: `<p>MyICA QR code works at:</p>
-        <ul>
-          <li><strong>Woodlands Checkpoint</strong> — Both car and pedestrian/bus lanes</li>
-          <li><strong>Tuas Checkpoint</strong> — Both car and pedestrian/bus lanes</li>
-          <li><strong>Changi Airport</strong> — All terminals</li>
-          <li><strong>Marina Bay Cruise Centre</strong></li>
-        </ul>
-        <p>For causeway crossings, it saves the most time during peak hours when manual counter queues are longest.</p>`
+        <p>Keep your passport accessible for Malaysia and for any Singapore verification request. See <a href="https://www.ica.gov.sg/news-and-publications/newsroom/media-release/full-implementation-of-qr-code-clearance-at-the-land-checkpoints" target="_blank" rel="noopener noreferrer">ICA's passport advisory</a>.</p>`
       }
     ],
     faqs: [
-      { question: "How do I set up MyICA QR code?", answer: "Download the MyICA app, register with Singpass, enable the Immigration QR Code feature, and set up biometrics. Setup takes about 5 minutes." },
-      { question: "Can I use MyICA QR code to enter Malaysia?", answer: "No, MyICA QR code only works for Singapore immigration (departure and arrival). You still need your physical passport for Malaysia immigration at JB CIQ." },
-      { question: "Does MyICA QR work for driving across?", answer: "Yes, MyICA QR works at both car and pedestrian/bus automated gates at Woodlands and Tuas checkpoints." },
-      { question: "Is MyICA QR code free?", answer: "Yes, the MyICA app and QR code immigration clearance are completely free for Singapore Citizens and Permanent Residents." }
+      { question: "Can I leave my passport at home if I use MyICA QR?", answer: "No. ICA says travellers should still carry their passports when travelling overseas. Malaysia immigration requires a physical passport, and ICA may request it for verification." },
+      { question: "Can Malaysian visitors use MyICA QR?", answer: "Eligible foreign visitors can use QR clearance at Singapore land checkpoints. First-time foreign visitors entering Singapore, or travellers re-entering with a different passport from their last visit, must present a passport first." },
+      { question: "Does MyICA QR work at the Malaysian checkpoint?", answer: "No. MyICA QR is for Singapore immigration clearance at Woodlands and Tuas. Bring your passport for Malaysia." },
+      { question: "Where does this QR clearance work?", answer: "ICA's MyICA QR land checkpoint clearance applies at Woodlands and Tuas for travellers by car, motorcycle, lorry and bus." }
     ]
   },
-
-  // ========== DAY-OF-WEEK GUIDES ==========
-
   {
     slug: "monday-woodlands-traffic",
     title: "Monday Woodlands Traffic: Commuter Rush Guide",
@@ -1149,7 +1067,7 @@ export const GUIDES: Guide[] = [
         content: `<p>After installation, activate your VEP account:</p>
         <ol>
           <li><strong>Link your payment method</strong> — Touch 'n Go eWallet (recommended) or credit card via the MyVEP portal</li>
-          <li><strong>Top up your account</strong> — Minimum RM50 recommended. The system deducts VEP charges (S$35/day for cars) and Malaysia Road Charge (RM20/entry) automatically</li>
+          <li><strong>Prepare Road Charge payment</strong> — JPJ lists RM20 per entry for private foreign registered vehicles. This is separate from VEP RFID tag costs and road tolls.</li>
           <li><strong>Set up auto-reload</strong> — Avoid the embarrassment of insufficient balance at the checkpoint. Set auto-reload at RM50 or RM100</li>
           <li><strong>Test your tag</strong> — On your first crossing, watch for the green indicator at the gantry. If it flashes red, pull over and seek assistance</li>
         </ol>

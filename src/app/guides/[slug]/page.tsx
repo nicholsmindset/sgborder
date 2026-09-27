@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/shared/JsonLd";
 import GuideClient from "@/page-components/GuidePage";
 import { GUIDES } from "@/data/guides";
+import { INDEXABLE_GUIDE_SLUGS } from "@/lib/indexable-guides";
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return GUIDES.map((g) => ({ slug: g.slug }));
@@ -10,6 +13,13 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const guide = GUIDES.find((g) => g.slug === params.slug);
   if (!guide) return { title: "Guide Not Found" };
+  if (!INDEXABLE_GUIDE_SLUGS.has(guide.slug)) {
+    return {
+      title: `${guide.title} — Under Review`,
+      description: "This SG Border Live guide is being checked against current official sources.",
+      robots: { index: false, follow: true },
+    };
+  }
 
   return {
     title: guide.metaTitle || guide.title,
@@ -29,7 +39,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      {guide && (
+      {guide && INDEXABLE_GUIDE_SLUGS.has(guide.slug) && (
         <>
           <JsonLd
             data={[
@@ -59,27 +69,16 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                 : []),
             ]}
           />
-          <div className="sr-only">
-            <h1>{guide.title}</h1>
-            <p>{guide.description}</p>
-            {guide.sections.map((s) => (
-              <div key={s.id}>
-                <h2>{s.heading}</h2>
-                <div dangerouslySetInnerHTML={{ __html: s.content }} />
-              </div>
-            ))}
-            {guide.faqs.length > 0 && (
-              <>
-                <h2>Frequently Asked Questions</h2>
-                {guide.faqs.map((faq, i) => (
-                  <div key={i}><h3>{faq.question}</h3><p>{faq.answer}</p></div>
-                ))}
-              </>
-            )}
-          </div>
+
         </>
       )}
-      <GuideClient />
+      {guide && !INDEXABLE_GUIDE_SLUGS.has(guide.slug) ? (
+        <div className="container max-w-2xl py-12 pb-mobile-nav">
+          <h1 className="font-heading text-display-sm font-bold text-foreground">{guide.title}</h1>
+          <p className="mt-4 text-muted-foreground">This guide is being checked against current official sources. Historical queue forecasts and exact crossing times are unavailable while our data collection is being repaired.</p>
+          <a className="mt-5 inline-block text-accent underline" href="/cameras">Check current checkpoint cameras</a>
+        </div>
+      ) : <GuideClient />}
     </>
   );
 }

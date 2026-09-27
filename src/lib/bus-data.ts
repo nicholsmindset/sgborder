@@ -35,8 +35,8 @@ export const BUS_ROUTES: BusRoute[] = [
     tips: "170X is the express variant — fewer stops means a faster trip. Boards at Kranji MRT. Limited availability on weekends.",
   },
   {
-    service_no: "950", operator: "SBS Transit", route_name: "Woodlands Int → JB CIQ",
-    sg_departure: "Woodlands Interchange", jb_arrival: "JB CIQ", via_checkpoint: "woodlands",
+    service_no: "950", operator: "SMRT", route_name: "Woodlands → JB Sentral",
+    sg_departure: "Woodlands Temporary Interchange", jb_arrival: "JB Sentral Bus Terminal", via_checkpoint: "woodlands",
     fare_sgd: 1.5, fare_myr: 4.0, first_bus: "05:30", last_bus: "23:00",
     frequency_peak: "7-10 min", frequency_offpeak: "12-18 min",
     payment_methods: ["EZ-Link", "NETS", "Cash"], typical_duration_min: 30, slug: "950",
@@ -51,12 +51,12 @@ export const BUS_ROUTES: BusRoute[] = [
     tips: "Via Tuas — longer ride but often less congested than Woodlands on weekends. Higher fare reflects the longer distance. Good alternative during Woodlands jams.",
   },
   {
-    service_no: "160", operator: "SBS Transit", route_name: "Jurong Town Hall → JB Sentral (Tuas)",
-    sg_departure: "Jurong Town Hall", jb_arrival: "JB Sentral", via_checkpoint: "tuas",
+    service_no: "160", operator: "SBS Transit", route_name: "Jurong Town Hall → JB Sentral",
+    sg_departure: "Jurong Town Hall Interchange", jb_arrival: "JB Sentral Bus Terminal", via_checkpoint: "woodlands",
     fare_sgd: 3.2, fare_myr: 8.5, first_bus: "05:45", last_bus: "23:00",
     frequency_peak: "8-12 min", frequency_offpeak: "15-25 min",
     payment_methods: ["EZ-Link", "NETS", "Cash"], typical_duration_min: 55, slug: "160",
-    tips: "The 160 uses the Tuas Second Link, which is less crowded but further from the city. Best if you're already in the west side of Singapore.",
+    tips: "Service 160 travels from Jurong Town Hall via Woodlands Checkpoint and the Causeway to JB Sentral. Check SBS Transit's current service page before travelling.",
   },
   {
     service_no: "CW7", operator: "Causeway Link", route_name: "Tuas Link MRT → JB CIQ",

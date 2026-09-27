@@ -22,6 +22,7 @@ export interface CameraFeed {
   label: string;
   image_url: string;
   checkpoint: string;
+  timestamp?: string;
 }
 
 export interface HourlyPattern {

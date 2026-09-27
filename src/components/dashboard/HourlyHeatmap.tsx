@@ -52,7 +52,7 @@ export const HourlyHeatmap = ({ data }: { data: HourlyPattern[] }) => {
               d.hour === currentHour ? "ring-2 ring-foreground ring-offset-1" : ""
             }`}
             style={{ height: "32px" }}
-            aria-label={`${formatHour(d.hour)}: ${d.avg_status}, ~${d.avg_travel_time} min`}
+            aria-label={`${formatHour(d.hour)}: indicative ${d.avg_status} road conditions`}
           />
         ))}
       </div>
@@ -72,8 +72,7 @@ export const HourlyHeatmap = ({ data }: { data: HourlyPattern[] }) => {
           <span className="font-medium">{formatHour(tooltip.hour)}</span>
           {" · "}
           <span>{t(STATUS_KEYS[tooltip.avg_status])}</span>
-          {" · ~"}
-          <span className="tabular-nums font-medium">{tooltip.avg_travel_time} {t("heatmap_min")}</span>
+          <span className="ml-1 text-primary-foreground/70">historical road pattern</span>
         </div>
       )}
     </div>

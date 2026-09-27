@@ -1,9 +1,17 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLiveCameras } from "@/hooks/useLiveData";
 import type { CameraFeed } from "@/lib/types";
 import { X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
+
+function cameraTime(timestamp?: string) {
+  if (!timestamp || !Number.isFinite(Date.parse(timestamp))) return "Image time unavailable";
+  const observedAt = new Date(timestamp);
+  const older = Date.now() - observedAt.getTime() > 15 * 60_000;
+  const time = new Intl.DateTimeFormat("en-SG", { timeZone: "Asia/Singapore", day: "numeric", month: "short", hour: "numeric", minute: "2-digit", hour12: true }).format(observedAt);
+  return `${older ? "Older image" : "Image"}: ${time} SGT`;
+}
 
 export const CameraGrid = ({
   cameras: propCameras,
@@ -13,6 +21,14 @@ export const CameraGrid = ({
   checkpoint?: string;
 }) => {
   const [modalIdx, setModalIdx] = useState<number | null>(null);
+  useEffect(() => {
+    if (modalIdx === null) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setModalIdx(null);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [modalIdx]);
   const { data: liveCameras, isLoading } = useLiveCameras(checkpoint);
   const { t } = useTranslation();
 
@@ -54,7 +70,9 @@ export const CameraGrid = ({
                 src={cam.image_url}
                 alt={cam.label}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
+                loading={i === 0 ? "eager" : "lazy"}
+                fetchPriority={i === 0 ? "high" : "auto"}
+                decoding="async"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "/placeholder.svg";
                 }}
@@ -62,6 +80,7 @@ export const CameraGrid = ({
             </div>
             <div className="px-3 py-2">
               <p className="text-label-sm font-medium text-foreground">{cam.label}</p>
+              <p className="mt-0.5 text-[11px] text-muted-foreground">{cameraTime(cam.timestamp)}</p>
             </div>
           </button>
         ))}
@@ -77,6 +96,9 @@ export const CameraGrid = ({
           <div
             className="relative max-h-[90vh] max-w-3xl w-full overflow-hidden rounded-2xl bg-card"
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={cameras[modalIdx].label}
           >
             <div className="flex items-center justify-between border-b border-border px-4 py-3">
               <p className="font-heading text-sm font-semibold">{cameras[modalIdx].label}</p>
@@ -92,10 +114,12 @@ export const CameraGrid = ({
                 (e.target as HTMLImageElement).src = "/placeholder.svg";
               }}
             />
+            <p className="px-4 py-2 text-xs text-muted-foreground">{cameraTime(cameras[modalIdx].timestamp)} · Source: LTA via data.gov.sg</p>
             <div className="flex items-center justify-between border-t border-border px-4 py-3">
               <button
                 onClick={() => setModalIdx(Math.max(0, modalIdx - 1))}
                 disabled={modalIdx === 0}
+                aria-label="Previous camera"
                 className="rounded-lg p-2 hover:bg-muted disabled:opacity-30"
               >
                 <ChevronLeft className="h-5 w-5" />
@@ -106,6 +130,7 @@ export const CameraGrid = ({
               <button
                 onClick={() => setModalIdx(Math.min(cameras.length - 1, modalIdx + 1))}
                 disabled={modalIdx === cameras.length - 1}
+                aria-label="Next camera"
                 className="rounded-lg p-2 hover:bg-muted disabled:opacity-30"
               >
                 <ChevronRight className="h-5 w-5" />

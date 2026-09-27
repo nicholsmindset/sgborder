@@ -12,18 +12,7 @@ export const metadata: Metadata = {
 export default function GuidesPage() {
   return (
     <>
-      <div className="sr-only">
-        <h1>Causeway Traffic Guides — Singapore to JB Crossing Tips</h1>
-        <p>Practical, data-driven guides for crossing the Singapore-JB causeway. Best times to cross, VEP registration, bus routes, and checkpoint-specific advice.</p>
-        <h2>Available Guides</h2>
-        <ul>
-          {GUIDES.map((g) => (
-            <li key={g.slug}>
-              <a href={`/guides/${g.slug}`}>{g.title}</a> — {g.description}
-            </li>
-          ))}
-        </ul>
-      </div>
+
       <GuidesIndexClient />
     </>
   );

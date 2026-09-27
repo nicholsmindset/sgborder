@@ -47,6 +47,7 @@ export const SEVERITY_CONFIG: Record<
   },
 };
 
+// Singapore MOM and Johor government public holiday calendars, checked 27 Sep 2026.
 export const HOLIDAYS_2026: Holiday[] = [
   {
     slug: "new-years-day-2026",
@@ -116,7 +117,7 @@ export const HOLIDAYS_2026: Holiday[] = [
   {
     slug: "hari-raya-aidilfitri-2026",
     name: "Hari Raya Aidilfitri",
-    date_start: "2026-03-20",
+    date_start: "2026-03-21",
     date_end: "2026-03-21",
     severity: "extreme",
     country: "both",
@@ -191,8 +192,8 @@ export const HOLIDAYS_2026: Holiday[] = [
   {
     slug: "vesak-day-2026",
     name: "Vesak Day",
-    date_start: "2026-05-12",
-    date_end: "2026-05-12",
+    date_start: "2026-05-31",
+    date_end: "2026-05-31",
     severity: "busy",
     country: "sg",
     description:
@@ -212,8 +213,8 @@ export const HOLIDAYS_2026: Holiday[] = [
   {
     slug: "hari-raya-haji-2026",
     name: "Hari Raya Haji",
-    date_start: "2026-06-07",
-    date_end: "2026-06-07",
+    date_start: "2026-05-27",
+    date_end: "2026-05-27",
     severity: "heavy",
     country: "both",
     description:
@@ -276,8 +277,8 @@ export const HOLIDAYS_2026: Holiday[] = [
   {
     slug: "deepavali-2026",
     name: "Deepavali",
-    date_start: "2026-10-20",
-    date_end: "2026-10-20",
+    date_start: "2026-11-08",
+    date_end: "2026-11-08",
     severity: "busy",
     country: "sg",
     description:

@@ -2,11 +2,10 @@
 import { MapPin, ChevronDown } from "lucide-react";
 
 export const BUS_STOP_OPTIONS = [
-  { code: "45009", name: "Kranji MRT", checkpoint: "woodlands" },
-  { code: "46009", name: "Woodlands Int", checkpoint: "woodlands" },
-  { code: "01029", name: "Queen Street", checkpoint: "woodlands" },
-  { code: "22009", name: "Jurong Town Hall", checkpoint: "tuas" },
-  { code: "25009", name: "Tuas Link MRT", checkpoint: "tuas" },
+  { code: "45131", name: "Opp Kranji Stn · toward JB", checkpoint: "woodlands" },
+  { code: "47009", name: "Woodlands Temp Int · 950", checkpoint: "woodlands" },
+  { code: "46101", name: "Woodlands Checkpoint · toward JB", checkpoint: "woodlands" },
+  { code: "29009", name: "Jurong Town Hall Int · 160 via Woodlands", checkpoint: "woodlands" },
 ] as const;
 
 interface BusStopSelectorProps {
@@ -15,14 +14,13 @@ interface BusStopSelectorProps {
 }
 
 export const BusStopSelector = ({ value, onChange }: BusStopSelectorProps) => {
-  const selected = BUS_STOP_OPTIONS.find((s) => s.code === value);
-
   return (
     <div className="relative">
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
         <MapPin className="h-4 w-4 text-accent" />
       </div>
       <select
+        aria-label="Cross-border public bus stop"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="w-full appearance-none rounded-xl border border-border bg-card py-2.5 pl-9 pr-9 text-sm font-semibold text-foreground shadow-card transition-colors hover:border-accent/40 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/30"

@@ -1,9 +1,8 @@
 "use client";
-import { useState } from "react";
-import { LivePulse } from "@/components/dashboard/LivePulse";
+import { useEffect, useState } from "react";
 import { LiveDataTicker } from "@/components/dashboard/LiveDataTicker";
 import { StatusCard } from "@/components/dashboard/StatusCard";
-import { CheckpointToggle, DirectionToggle } from "@/components/dashboard/Toggles";
+import { CheckpointToggle } from "@/components/dashboard/Toggles";
 import { HourlyHeatmap } from "@/components/dashboard/HourlyHeatmap";
 import { CameraGrid } from "@/components/dashboard/CameraGrid";
 import { QuickBusWidget } from "@/components/bus/BusArrivalCard";
@@ -14,34 +13,34 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { SEOHead } from "@/components/shared/SEOHead";
 import { FAQAccordion } from "@/components/content/FAQAccordion";
 import { useTranslation } from "@/lib/i18n";
+import { SG_PUBLIC_HOLIDAYS_2026, type PublicHoliday } from "@/data/public-holidays";
 
 const homeFaqs = [
   {
     question: "How do I check causeway traffic before crossing to JB?",
     answer:
-      "Use the live dashboard above to see real-time traffic status for both Woodlands and Tuas checkpoints. Status updates every 5 minutes with data from LTA and Google Routes, including CCTV camera feeds and estimated wait times.",
+      "Compare the Singapore road approaches to Woodlands and Tuas, then inspect the latest checkpoint camera images. Road conditions do not measure immigration queues or the Malaysia side.",
   },
   {
     question: "Which checkpoint is faster — Woodlands or Tuas?",
     answer:
-      "It depends on the time and day. Woodlands handles more traffic but has more lanes. Tuas (Second Link) is often less congested on weekdays but can jam on weekends. Compare both checkpoints on our dashboard to decide.",
+      "Compare both road status cards and cameras before leaving. Your destination and the longer drive to Tuas also matter; this dashboard cannot measure the full border crossing time.",
   },
   {
     question: "What is the best time to cross the causeway?",
     answer:
-      "The best times are typically early morning (before 6 AM) or late evening (after 10 PM) on weekdays. Avoid Friday evenings and Saturday mornings when traffic peaks. Check our Best Time to Cross guide for hour-by-hour data.",
+      "Patterns vary by weekday, school holiday and public holiday. Use the historical road pattern as a guide, and check current cameras before setting off.",
   },
   {
     question: "How often is the causeway traffic data updated?",
     answer:
-      "Traffic status and camera images are updated every 5 minutes. Bus arrival data refreshes every 60 seconds. All data is sourced from LTA DataMall and Google Routes API.",
+      "The road feed is checked every 5 minutes. Each card shows when its underlying observation was recorded; missing or old observations are hidden. Camera and bus data can refresh on separate schedules.",
   },
 ];
 
 const Index = () => {
   const [checkpoint, setCheckpoint] = useState("all");
-  const [direction, setDirection] = useState("sg_to_jb");
-  const [showCameras, setShowCameras] = useState(false);
+  const [upcomingHolidays, setUpcomingHolidays] = useState<PublicHoliday[]>([]);
   const { t } = useTranslation();
 
   const { data: snapshots, isLoading: trafficLoading } = useLiveTraffic();
@@ -50,8 +49,13 @@ const Index = () => {
   const filteredSnapshots = (snapshots ?? []).filter(
     (s) =>
       (checkpoint === "all" || s.checkpoint === checkpoint) &&
-      s.direction === direction
+      s.direction === "sg_to_jb"
   );
+
+  useEffect(() => {
+    const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Singapore", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+    setUpcomingHolidays(SG_PUBLIC_HOLIDAYS_2026.filter((h) => h.date >= today && h.type === "gazetted").slice(0, 2));
+  }, []);
 
   const cameraCheckpoint = checkpoint === "all" ? "woodlands" : checkpoint;
 
@@ -59,7 +63,7 @@ const Index = () => {
     <div className="pb-mobile-nav">
       <SEOHead
         title="Causeway Traffic Live — Woodlands & Tuas Checkpoint CCTV Camera Status"
-        description="Live causeway traffic status for Woodlands & Tuas checkpoints. LTA CCTV cameras, bus arrivals, wait times updated every 5 min. SG to JB traffic — check now before you cross."
+        description="Check the Singapore road approaches to Woodlands and Tuas, LTA checkpoint cameras, and cross-border bus arrivals before travelling to JB. Freshness shown on each feed."
         path="/"
         jsonLd={[
           {
@@ -117,7 +121,7 @@ const Index = () => {
 
         <div className="container relative py-8 md:py-10">
           <div className="flex items-center gap-3 mb-3">
-            <LivePulse size="lg" />
+            <Camera className="h-4 w-4 text-status-smooth" />
             <div className="flex items-center gap-2">
               <span className="text-sm font-bold uppercase tracking-widest text-status-smooth">{t("home_live")}</span>
               <span className="h-1 w-1 rounded-full bg-primary-foreground/30" />
@@ -134,20 +138,22 @@ const Index = () => {
           {/* Toggles inside the hero */}
           <div className="mt-5 flex flex-wrap items-center gap-2">
             <CheckpointToggle value={checkpoint} onChange={setCheckpoint} variant="dark" />
-            <DirectionToggle value={direction} onChange={setDirection} variant="dark" />
+            <Link href="/cameras" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary-foreground/30 px-3 text-xs font-semibold text-primary-foreground hover:bg-primary-foreground/10">
+              <Camera className="h-4 w-4" /> Check cameras for both directions
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ── Live Data Ticker ── */}
-      <section className="-mt-1 relative">
+      {filteredSnapshots.length > 0 && <section className="-mt-1 relative">
         <div className="container pt-4 pb-1">
           <LiveDataTicker
             lastUpdated={filteredSnapshots[0]?.updated_at}
             status={filteredSnapshots[0]?.status}
           />
         </div>
-      </section>
+      </section>}
 
       {/* ── Status Cards ── */}
       <section className="relative">
@@ -163,20 +169,19 @@ const Index = () => {
                 <StatusCard
                   key={s.id}
                   snapshot={s}
-                  onViewCameras={() => setShowCameras(!showCameras)}
                 />
               ))}
             </div>
           ) : (
-            <div className="rounded-xl border border-border bg-card p-6 text-center">
-              <p className="text-sm text-muted-foreground">{t("home_no_data")}</p>
+            <div className="rounded-xl border border-border bg-card p-4 text-center">
+              <p className="text-sm font-medium text-foreground">Current road data is unavailable.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Check the camera images below before you travel.</p>
             </div>
           )}
         </div>
       </section>
 
       {/* Cameras */}
-      {showCameras && (
         <Section>
           <div className="container">
             <div className="flex items-center gap-2 mb-3">
@@ -186,7 +191,6 @@ const Index = () => {
             <CameraGrid checkpoint={cameraCheckpoint} />
           </div>
         </Section>
-      )}
 
       {/* ── Quick Links Strip ── */}
       <Section>
@@ -250,20 +254,14 @@ const Index = () => {
           </div>
           <p className="text-label-sm text-muted-foreground mb-3">{t("home_upcoming_desc")}</p>
           <div className="grid gap-2 sm:grid-cols-2">
-            <Link href="/holidays/hari-raya-puasa-2026" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
-              <div className="flex items-center gap-2">
-                <span className="font-heading text-sm font-semibold text-foreground">Hari Raya Puasa</span>
-                <span className="rounded-full bg-status-jammed-tint px-2 py-0.5 text-label-sm font-semibold text-status-jammed">{t("severity_extreme")}</span>
-              </div>
-              <p className="mt-0.5 text-label-sm text-muted-foreground">Mar 20–21</p>
-            </Link>
-            <Link href="/holidays/good-friday-2026" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
-              <div className="flex items-center gap-2">
-                <span className="font-heading text-sm font-semibold text-foreground">Good Friday</span>
-                <span className="rounded-full bg-status-heavy-tint px-2 py-0.5 text-label-sm font-semibold text-status-heavy">{t("severity_heavy")}</span>
-              </div>
-              <p className="mt-0.5 text-label-sm text-muted-foreground">Apr 3</p>
-            </Link>
+            {upcomingHolidays.length > 0 ? upcomingHolidays.map((holiday) => (
+              <Link key={`${holiday.date}-${holiday.name}`} href="/holidays" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
+                <div className="flex items-center gap-2">
+                  <span className="font-heading text-sm font-semibold text-foreground">{holiday.name}</span>
+                </div>
+                <p className="mt-0.5 text-label-sm text-muted-foreground">{new Date(`${holiday.date}T12:00:00+08:00`).toLocaleDateString("en-SG", { day: "numeric", month: "short", timeZone: "Asia/Singapore" })}</p>
+              </Link>
+            )) : <p className="text-sm text-muted-foreground">See the full holiday calendar for crossing dates.</p>}
           </div>
         </div>
       </Section>
@@ -282,7 +280,7 @@ const Index = () => {
               <p className="font-heading text-sm font-semibold text-foreground">{t("guide_best_time")}</p>
               <p className="mt-0.5 text-label-sm text-muted-foreground">{t("guide_best_time_sub")}</p>
             </Link>
-            <Link href="/guides/friday-woodlands-traffic" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
+            <Link href="/guides/myica-qr-code-guide" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
               <p className="font-heading text-sm font-semibold text-foreground">{t("guide_friday")}</p>
               <p className="mt-0.5 text-label-sm text-muted-foreground">{t("guide_friday_sub")}</p>
             </Link>
@@ -290,7 +288,7 @@ const Index = () => {
               <p className="font-heading text-sm font-semibold text-foreground">{t("guide_vep")}</p>
               <p className="mt-0.5 text-label-sm text-muted-foreground">{t("guide_vep_sub")}</p>
             </Link>
-            <Link href="/guides/cw1-bus-kranji-to-jb" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
+            <Link href="/bus/cw1" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
               <p className="font-heading text-sm font-semibold text-foreground">{t("guide_cw1")}</p>
               <p className="mt-0.5 text-label-sm text-muted-foreground">{t("guide_cw1_sub")}</p>
             </Link>
@@ -313,6 +311,7 @@ const Index = () => {
             <p className="text-label-sm text-muted-foreground">
               {t("home_data_source_trust")}
             </p>
+            <Link href="/methodology" className="mt-2 inline-flex min-h-11 items-center text-xs font-semibold text-accent hover:underline">Read the data method <ArrowRight className="ml-1 h-3.5 w-3.5" /></Link>
           </div>
         </div>
       </Section>

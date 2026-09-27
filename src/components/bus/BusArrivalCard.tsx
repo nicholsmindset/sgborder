@@ -13,6 +13,7 @@ const LOAD_CONFIG: Record<string, { bg: string; text: string; label: string; ico
   limited: { bg: "bg-status-jammed/15", text: "text-status-jammed", label: "Full", icon: AlertTriangle },
   unknown: { bg: "bg-muted", text: "text-muted-foreground", label: "", icon: Bus },
 };
+const CROSS_BORDER_SERVICES = new Set(["160", "170", "170X", "950"]);
 
 interface BusServiceRowProps {
   serviceNo: string;
@@ -81,7 +82,7 @@ interface QuickBusWidgetProps {
 }
 
 export const QuickBusWidget = ({
-  stopCode: initialStopCode = "45009",
+  stopCode: initialStopCode = "45131",
   showStopSelector = true,
   maxServices = 4,
 }: QuickBusWidgetProps) => {
@@ -90,7 +91,9 @@ export const QuickBusWidget = ({
   const { data: liveData, isLoading, dataUpdatedAt } = useLiveBusArrivals(stopCode);
   const { t } = useTranslation();
 
-  const services = liveData?.services || [];
+  const services = (liveData?.services || []).filter((service) =>
+    CROSS_BORDER_SERVICES.has(service.service_no.toUpperCase()),
+  );
   const displayServices = expanded ? services : services.slice(0, maxServices);
 
   return (
@@ -109,7 +112,7 @@ export const QuickBusWidget = ({
           </div>
         ) : services.length === 0 ? (
           <div className="py-6 text-center">
-            <p className="text-sm text-muted-foreground">{t("bus_no_services")}</p>
+            <p className="text-sm text-muted-foreground">No cross-border public bus arrivals reported at this stop. Check the operator timetable before travelling.</p>
           </div>
         ) : (
           <>
@@ -160,6 +163,7 @@ export const QuickBusWidget = ({
           lastUpdated={dataUpdatedAt ? new Date(dataUpdatedAt).toISOString() : null}
         />
       </div>
+      <p className="px-3 pb-2 text-[11px] text-muted-foreground">Public bus arrivals via ArriveLah/LTA. Causeway Link buses are not covered.</p>
     </div>
   );
 };

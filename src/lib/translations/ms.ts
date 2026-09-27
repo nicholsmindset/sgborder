@@ -47,45 +47,45 @@ export const ms: Record<keyof typeof en, string> = {
 
   // Homepage
   home_title: "Trafik Causeway Sekarang",
-  home_subtitle: "Status pusat pemeriksaan langsung \u00b7 Dikemas kini setiap 5 minit",
-  home_live: "Langsung",
-  home_updates_every_5min: "Dikemas kini setiap 5 min",
-  home_hero_desc: "Status pusat pemeriksaan masa nyata untuk Woodlands & Tuas. Data daripada LTA, Google Routes, dan kamera langsung.",
+  home_subtitle: "Papan pemuka jalan dan kamera Woodlands dan Tuas",
+  home_live: "Pantau jalan",
+  home_updates_every_5min: "Suapan jalan disemak setiap 5 minit",
+  home_hero_desc: "Bandingkan keadaan jalan Singapura dan kamera pusat pemeriksaan sebelum ke JB. Masa pemerhatian dipaparkan di bawah.",
   home_todays_pattern: "Corak Trafik Hari Ini",
   home_pattern_desc: "Berdasarkan data sejarah untuk",
   home_pattern_collecting: "Data corak sejarah masih dikumpulkan.",
   home_cross_border_buses: "Bas Rentas Sempadan ke JB",
   home_all_buses: "Semua bas",
   home_checkpoints: "Pusat Pemeriksaan",
-  home_holiday_traffic: "Ramalan Trafik Cuti",
+  home_holiday_traffic: "Tarikh cuti akan datang",
   home_calendar: "Kalendar",
-  home_upcoming_desc: "Cuti akan datang dengan ramalan trafik",
+  home_upcoming_desc: "Tarikh cuti rasmi; semak nasihat perjalanan terkini",
   home_commuter_guides: "Panduan Pengguna Causeway",
   home_all_guides: "Semua panduan",
   home_telegram_title: "Dapatkan Makluman di Telegram",
   home_telegram_desc: "Percuma: arahan /status dan /bus. Premium: makluman peribadi, ramalan perjalanan, dan tanpa iklan.",
   home_telegram_btn: "Ketahui Lagi",
   home_faq_title: "Soalan Lazim",
-  home_data_source_trust: "Data daripada LTA DataMall dan Google Routes API. Status trafik dikemas kini setiap 5 minit. Ketibaan bas dikemas kini setiap 60 saat.",
+  home_data_source_trust: "Status jalan menggunakan data kelajuan LTA DataMall dan tidak termasuk barisan imigresen. Semak masa pemerhatian dan kamera sebelum bergerak.",
   home_loading: "Memuatkan data trafik\u2026",
-  home_no_data: "Tiada data trafik lagi. Data akan muncul selepas saluran mula mengumpul.",
+  home_no_data: "Data jalan terkini tidak tersedia. Semak kamera sebelum bergerak.",
   home_traffic_cameras: "Kamera Trafik",
 
   // Quick links
   quick_link_causeway: "Causeway",
   quick_link_second_link: "Second Link",
   quick_link_live_cctv: "CCTV Langsung",
-  quick_link_opening_2027: "Dibuka 2027",
+  quick_link_opening_2027: "Status projek",
 
   // Guide card labels
   guide_best_time: "Masa Terbaik Melintas",
-  guide_best_time_sub: "Pecahan jam demi jam, hari demi hari",
-  guide_friday: "Panduan Trafik Jumaat",
-  guide_friday_sub: "Elak barisan Jumaat",
+  guide_best_time_sub: "Langkah merancang berdasarkan sumber",
+  guide_friday: "Panduan QR MyICA",
+  guide_friday_sub: "Kelayakan dan peraturan pasport",
   guide_vep: "Panduan VEP Malaysia",
-  guide_vep_sub: "Pendaftaran, kos & perubahan 2027",
+  guide_vep_sub: "RFID JPJ dan Caj Jalan",
   guide_cw1: "Panduan Bas CW1",
-  guide_cw1_sub: "Panduan lengkap Kranji ke JB",
+  guide_cw1_sub: "Laluan dan maklumat operator",
 
   // Bus
   bus_title: "Bas Rentas Sempadan",
@@ -104,7 +104,7 @@ export const ms: Record<keyof typeof en, string> = {
   bus_next: "Seterusnya",
   bus_no_services: "Tiada perkhidmatan bas ditemui untuk perhentian ini.",
   bus_hub_title: "Bas ke JB \u2014 Semua Laluan Rentas Sempadan",
-  bus_hub_subtitle: "Semua bas dari Singapura ke JB: CW1, CW2, 170, 170X, 950 dengan ketibaan langsung, tambang, jadual",
+  bus_hub_subtitle: "Bandingkan laluan melalui Woodlands dan Tuas. Ketibaan bas awam dipaparkan jika tersedia; semak tambang dan jadual operator.",
   bus_route_back: "Semua bas",
   bus_route_next_bus: "Bas Seterusnya",
   bus_route_schedule: "Jadual",
@@ -139,8 +139,8 @@ export const ms: Record<keyof typeof en, string> = {
 
   // Live Page
   live_title: "Trafik JB Sekarang \u2014 Status Pusat Pemeriksaan Causeway",
-  live_subtitle: "Status pusat pemeriksaan masa nyata \u00b7 Dikemas kini setiap 5 minit",
-  live_real_time: "Data masa nyata",
+  live_subtitle: "Keadaan jalan Singapura dan kamera pusat pemeriksaan",
+  live_real_time: "Semak masa pemerhatian",
   live_loading: "Memuatkan data trafik\u2026",
   live_no_data: "Tiada data trafik lagi. Data akan muncul selepas saluran mula mengumpul.",
   live_cameras_title: "Kamera Trafik Langsung",
@@ -148,7 +148,7 @@ export const ms: Record<keyof typeof en, string> = {
   live_cross_border_buses: "Bas Rentas Sempadan",
   live_bus_routes_desc: "CW1, 170X, 950 & laluan lain",
   live_seo_title: "Ada Sesak di Causeway Sekarang?",
-  live_seo_content_1: "Tertanya-tanya tentang kesesakan JB sekarang atau trafik causeway sekarang? Halaman ini menunjukkan tahap kesesakan masa nyata di kedua-dua Pusat Pemeriksaan Woodlands (First Link) dan Tuas Second Link. Data kami daripada kamera trafik LTA, sensor jalur kelajuan, dan anggaran masa perjalanan Google Routes API \u2014 dikemas kini setiap 5 minit supaya anda sentiasa mendapat gambaran terkini sebelum ke pusat pemeriksaan.",
+  live_seo_content_1: "Semak keadaan jalan masuk di Singapura dan imej kamera Woodlands serta Tuas yang mempunyai cap masa. Kelajuan jalan tidak mengukur barisan imigresen atau kesesakan di Malaysia.",
   live_seo_content_2_prefix: "Merancang perjalanan anda? Lihat",
   live_seo_content_2_guide: "panduan masa terbaik melintas",
   live_seo_content_2_mid: "untuk pecahan jam demi jam,",
@@ -171,12 +171,12 @@ export const ms: Record<keyof typeof en, string> = {
 
   // Woodlands specific
   woodlands_h1: "Pusat Pemeriksaan Woodlands \u2014 Trafik Langsung & Kamera",
-  woodlands_hero_sub: "Trafik langsung, kamera, dan info bas untuk Woodlands Causeway",
+  woodlands_hero_sub: "Keadaan jalan, kamera dan maklumat bas di Woodlands",
   woodlands_faq_title: "Soalan Lazim Pusat Pemeriksaan Woodlands",
 
   // Tuas specific
   tuas_h1: "Pusat Pemeriksaan Tuas \u2014 Trafik Langsung & Kamera Second Link",
-  tuas_hero_sub: "Trafik langsung, kamera, dan info bas untuk Pusat Pemeriksaan Tuas",
+  tuas_hero_sub: "Keadaan jalan, kamera dan maklumat bas di Tuas",
   tuas_why_choose: "Kenapa Pilih Tuas?",
   tuas_why_1: "Biasanya 20-40% kurang sesak berbanding Woodlands",
   tuas_why_2: "Pilihan lebih baik pada petang Jumaat dan pagi Sabtu",
@@ -244,7 +244,7 @@ export const ms: Record<keyof typeof en, string> = {
   rts_countdown_hrs: "jam",
   rts_countdown_min: "min",
   rts_countdown_sec: "saat",
-  rts_expected: "Dijangka mula beroperasi Januari 2027",
+  rts_expected: "Sasaran perkhidmatan penumpang menjelang Disember 2026; tarikh tepat belum diumumkan",
   rts_quick_facts: "Fakta Ringkas",
   rts_route: "Laluan",
   rts_distance: "Jarak",
@@ -301,7 +301,7 @@ export const ms: Record<keyof typeof en, string> = {
   telegram_open_bot: "Buka @SGBorderBot di Telegram",
 
   // Footer
-  footer_brand_desc: "Trafik causeway Singapura-JB masa nyata, ketibaan bas, dan panduan melintas. Data dikemas kini setiap 5 minit.",
+  footer_brand_desc: "Kamera pusat pemeriksaan Singapura–JB, ketibaan bas awam dan panduan perjalanan. Semak masa setiap suapan sebelum bertolak.",
   footer_quick_links: "Pautan Pantas",
   footer_woodlands_checkpoint: "Pusat Pemeriksaan Woodlands",
   footer_tuas_second_link: "Tuas Second Link",
@@ -323,7 +323,7 @@ export const ms: Record<keyof typeof en, string> = {
   // Camera Grid
   camera_loading: "Memuatkan kamera\u2026",
   camera_no_feeds: "Tiada suapan kamera tersedia.",
-  camera_refresh_note: "Dikemas kini setiap 5 min \u00b7 Langsung dari LTA",
+  camera_refresh_note: "Imej kamera LTA · Semak cap masa imej",
 
   // Heatmap
   heatmap_min: "min",
