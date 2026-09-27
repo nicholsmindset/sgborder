@@ -319,30 +319,22 @@ async function fetchTraffic() {
 
   // Score each checkpoint+direction combo
   const results: ScoredTraffic[] = [];
-  const directions = ["sg_to_jb", "jb_to_sg"];
-
   for (const checkpoint of ["woodlands", "tuas"]) {
     const speeds = checkpointSpeeds[checkpoint];
-    const avgSpeed = speeds.length > 0
-      ? speeds.reduce((a, b) => a + b, 0) / speeds.length
-      : 60; // default to moderate if no data
-
-    for (const direction of directions) {
-      // Use est travel time if available; slightly increase for jb_to_sg (return direction often slower at customs)
-      const baseEst = estTravel[checkpoint] > 0 ? estTravel[checkpoint] : undefined;
-      const directionMultiplier = direction === "jb_to_sg" ? 1.1 : 1.0;
-      const adjustedEst = baseEst != null ? baseEst * directionMultiplier : undefined;
-
-      const { status, score, travelMin } = scoreFromSpeed(avgSpeed, adjustedEst);
-      results.push({
-        checkpoint,
-        direction,
-        status,
-        travel_time_min: travelMin,
-        score,
-      });
-    }
+    if (speeds.length === 0) continue;
+    const avgSpeed = speeds.reduce((a, b) => a + b, 0) / speeds.length;
+    const baseEst = estTravel[checkpoint] > 0 ? estTravel[checkpoint] : undefined;
+    const { status, score, travelMin } = scoreFromSpeed(avgSpeed, baseEst);
+    results.push({
+      checkpoint,
+      direction: "sg_to_jb",
+      status,
+      travel_time_min: travelMin,
+      score,
+    });
   }
+
+  if (results.length === 0) throw new Error("No matching LTA road speed bands available");
 
   // Insert into traffic_snapshots
   const supabaseUrl = Deno.env.get("SUPABASE_URL")!;

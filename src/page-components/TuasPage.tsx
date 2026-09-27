@@ -8,9 +8,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { BUS_ROUTES } from "@/lib/bus-data";
 import { useLiveTraffic, useLiveHourlyPattern } from "@/hooks/useLiveData";
 import Link from "next/link";
-import { ArrowRight, MapPin, DollarSign, Clock, Loader2 } from "lucide-react";
+import { ArrowRight, MapPin, DollarSign, Loader2 } from "lucide-react";
 import { SEOHead } from "@/components/shared/SEOHead";
-import { LivePulse } from "@/components/dashboard/LivePulse";
 import { LiveDataTicker } from "@/components/dashboard/LiveDataTicker";
 import { useTranslation } from "@/lib/i18n";
 
@@ -24,7 +23,7 @@ const TuasPage = () => {
     <div className="pb-mobile-nav">
       <SEOHead
         title="Tuas Checkpoint Live CCTV Camera & Traffic Today (2026) — Second Link Status"
-        description="Tuas Checkpoint traffic today with live LTA CCTV cameras, Second Link wait times & bus info. Less crowded than Woodlands — check Tuas status before you cross to JB."
+        description="Tuas Second Link traffic today: inspect LTA camera images, recent Singapore road conditions and bus routes before leaving for JB."
         path="/tuas"
         jsonLd={{
           "@context": "https://schema.org",
@@ -38,7 +37,7 @@ const TuasPage = () => {
       <section className="bg-primary text-primary-foreground">
         <div className="container py-6 md:py-8">
           <div className="flex items-center gap-3 mb-3">
-            <LivePulse size="lg" />
+            <MapPin className="h-4 w-4 text-status-smooth" />
             <span className="text-sm font-bold uppercase tracking-widest text-status-smooth">{t("home_live")}</span>
           </div>
           <h1 className="font-heading text-display-sm font-bold md:text-display">
@@ -47,6 +46,7 @@ const TuasPage = () => {
           <p className="mt-1.5 text-sm text-primary-foreground/60">
             {t("tuas_hero_sub")}
           </p>
+          <Link href="/cameras/tuas" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary-foreground px-4 text-sm font-semibold text-primary hover:bg-primary-foreground/90">View Tuas cameras <ArrowRight className="h-4 w-4" /></Link>
         </div>
       </section>
 
@@ -55,10 +55,10 @@ const TuasPage = () => {
         <div className="container">
           <div className="flex flex-wrap gap-4 rounded-xl border border-border bg-card p-4 shadow-card text-sm">
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-              <DollarSign className="h-4 w-4 text-accent" /> {t("checkpoint_toll")}: S$2.10
+              <DollarSign className="h-4 w-4 text-accent" /> Car exit toll: S$2.10
             </span>
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-              <Clock className="h-4 w-4 text-accent" /> {t("checkpoint_typical")}: 15-30 {t("minutes")}
+              Road feed does not include immigration queues
             </span>
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
               <MapPin className="h-4 w-4 text-accent" /> Tuas Checkpoint
@@ -94,7 +94,7 @@ const TuasPage = () => {
             </div>
           ) : (
             <div className="rounded-xl border border-border bg-card p-6 text-center">
-              <p className="text-sm text-muted-foreground">{t("checkpoint_no_data")}</p>
+              <p className="text-sm text-muted-foreground">Current road data is unavailable. Use the cameras below before travelling.</p>
             </div>
           )}
         </div>

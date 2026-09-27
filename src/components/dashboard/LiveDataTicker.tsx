@@ -50,17 +50,17 @@ export const LiveDataTicker = ({
   const refreshSec = secUntilRefresh % 60;
 
   // Freshness indicator
-  const isFresh = diffSec !== null && diffSec < 600; // < 10 min
+  const isFresh = diffSec !== null && diffSec < 15 * 60;
 
   return (
     <div className="rounded-lg border border-border bg-card/80 backdrop-blur-sm px-3 py-2 shadow-sm">
       <div className="flex items-center justify-between gap-3 flex-wrap">
         {/* Left: Live badge + last updated */}
         <div className="flex items-center gap-2.5">
-          <div className="flex items-center gap-1.5 rounded-full bg-status-smooth/10 pl-1.5 pr-2.5 py-0.5">
-            <LivePulse status={status} size="sm" />
-            <span className="text-[11px] font-bold uppercase tracking-wider text-status-smooth">
-              {t("live_ticker_label")}
+          <div className={`flex items-center gap-1.5 rounded-full pl-1.5 pr-2.5 py-0.5 ${isFresh ? "bg-status-smooth/10" : "bg-muted"}`}>
+            {isFresh && <LivePulse status={status} size="sm" />}
+            <span className={`text-[11px] font-bold uppercase tracking-wider ${isFresh ? "text-status-smooth" : "text-muted-foreground"}`}>
+              {isFresh ? "Road feed active" : "No current road data"}
             </span>
           </div>
           <div className="h-3.5 w-px bg-border" />
@@ -77,10 +77,10 @@ export const LiveDataTicker = ({
 
         {/* Right: Source + countdown */}
         <div className="flex items-center gap-2.5">
-          <span className="text-[11px] text-muted-foreground">
-            {t("live_ticker_source")}
-          </span>
-          {secUntilRefresh > 0 && (
+          <a href="https://datamall.lta.gov.sg/content/datamall/en/dynamic-data.html" target="_blank" rel="noopener noreferrer" className="text-[11px] text-muted-foreground hover:underline">
+            Source: LTA DataMall
+          </a>
+          {isFresh && secUntilRefresh > 0 && (
             <>
               <div className="h-3.5 w-px bg-border" />
               <span className="text-[11px] text-muted-foreground tabular-nums">

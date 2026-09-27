@@ -56,11 +56,10 @@ interface ArriveLahResponse {
 }
 
 const BUS_STOP_NAMES: Record<string, string> = {
-  "45009": "Kranji MRT",
-  "01029": "Queen Street",
-  "46009": "Woodlands Int",
-  "22009": "Jurong Town Hall",
-  "25009": "Tuas Link MRT",
+  "45131": "Opp Kranji Stn",
+  "47009": "Woodlands Temp Int",
+  "46101": "Woodlands Checkpoint",
+  "29009": "Jurong Town Hall Int",
 };
 
 async function fetchFromEdge<T>(action: string, params?: Record<string, string>): Promise<T> {
@@ -128,6 +127,7 @@ async function fetchCamerasFromDataGov(checkpoint?: string): Promise<CameraFeed[
         label: meta?.label || `Camera ${c.camera_id}`,
         image_url: c.image,
         checkpoint: meta?.checkpoint || "unknown",
+        timestamp: c.timestamp,
       };
     });
 }
@@ -147,35 +147,40 @@ export function useLiveCameras(checkpoint?: string) {
             label: c.label,
             image_url: c.image_url,
             checkpoint: c.checkpoint,
+            timestamp: c.timestamp,
           }));
         if (cameras.length > 0) return cameras;
       } catch (e) {
         console.warn("Edge function cameras failed:", e);
       }
 
-      // Fallback 1: DB cache
-      try {
-        let query = supabase.from("camera_feeds").select("*");
-        if (checkpoint) query = query.eq("checkpoint", checkpoint);
-        const { data } = await query;
-        if (data && data.length > 0) {
-          return data.map((c: any) => ({
-            camera_id: c.camera_id,
-            label: c.label,
-            image_url: c.image_url,
-            checkpoint: c.checkpoint,
-          }));
-        }
-      } catch (e) {
-        console.warn("DB camera cache failed:", e);
-      }
-
-      // Fallback 2: Direct data.gov.sg API (free, no key needed)
+      // Prefer the current government feed before using a cached image.
       try {
         const cameras = await fetchCamerasFromDataGov(checkpoint);
         if (cameras.length > 0) return cameras;
       } catch (e) {
         console.warn("data.gov.sg cameras failed:", e);
+      }
+
+      // Last resort: use only a recently observed database image.
+      try {
+        let query = supabase.from("camera_feeds").select("*");
+        if (checkpoint) query = query.eq("checkpoint", checkpoint);
+        const { data } = await query;
+        if (data && data.length > 0) {
+          return data.filter((c: any) => {
+            const observedAt = Date.parse(c.timestamp || c.updated_at || "");
+            return Number.isFinite(observedAt) && Date.now() - observedAt < 15 * 60_000;
+          }).map((c: any) => ({
+            camera_id: c.camera_id,
+            label: c.label,
+            image_url: c.image_url,
+            checkpoint: c.checkpoint,
+            timestamp: c.timestamp || c.updated_at,
+          }));
+        }
+      } catch (e) {
+        console.warn("DB camera cache failed:", e);
       }
 
       return [];
@@ -203,6 +208,7 @@ export function useExpresswayCameras(cameraIds: string[]) {
             label: `Camera ${c.camera_id}`,
             image_url: c.image,
             checkpoint: "expressway",
+            timestamp: c.timestamp,
           }));
       } catch (e) {
         console.warn("Expressway cameras fetch failed:", e);
@@ -216,7 +222,7 @@ export function useExpresswayCameras(cameraIds: string[]) {
 }
 
 /** Fetches live bus arrivals from ArriveLah (free, no API key, 15s cache) */
-export function useLiveBusArrivals(stopCode: string = "45009") {
+export function useLiveBusArrivals(stopCode: string = "45131") {
   return useQuery({
     queryKey: ["live-bus", stopCode],
     queryFn: async (): Promise<BusResponse | null> => {
@@ -273,15 +279,7 @@ export function arrivalToMinutes(isoTime: string | null): number | null {
   return Math.max(0, Math.round(diff));
 }
 
-/** Demo traffic data shown when no pipeline data exists yet */
-const DEMO_SNAPSHOTS: TrafficSnapshot[] = [
-  { id: "1", checkpoint: "woodlands", direction: "sg_to_jb", status: "smooth", travel_time_min: 22, updated_at: new Date().toISOString() },
-  { id: "2", checkpoint: "woodlands", direction: "jb_to_sg", status: "moderate", travel_time_min: 38, updated_at: new Date().toISOString() },
-  { id: "3", checkpoint: "tuas", direction: "sg_to_jb", status: "smooth", travel_time_min: 18, updated_at: new Date().toISOString() },
-  { id: "4", checkpoint: "tuas", direction: "jb_to_sg", status: "smooth", travel_time_min: 15, updated_at: new Date().toISOString() },
-];
-
-/** Fetches latest traffic snapshots from Supabase, falls back to demo data */
+/** Only publish recent observations. An old snapshot must not look live. */
 export function useLiveTraffic(checkpoint?: string, direction?: string) {
   return useQuery({
     queryKey: ["live-traffic", checkpoint, direction],
@@ -294,7 +292,7 @@ export function useLiveTraffic(checkpoint?: string, direction?: string) {
           .limit(8);
 
         if (checkpoint) query = query.eq("checkpoint", checkpoint);
-        if (direction) query = query.eq("direction", direction);
+        query = query.eq("direction", direction || "sg_to_jb");
 
         const { data, error } = await query;
         if (error) throw error;
@@ -305,7 +303,10 @@ export function useLiveTraffic(checkpoint?: string, direction?: string) {
             const key = `${row.checkpoint}:${row.direction}`;
             if (!seen.has(key)) seen.set(key, row);
           }
-          return Array.from(seen.values()).map((row) => ({
+          const cutoff = Date.now() - 15 * 60 * 1000;
+          return Array.from(seen.values()).filter((row) =>
+            Number.isFinite(Date.parse(row.created_at)) && Date.parse(row.created_at) >= cutoff
+          ).map((row) => ({
             id: row.id,
             checkpoint: row.checkpoint,
             direction: row.direction,
@@ -315,31 +316,14 @@ export function useLiveTraffic(checkpoint?: string, direction?: string) {
           }));
         }
       } catch (e) {
-        console.warn("Live traffic fetch failed, using demo data:", e);
+        console.warn("Live traffic fetch failed:", e);
       }
-      // Return demo data so the dashboard always shows something
-      return DEMO_SNAPSHOTS;
+      return [];
     },
     refetchInterval: 5 * 60 * 1000,
     staleTime: 2 * 60 * 1000,
   });
 }
-
-/** Typical causeway hourly pattern for demo display */
-const DEMO_HOURLY: HourlyPattern[] = Array.from({ length: 24 }, (_, h) => {
-  const patterns: Record<number, { time: number; status: TrafficStatus }> = {
-    0: { time: 15, status: "smooth" }, 1: { time: 14, status: "smooth" }, 2: { time: 13, status: "smooth" },
-    3: { time: 13, status: "smooth" }, 4: { time: 14, status: "smooth" }, 5: { time: 18, status: "smooth" },
-    6: { time: 25, status: "moderate" }, 7: { time: 40, status: "heavy" }, 8: { time: 55, status: "heavy" },
-    9: { time: 45, status: "heavy" }, 10: { time: 35, status: "moderate" }, 11: { time: 28, status: "moderate" },
-    12: { time: 25, status: "moderate" }, 13: { time: 22, status: "smooth" }, 14: { time: 20, status: "smooth" },
-    15: { time: 22, status: "smooth" }, 16: { time: 28, status: "moderate" }, 17: { time: 45, status: "heavy" },
-    18: { time: 55, status: "heavy" }, 19: { time: 50, status: "heavy" }, 20: { time: 38, status: "moderate" },
-    21: { time: 28, status: "moderate" }, 22: { time: 20, status: "smooth" }, 23: { time: 16, status: "smooth" },
-  };
-  const p = patterns[h];
-  return { hour: h, avg_travel_time: p.time, avg_status: p.status };
-});
 
 /** Fetches historical hourly averages for today's day of week */
 export function useLiveHourlyPattern(checkpoint?: string, direction?: string) {
@@ -355,7 +339,7 @@ export function useLiveHourlyPattern(checkpoint?: string, direction?: string) {
           .order("hour");
 
         if (checkpoint) query = query.eq("checkpoint", checkpoint);
-        if (direction) query = query.eq("direction", direction);
+        query = query.eq("direction", direction || "sg_to_jb");
 
         const { data, error } = await query;
         if (error) throw error;
@@ -368,9 +352,9 @@ export function useLiveHourlyPattern(checkpoint?: string, direction?: string) {
           }));
         }
       } catch (e) {
-        console.warn("Hourly pattern fetch failed, using demo data:", e);
+        console.warn("Hourly pattern fetch failed:", e);
       }
-      return DEMO_HOURLY;
+      return [];
     },
     staleTime: 60 * 60 * 1000,
   });

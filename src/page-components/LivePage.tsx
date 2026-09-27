@@ -3,9 +3,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useLiveTraffic } from "@/hooks/useLiveData";
 import { StatusCard } from "@/components/dashboard/StatusCard";
-import { LivePulse } from "@/components/dashboard/LivePulse";
 import { CameraGrid } from "@/components/dashboard/CameraGrid";
-import { CheckpointToggle, DirectionToggle } from "@/components/dashboard/Toggles";
+import { CheckpointToggle } from "@/components/dashboard/Toggles";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { SEOHead } from "@/components/shared/SEOHead";
 import { Loader2, Camera, ArrowRight } from "lucide-react";
@@ -13,8 +12,6 @@ import { useTranslation } from "@/lib/i18n";
 
 const LivePage = () => {
   const [checkpoint, setCheckpoint] = useState("all");
-  const [direction, setDirection] = useState("sg_to_jb");
-  const [showCameras, setShowCameras] = useState(false);
   const { t } = useTranslation();
 
   const { data: snapshots, isLoading: trafficLoading } = useLiveTraffic();
@@ -22,7 +19,7 @@ const LivePage = () => {
   const filteredSnapshots = (snapshots ?? []).filter(
     (s) =>
       (checkpoint === "all" || s.checkpoint === checkpoint) &&
-      s.direction === direction
+      s.direction === "sg_to_jb"
   );
 
   const cameraCheckpoint = checkpoint === "all" ? "woodlands" : checkpoint;
@@ -31,7 +28,7 @@ const LivePage = () => {
     <div className="pb-mobile-nav">
       <SEOHead
         title="JB Traffic Now — Live LTA CCTV Camera & Causeway Checkpoint Status"
-        description="Is there a JB jam now? Live causeway traffic status for Woodlands & Tuas checkpoints with LTA CCTV cameras and wait times. Updated every 5 min."
+        description="Check recent road conditions near Woodlands and Tuas with LTA camera images. See feed timestamps before choosing your JB crossing."
         path="/live"
         jsonLd={{
           "@context": "https://schema.org",
@@ -39,7 +36,7 @@ const LivePage = () => {
           name: "Causeway Traffic Now — Live JB Checkpoint Status",
           url: "https://www.sgborder.live/live",
           description:
-            "Real-time causeway traffic status for Woodlands and Tuas checkpoints. Live cameras, wait times, and congestion levels updated every 5 minutes.",
+            "Recent road conditions near Woodlands and Tuas with LTA camera images and observation timestamps.",
           isPartOf: {
             "@type": "WebSite",
             name: "SG Border Live",
@@ -56,7 +53,7 @@ const LivePage = () => {
       <section className="bg-primary text-primary-foreground">
         <div className="container py-6 md:py-8">
           <div className="flex items-center gap-3 mb-3">
-            <LivePulse size="lg" />
+            <Camera className="h-4 w-4 text-status-smooth" />
             <div className="flex items-center gap-2">
               <span className="text-sm font-bold uppercase tracking-widest text-status-smooth">{t("home_live")}</span>
               <span className="h-1 w-1 rounded-full bg-primary-foreground/30" />
@@ -72,7 +69,7 @@ const LivePage = () => {
 
           <div className="mt-5 flex flex-wrap items-center gap-2">
             <CheckpointToggle value={checkpoint} onChange={setCheckpoint} variant="dark" />
-            <DirectionToggle value={direction} onChange={setDirection} variant="dark" />
+            <Link href="/cameras" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary-foreground/30 px-3 text-xs font-semibold text-primary-foreground hover:bg-primary-foreground/10"><Camera className="h-4 w-4" /> View both directions on camera</Link>
           </div>
         </div>
       </section>
@@ -91,20 +88,20 @@ const LivePage = () => {
                 <StatusCard
                   key={s.id}
                   snapshot={s}
-                  onViewCameras={() => setShowCameras(!showCameras)}
                 />
               ))}
             </div>
           ) : (
             <div className="rounded-xl border border-border bg-card p-6 text-center">
-              <p className="text-sm text-muted-foreground">{t("live_no_data")}</p>
+              <p className="text-sm font-medium text-foreground">Current road data is unavailable.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Use the checkpoint cameras while the road feed is unavailable.</p>
+              <Link href="/cameras" className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-accent hover:underline">Open traffic cameras <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </div>
           )}
         </div>
       </section>
 
       {/* Cameras */}
-      {showCameras && (
         <Section>
           <div className="container">
             <div className="flex items-center gap-2 mb-3">
@@ -114,7 +111,6 @@ const LivePage = () => {
             <CameraGrid checkpoint={cameraCheckpoint} />
           </div>
         </Section>
-      )}
 
       {/* Checkpoint & Bus Links */}
       <Section>

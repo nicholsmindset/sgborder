@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { GUIDES } from "@/data/guides";
+import { INDEXABLE_GUIDE_SLUGS } from "@/lib/indexable-guides";
 import { getCategoryColor } from "@/data/guides";
 import { FAQAccordion } from "@/components/content/FAQAccordion";
 import { GuideCard } from "@/components/content/GuideCard";
@@ -48,7 +49,7 @@ const GuidePage = () => {
 
   const related = guide.relatedSlugs
     .map((s) => GUIDES.find((g) => g.slug === s))
-    .filter(Boolean) as typeof GUIDES;
+    .filter((relatedGuide) => relatedGuide && INDEXABLE_GUIDE_SLUGS.has(relatedGuide.slug)) as typeof GUIDES;
 
   const jsonLdItems: Record<string, unknown>[] = [];
 

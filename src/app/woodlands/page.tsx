@@ -3,13 +3,13 @@ import JsonLd from "@/components/shared/JsonLd";
 import WoodlandsClient from "@/page-components/WoodlandsPage";
 
 export const metadata: Metadata = {
-  title: "Woodlands Checkpoint Live Camera & Traffic Today (2026) — CCTV, Wait Time",
+  title: "Woodlands Checkpoint Live Camera & Traffic Today (2026) — CCTV & Road Status",
   description:
-    "Woodlands Checkpoint traffic today with live LTA CCTV cameras, real-time wait times, bus arrivals & hourly patterns. Updated every 5 minutes. Plan your SG to JB crossing now.",
+    "Woodlands Checkpoint traffic today: inspect LTA camera images, recent Singapore road conditions and cross-border bus information before leaving for JB.",
   alternates: { canonical: "https://www.sgborder.live/woodlands" },
   openGraph: {
     title: "Woodlands Checkpoint Live Traffic & Cameras",
-    description: "Real-time Woodlands Checkpoint traffic, LTA CCTV cameras, and wait times.",
+    description: "Recent Woodlands road conditions and LTA traffic camera images.",
     url: "https://www.sgborder.live/woodlands",
   },
 };
@@ -27,17 +27,7 @@ export default function WoodlandsPage() {
           address: { "@type": "PostalAddress", addressCountry: "SG", addressLocality: "Woodlands" },
         }}
       />
-      <div className="sr-only">
-        <h1>Woodlands Checkpoint Traffic Today — Live Camera & Status</h1>
-        <p>Real-time traffic conditions at Woodlands Checkpoint (Singapore-JB Causeway). Live LTA CCTV cameras, estimated crossing times, bus arrivals for CW1, CW2, 170, 170X, and 950 services. Toll: S$0.80 for cars. Typical crossing: 20-45 minutes off-peak.</p>
-        <h2>Woodlands Checkpoint Quick Facts</h2>
-        <ul>
-          <li>Singapore toll (cars): S$0.80</li>
-          <li>Typical crossing time: 20-45 minutes off-peak</li>
-          <li>Address: 21 Woodlands Crossing, Singapore</li>
-          <li>Buses via Woodlands: CW1, CW2, 170, 170X, 950, CW5</li>
-        </ul>
-      </div>
+
       <WoodlandsClient />
     </>
   );

@@ -1,48 +1,21 @@
 import type { Metadata } from "next";
-import JsonLd from "@/components/shared/JsonLd";
-import HolidaysClient from "@/page-components/HolidaysPage";
-import { HOLIDAYS_2026 } from "@/data/holidays";
-
-const holidayFaqs = [
-  { question: "When is causeway traffic worst during holidays?", answer: "The worst congestion is typically on the eve of major holidays and on the last day of the holiday period. Chinese New Year, Hari Raya, and Malaysia school holidays see the heaviest traffic." },
-  { question: "How early should I leave to avoid holiday traffic at Woodlands?", answer: "For extreme-severity holidays (CNY, Hari Raya), leave before 4 AM or after 10 PM. For heavy-severity holidays, before 6 AM or after 9 PM is usually sufficient." },
-  { question: "Is Tuas better than Woodlands during holidays?", answer: "Tuas is often less congested during holidays, but not always. Check both checkpoints on our live dashboard before deciding." },
-];
+import Link from "next/link";
+import HolidayDates from "@/components/holidays/HolidayDates";
+import { SG_PUBLIC_HOLIDAYS_2026, MY_PUBLIC_HOLIDAYS_2026 } from "@/data/public-holidays";
 
 export const metadata: Metadata = {
-  title: "Causeway Traffic Holiday Calendar 2026 — Peak Hours & Predictions",
-  description:
-    "2026 causeway holiday traffic predictions. See peak hours, best times to cross & severity forecasts for every Singapore & Malaysia holiday.",
+  title: "Singapore & Johor Public Holidays 2026 — Crossing Calendar",
+  description: "Verified Singapore and Johor public holiday dates for planning a Woodlands or Tuas crossing. Check official advisories and cameras before travel.",
   alternates: { canonical: "https://www.sgborder.live/holidays" },
 };
 
 export default function HolidaysPage() {
   return (
-    <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: holidayFaqs.map((f) => ({
-            "@type": "Question",
-            name: f.question,
-            acceptedAnswer: { "@type": "Answer", text: f.answer },
-          })),
-        }}
-      />
-      <div className="sr-only">
-        <h1>Causeway Traffic Holiday Calendar 2026</h1>
-        <p>Plan your border crossing around Singapore and Malaysia public holidays. Traffic predictions, peak hours, and best times to cross for every major holiday in 2026.</p>
-        <h2>2026 Holiday Traffic Predictions</h2>
-        <ul>
-          {HOLIDAYS_2026.map((h) => (
-            <li key={h.slug}>
-              <a href={`/holidays/${h.slug}`}>{h.name}</a> ({h.date_start}) — Severity: {h.severity}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <HolidaysClient />
-    </>
+    <div className="container max-w-4xl py-8 pb-mobile-nav md:py-12">
+      <h1 className="font-heading text-display-sm font-bold text-foreground md:text-display">2026 Singapore & Johor crossing calendar</h1>
+      <p className="mt-3 text-muted-foreground leading-relaxed">Public holidays can change travel demand, but these dates are not a queue forecast. Check the latest <a className="text-accent underline" href="https://www.ica.gov.sg/news-and-publications/newsroom/media-releases" target="_blank" rel="noopener noreferrer">ICA land checkpoint advisories</a> and <Link className="text-accent underline" href="/cameras">camera images</Link> before you travel.</p>
+      <section className="mt-8"><h2 className="mb-3 font-heading text-title font-bold">Singapore public holidays</h2><HolidayDates holidays={SG_PUBLIC_HOLIDAYS_2026} /><p className="mt-2 text-xs text-muted-foreground">Source: <a className="underline" href="https://www.mom.gov.sg/employment-practices/public-holidays" target="_blank" rel="noopener noreferrer">Singapore Ministry of Manpower</a>.</p></section>
+      <section className="mt-8"><h2 className="mb-3 font-heading text-title font-bold">Johor public holidays</h2><HolidayDates holidays={MY_PUBLIC_HOLIDAYS_2026} /><p className="mt-2 text-xs text-muted-foreground">Source: <a className="underline" href="https://www.johor.gov.my/rakyat/cuti-umum-2" target="_blank" rel="noopener noreferrer">Johor state government</a>.</p></section>
+    </div>
   );
 }

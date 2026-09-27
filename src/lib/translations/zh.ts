@@ -47,45 +47,45 @@ export const zh: Record<keyof typeof en, string> = {
 
   // Homepage
   home_title: "\u957f\u5821\u5b9e\u65f6\u4ea4\u901a",
-  home_subtitle: "\u5b9e\u65f6\u5173\u5361\u72b6\u6001 \u00b7 \u6bcf5\u5206\u949f\u66f4\u65b0",
-  home_live: "\u5b9e\u65f6",
-  home_updates_every_5min: "\u6bcf5\u5206\u949f\u66f4\u65b0",
-  home_hero_desc: "\u5146\u6797\u548c\u5927\u58eb\u5173\u5361\u7684\u5b9e\u65f6\u72b6\u6001\u3002\u6570\u636e\u6765\u6e90\u4e8eLTA\u3001Google Routes\u548c\u5b9e\u65f6\u6444\u50cf\u5934\u3002",
+  home_subtitle: "兀兰与大士道路及摄像头看板",
+  home_live: "道路观察",
+  home_updates_every_5min: "每5分钟检查道路数据",
+  home_hero_desc: "出发前比较新加坡道路状况及关卡摄像头。下方显示数据时间。",
   home_todays_pattern: "\u4eca\u65e5\u4ea4\u901a\u6a21\u5f0f",
   home_pattern_desc: "\u57fa\u4e8e\u5386\u53f2\u6570\u636e",
   home_pattern_collecting: "\u5386\u53f2\u6a21\u5f0f\u6570\u636e\u4ecd\u5728\u6536\u96c6\u4e2d\u3002",
   home_cross_border_buses: "\u8de8\u5883\u5df4\u58eb\u524d\u5f80\u65b0\u5c71",
   home_all_buses: "\u6240\u6709\u5df4\u58eb",
   home_checkpoints: "\u5173\u5361",
-  home_holiday_traffic: "\u5047\u65e5\u4ea4\u901a\u9884\u6d4b",
+  home_holiday_traffic: "即将到来的假日日期",
   home_calendar: "\u65e5\u5386",
-  home_upcoming_desc: "\u5373\u5c06\u5230\u6765\u7684\u5047\u65e5\u4ea4\u901a\u9884\u6d4b",
+  home_upcoming_desc: "已核实的公共假期日期；出行前请查看最新通告",
   home_commuter_guides: "\u901a\u52e4\u6307\u5357",
   home_all_guides: "\u6240\u6709\u6307\u5357",
   home_telegram_title: "\u901a\u8fc7Telegram\u83b7\u53d6\u63d0\u9192",
   home_telegram_desc: "\u514d\u8d39\uff1a/status\u548c/bus\u547d\u4ee4\u3002\u9ad8\u7ea7\u7248\uff1a\u4e2a\u6027\u5316\u63d0\u9192\u3001\u51fa\u53d1\u9884\u6d4b\u548c\u65e0\u5e7f\u544a\u3002",
   home_telegram_btn: "\u4e86\u89e3\u66f4\u591a",
   home_faq_title: "\u5e38\u89c1\u95ee\u9898",
-  home_data_source_trust: "\u6570\u636e\u6765\u6e90\u4e8eLTA DataMall\u548cGoogle Routes API\u3002\u4ea4\u901a\u72b6\u6001\u6bcf5\u5206\u949f\u66f4\u65b0\u3002\u5df4\u58eb\u5230\u8fbe\u6bcf60\u79d2\u66f4\u65b0\u3002",
+  home_data_source_trust: "道路状态依据LTA DataMall车速数据，不包括出入境排队时间。出行前请查看数据时间和摄像头。",
   home_loading: "\u6b63\u5728\u52a0\u8f7d\u4ea4\u901a\u6570\u636e\u2026",
-  home_no_data: "\u6682\u65e0\u4ea4\u901a\u6570\u636e\u3002\u6570\u636e\u7ba1\u9053\u542f\u52a8\u540e\u5c06\u663e\u793a\u3002",
+  home_no_data: "目前没有最新道路数据。出行前请查看摄像头。",
   home_traffic_cameras: "\u4ea4\u901a\u6444\u50cf\u5934",
 
   // Quick links
   quick_link_causeway: "\u957f\u5821",
   quick_link_second_link: "\u7b2c\u4e8c\u901a\u9053",
   quick_link_live_cctv: "\u5b9e\u65f6\u76d1\u63a7",
-  quick_link_opening_2027: "2027\u5e74\u5f00\u901a",
+  quick_link_opening_2027: "项目进展",
 
   // Guide card labels
   guide_best_time: "\u6700\u4f73\u8fc7\u5173\u65f6\u95f4",
-  guide_best_time_sub: "\u9010\u5c0f\u65f6\u3001\u9010\u65e5\u5206\u6790",
-  guide_friday: "\u5468\u4e94\u4ea4\u901a\u6307\u5357",
-  guide_friday_sub: "\u907f\u5f00\u5468\u4e94\u62e5\u5835",
+  guide_best_time_sub: "依据官方信息规划行程",
+  guide_friday: "MyICA二维码指南",
+  guide_friday_sub: "使用资格与护照规定",
   guide_vep: "VEP\u9a6c\u6765\u897f\u4e9a\u6307\u5357",
-  guide_vep_sub: "\u6ce8\u518c\u3001\u8d39\u7528\u548c2027\u5e74\u53d8\u5316",
+  guide_vep_sub: "JPJ RFID与道路收费",
   guide_cw1: "CW1\u5df4\u58eb\u6307\u5357",
-  guide_cw1_sub: "Kranji\u5230\u65b0\u5c71\u5b8c\u6574\u6307\u5357",
+  guide_cw1_sub: "路线与运营商信息",
 
   // Bus
   bus_title: "\u8de8\u5883\u5df4\u58eb",
@@ -104,7 +104,7 @@ export const zh: Record<keyof typeof en, string> = {
   bus_next: "\u4e0b\u4e00\u73ed",
   bus_no_services: "\u8be5\u7ad9\u70b9\u6682\u65e0\u5df4\u58eb\u670d\u52a1\u3002",
   bus_hub_title: "\u524d\u5f80\u65b0\u5c71\u5df4\u58eb \u2014 \u6240\u6709\u8de8\u5883\u8def\u7ebf",
-  bus_hub_subtitle: "\u65b0\u52a0\u5761\u5230\u65b0\u5c71\u6240\u6709\u5df4\u58eb\uff1aCW1\u3001CW2\u3001170\u3001170X\u3001950\u8def\u7ebf\uff0c\u5b9e\u65f6\u5230\u8fbe\u3001\u7968\u4ef7\u3001\u65f6\u523b\u8868",
+  bus_hub_subtitle: "比较经兀兰和大士的巴士路线。可用时显示公共巴士到站信息；票价和时刻请向运营商确认。",
   bus_route_back: "\u6240\u6709\u5df4\u58eb",
   bus_route_next_bus: "\u4e0b\u4e00\u73ed\u5df4\u58eb",
   bus_route_schedule: "\u65f6\u523b\u8868",
@@ -139,8 +139,8 @@ export const zh: Record<keyof typeof en, string> = {
 
   // Live Page
   live_title: "\u65b0\u5c71\u4ea4\u901a\u5b9e\u65f6 \u2014 \u957f\u5821\u5173\u5361\u72b6\u6001",
-  live_subtitle: "\u5b9e\u65f6\u5173\u5361\u72b6\u6001 \u00b7 \u6bcf5\u5206\u949f\u66f4\u65b0",
-  live_real_time: "\u5b9e\u65f6\u6570\u636e",
+  live_subtitle: "新加坡道路状况与关卡摄像头",
+  live_real_time: "查看数据时间",
   live_loading: "\u6b63\u5728\u52a0\u8f7d\u4ea4\u901a\u6570\u636e\u2026",
   live_no_data: "\u6682\u65e0\u4ea4\u901a\u6570\u636e\u3002\u6570\u636e\u7ba1\u9053\u542f\u52a8\u540e\u5c06\u663e\u793a\u3002",
   live_cameras_title: "\u5b9e\u65f6\u4ea4\u901a\u6444\u50cf\u5934",
@@ -148,7 +148,7 @@ export const zh: Record<keyof typeof en, string> = {
   live_cross_border_buses: "\u8de8\u5883\u5df4\u58eb",
   live_bus_routes_desc: "CW1\u3001170X\u3001950\u7b49\u66f4\u591a\u8def\u7ebf",
   live_seo_title: "\u957f\u5821\u73b0\u5728\u5835\u8f66\u5417\uff1f",
-  live_seo_content_1: "\u60f3\u77e5\u9053\u65b0\u5c71\u73b0\u5728\u662f\u5426\u5835\u8f66\uff1f\u6b64\u9875\u9762\u663e\u793a\u5146\u6797\u5173\u5361\uff08\u7b2c\u4e00\u901a\u9053\uff09\u548c\u5927\u58eb\u7b2c\u4e8c\u901a\u9053\u7684\u5b9e\u65f6\u62e5\u5835\u6c34\u5e73\u3002\u6570\u636e\u6765\u6e90\u4e8eLTA\u4ea4\u901a\u6444\u50cf\u5934\u3001\u901f\u5ea6\u4f20\u611f\u5668\u548cGoogle Routes API\u884c\u7a0b\u65f6\u95f4\u4f30\u8ba1 \u2014 \u6bcf5\u5206\u949f\u5237\u65b0\u3002",
+  live_seo_content_1: "查看新加坡通往兀兰和大士关卡的道路状况，以及带时间戳的交通摄像头画面。道路速度并不代表移民通关或马来西亚一侧的排队时间。",
   live_seo_content_2_prefix: "\u8ba1\u5212\u51fa\u884c\uff1f\u67e5\u770b\u6211\u4eec\u7684",
   live_seo_content_2_guide: "\u6700\u4f73\u8fc7\u5173\u65f6\u95f4\u6307\u5357",
   live_seo_content_2_mid: "\u83b7\u53d6\u9010\u5c0f\u65f6\u5206\u6790\uff0c",
@@ -171,12 +171,12 @@ export const zh: Record<keyof typeof en, string> = {
 
   // Woodlands specific
   woodlands_h1: "\u5146\u6797\u5173\u5361 \u2014 \u5b9e\u65f6\u4ea4\u901a\u548c\u6444\u50cf\u5934",
-  woodlands_hero_sub: "\u5146\u6797\u957f\u5821\u7684\u5b9e\u65f6\u4ea4\u901a\u3001\u6444\u50cf\u5934\u548c\u5df4\u58eb\u4fe1\u606f",
+  woodlands_hero_sub: "兀兰道路状况、摄像头和巴士信息",
   woodlands_faq_title: "\u5146\u6797\u5173\u5361\u5e38\u89c1\u95ee\u9898",
 
   // Tuas specific
   tuas_h1: "\u5927\u58eb\u5173\u5361 \u2014 \u5b9e\u65f6\u4ea4\u901a\u548c\u7b2c\u4e8c\u901a\u9053\u6444\u50cf\u5934",
-  tuas_hero_sub: "\u5927\u58eb\u5173\u5361\u7684\u5b9e\u65f6\u4ea4\u901a\u3001\u6444\u50cf\u5934\u548c\u5df4\u58eb\u4fe1\u606f",
+  tuas_hero_sub: "大士道路状况、摄像头和巴士信息",
   tuas_why_choose: "\u4e3a\u4ec0\u4e48\u9009\u62e9\u5927\u58eb\uff1f",
   tuas_why_1: "\u901a\u5e38\u6bd4\u5146\u6797\u5c11\u62e5\u583720-40%",
   tuas_why_2: "\u5468\u4e94\u665a\u4e0a\u548c\u5468\u516d\u65e9\u4e0a\u7684\u66f4\u597d\u9009\u62e9",
@@ -244,7 +244,7 @@ export const zh: Record<keyof typeof en, string> = {
   rts_countdown_hrs: "\u5c0f\u65f6",
   rts_countdown_min: "\u5206",
   rts_countdown_sec: "\u79d2",
-  rts_expected: "\u9884\u8ba12027\u5e741\u6708\u5f00\u59cb\u8fd0\u8425",
+  rts_expected: "客运服务目标为2026年12月前；确切日期尚未公布",
   rts_quick_facts: "\u5feb\u901f\u4e86\u89e3",
   rts_route: "\u8def\u7ebf",
   rts_distance: "\u8ddd\u79bb",
@@ -301,7 +301,7 @@ export const zh: Record<keyof typeof en, string> = {
   telegram_open_bot: "\u5728Telegram\u6253\u5f00 @SGBorderBot",
 
   // Footer
-  footer_brand_desc: "\u65b0\u52a0\u5761\u5230\u65b0\u5c71\u957f\u5821\u5b9e\u65f6\u4ea4\u901a\u3001\u5df4\u58eb\u5230\u8fbe\u548c\u8fc7\u5173\u6307\u5357\u3002\u6570\u636e\u6bcf5\u5206\u949f\u5237\u65b0\u3002",
+  footer_brand_desc: "新加坡与新山关卡摄像头、公共巴士到站信息和过关指南。出发前请查看各项数据的时间戳。",
   footer_quick_links: "\u5feb\u901f\u94fe\u63a5",
   footer_woodlands_checkpoint: "\u5146\u6797\u5173\u5361",
   footer_tuas_second_link: "\u5927\u58eb\u7b2c\u4e8c\u901a\u9053",
@@ -323,7 +323,7 @@ export const zh: Record<keyof typeof en, string> = {
   // Camera Grid
   camera_loading: "加载摄像头中\u2026",
   camera_no_feeds: "暂无摄像头画面。",
-  camera_refresh_note: "每5分钟刷新 \u00b7 来自LTA实时数据",
+  camera_refresh_note: "LTA摄像头画面 · 请查看图像时间戳",
 
   // Heatmap
   heatmap_min: "分钟",

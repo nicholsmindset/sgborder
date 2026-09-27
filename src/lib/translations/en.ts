@@ -45,45 +45,45 @@ export const en = {
 
   // Homepage
   home_title: "Causeway Traffic Now",
-  home_subtitle: "Live checkpoint status \u00b7 Updated every 5 minutes",
-  home_live: "Live",
-  home_updates_every_5min: "Updates every 5 min",
-  home_hero_desc: "Real-time checkpoint status for Woodlands & Tuas. Data sourced from LTA, Google Routes, and live cameras.",
+  home_subtitle: "Road and camera dashboard for Woodlands and Tuas",
+  home_live: "Road watch",
+  home_updates_every_5min: "Road feed checked every 5 min",
+  home_hero_desc: "Compare Singapore road approaches and checkpoint cameras before crossing to JB. Feed timestamps appear below.",
   home_todays_pattern: "Today's Traffic Pattern",
   home_pattern_desc: "Based on historical data for",
   home_pattern_collecting: "Historical pattern data is still being collected.",
   home_cross_border_buses: "Cross-Border Buses to JB",
   home_all_buses: "All buses",
   home_checkpoints: "Checkpoints",
-  home_holiday_traffic: "Holiday Traffic Predictions",
+  home_holiday_traffic: "Upcoming crossing dates",
   home_calendar: "Calendar",
-  home_upcoming_desc: "Upcoming holidays with traffic predictions",
+  home_upcoming_desc: "Verified public holiday dates; check current advisories before travelling",
   home_commuter_guides: "Causeway Commuter Guides",
   home_all_guides: "All guides",
   home_telegram_title: "Get Alerts on Telegram",
   home_telegram_desc: "Free: /status and /bus commands. Premium: personalised alerts, departure predictions, and ad-free.",
   home_telegram_btn: "Learn More",
   home_faq_title: "Frequently Asked Questions",
-  home_data_source_trust: "Data sourced from LTA DataMall and Google Routes API. Traffic status updated every 5 minutes. Bus arrivals updated every 60 seconds.",
+  home_data_source_trust: "Road status uses LTA DataMall speed bands and excludes immigration queues. Check the observation time and camera images before travelling.",
   home_loading: "Loading traffic data\u2026",
-  home_no_data: "No traffic data available yet. Data will appear once the pipeline starts collecting.",
+  home_no_data: "Current road data is unavailable. Check the cameras before travelling.",
   home_traffic_cameras: "Traffic Cameras",
 
   // Quick links
   quick_link_causeway: "Causeway",
   quick_link_second_link: "Second Link",
   quick_link_live_cctv: "Live CCTV",
-  quick_link_opening_2027: "Opening 2027",
+  quick_link_opening_2027: "Project status",
 
   // Guide card labels
   guide_best_time: "Best Time to Cross",
-  guide_best_time_sub: "Hour-by-hour, day-by-day breakdown",
-  guide_friday: "Friday Traffic Guide",
-  guide_friday_sub: "Beat the Friday queue",
+  guide_best_time_sub: "Evidence-based planning steps",
+  guide_friday: "MyICA QR Guide",
+  guide_friday_sub: "Eligibility and passport rules",
   guide_vep: "VEP Malaysia Guide",
-  guide_vep_sub: "Registration, costs & 2027 changes",
+  guide_vep_sub: "JPJ RFID and Road Charge",
   guide_cw1: "CW1 Bus Guide",
-  guide_cw1_sub: "Kranji to JB complete guide",
+  guide_cw1_sub: "Route and operator details",
 
   // Bus
   bus_title: "Cross-Border Buses",
@@ -102,7 +102,7 @@ export const en = {
   bus_next: "Next",
   bus_no_services: "No bus services found for this stop.",
   bus_hub_title: "Bus to JB \u2014 All Cross-Border Routes",
-  bus_hub_subtitle: "All buses from Singapore to JB: CW1, CW2, 170, 170X, 950 routes with live arrivals, fares, schedules",
+  bus_hub_subtitle: "Compare routes via Woodlands and Tuas. Public bus arrivals appear when available; check operator fares and schedules.",
   bus_route_back: "All buses",
   bus_route_next_bus: "Next Bus",
   bus_route_schedule: "Schedule",
@@ -137,8 +137,8 @@ export const en = {
 
   // Live Page
   live_title: "JB Traffic Now \u2014 Causeway Checkpoint Status",
-  live_subtitle: "Real-time checkpoint status \u00b7 Updated every 5 minutes",
-  live_real_time: "Real-time data",
+  live_subtitle: "Recent Singapore road approach conditions and checkpoint cameras",
+  live_real_time: "Check observation times",
   live_loading: "Loading traffic data\u2026",
   live_no_data: "No traffic data available yet. Data will appear once the pipeline starts collecting.",
   live_cameras_title: "Live Traffic Cameras",
@@ -146,7 +146,7 @@ export const en = {
   live_cross_border_buses: "Cross-Border Buses",
   live_bus_routes_desc: "CW1, 170X, 950 & more routes",
   live_seo_title: "Is There a Jam at the Causeway Right Now?",
-  live_seo_content_1: "Wondering about JB jam now or causeway traffic now? This page shows you the real-time congestion level at both the Woodlands Checkpoint (First Link) and Tuas Second Link. Our data is sourced from LTA traffic cameras, speed band sensors, and Google Routes API travel time estimates \u2014 refreshed every 5 minutes so you always have the latest picture before you head to the checkpoint.",
+  live_seo_content_1: "Check the most recent Singapore road approach status and timestamped Woodlands and Tuas camera images. Road speeds do not measure immigration queues or Malaysia-side congestion.",
   live_seo_content_2_prefix: "Planning your trip? Check our",
   live_seo_content_2_guide: "best time to cross guide",
   live_seo_content_2_mid: "for hour-by-hour breakdowns,",
@@ -169,12 +169,12 @@ export const en = {
 
   // Woodlands specific
   woodlands_h1: "Woodlands Checkpoint \u2014 Live Traffic & Cameras",
-  woodlands_hero_sub: "Live traffic, cameras, and bus info for Woodlands Causeway",
+  woodlands_hero_sub: "Road approach conditions, cameras and bus information for Woodlands",
   woodlands_faq_title: "Woodlands Checkpoint FAQ",
 
   // Tuas specific
   tuas_h1: "Tuas Checkpoint \u2014 Live Traffic & Second Link Cameras",
-  tuas_hero_sub: "Live traffic, cameras, and bus info for Tuas Checkpoint",
+  tuas_hero_sub: "Road approach conditions, cameras and bus information for Tuas",
   tuas_why_choose: "Why Choose Tuas?",
   tuas_why_1: "Typically 20-40% less congested than Woodlands",
   tuas_why_2: "Better option on Friday evenings and Saturday mornings",
@@ -242,7 +242,7 @@ export const en = {
   rts_countdown_hrs: "hrs",
   rts_countdown_min: "min",
   rts_countdown_sec: "sec",
-  rts_expected: "Expected to commence operations January 2027",
+  rts_expected: "Passenger service targeted by December 2026; exact date unannounced",
   rts_quick_facts: "Quick Facts",
   rts_route: "Route",
   rts_distance: "Distance",
@@ -299,7 +299,7 @@ export const en = {
   telegram_open_bot: "Open @SGBorderBot on Telegram",
 
   // Footer
-  footer_brand_desc: "Real-time Singapore-JB causeway traffic, bus arrivals, and crossing guides. Data refreshed every 5 minutes.",
+  footer_brand_desc: "Singapore–JB checkpoint cameras, public bus arrivals and crossing guides. Check each feed timestamp before travelling.",
   footer_quick_links: "Quick Links",
   footer_woodlands_checkpoint: "Woodlands Checkpoint",
   footer_tuas_second_link: "Tuas Second Link",
@@ -321,7 +321,7 @@ export const en = {
   // Camera Grid
   camera_loading: "Loading cameras\u2026",
   camera_no_feeds: "No camera feeds available yet.",
-  camera_refresh_note: "Refreshed every 5 min \u00b7 Live from LTA",
+  camera_refresh_note: "LTA camera images · Check the image timestamp",
 
   // Heatmap
   heatmap_min: "min",

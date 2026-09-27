@@ -11,10 +11,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <div className="sr-only">
-        <h1>About SG Border Live</h1>
-        <p>SG Border Live is a free, independent traffic information service for the Singapore–Johor Bahru border crossing. We aggregate live data from official Singapore government APIs to give commuters a clear view of current conditions.</p>
-      </div>
+
       <AboutClient />
     </>
   );

@@ -3,6 +3,8 @@ import { EXPRESSWAYS } from "@/data/expressway-cameras";
 import CamerasCheckpointClient from "@/page-components/CamerasCheckpointPage";
 import ExpresswayCamerasClient from "@/page-components/ExpresswayCamerasPage";
 
+export const dynamicParams = false;
+
 const checkpoints = ["woodlands", "tuas"];
 const expresswayKeys = Object.keys(EXPRESSWAYS);
 
@@ -33,18 +35,7 @@ export default function CheckpointCameraPage({ params }: { params: { checkpoint:
 
   return (
     <>
-      <div className="sr-only">
-        <h1>
-          {isExpressway
-            ? `${EXPRESSWAYS[params.checkpoint].name} Traffic Camera Live`
-            : `${params.checkpoint === "woodlands" ? "Woodlands" : "Tuas"} Checkpoint Live Cameras`}
-        </h1>
-        <p>
-          {isExpressway
-            ? EXPRESSWAYS[params.checkpoint].description
-            : `Real-time LTA CCTV camera images at ${params.checkpoint === "woodlands" ? "Woodlands" : "Tuas"} Checkpoint, updated every 5 minutes.`}
-        </p>
-      </div>
+
       {isExpressway ? <ExpresswayCamerasClient /> : <CamerasCheckpointClient />}
     </>
   );

@@ -58,10 +58,8 @@ export const CAMERA_IDS = {
 } as const;
 
 export const BUS_STOP_CODES = {
-  "46211": "Woodlands Temp Int",
-  "45139": "Opp Kranji Stn",
-  "04111": "Queen Street Terminal",
-  "25421": "Tuas Link MRT",
-  "22009": "Jurong Town Hall Int",
-  "03218": "Newton Circus",
+  "45131": "Opp Kranji Stn",
+  "47009": "Woodlands Temp Int",
+  "46101": "Woodlands Checkpoint",
+  "29009": "Jurong Town Hall Int",
 } as const;

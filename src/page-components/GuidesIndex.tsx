@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { GUIDES, GUIDE_CATEGORIES } from "@/data/guides";
+import { INDEXABLE_GUIDE_SLUGS } from "@/lib/indexable-guides";
 import { GuideCard } from "@/components/content/GuideCard";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { SEOHead } from "@/components/shared/SEOHead";
@@ -10,7 +11,8 @@ import { BookOpen } from "lucide-react";
 const GuidesIndex = () => {
   const { t } = useTranslation();
   const [category, setCategory] = useState("all");
-  const filtered = category === "all" ? GUIDES : GUIDES.filter((g) => g.category === category);
+  const reviewedGuides = GUIDES.filter((guide) => INDEXABLE_GUIDE_SLUGS.has(guide.slug));
+  const filtered = category === "all" ? reviewedGuides : reviewedGuides.filter((g) => g.category === category);
 
   return (
     <div className="pb-mobile-nav">
@@ -38,7 +40,7 @@ const GuidesIndex = () => {
       {/* Category filter */}
       <section className="container pb-4">
         <div className="flex gap-1.5 overflow-x-auto pb-1 -mx-1 px-1">
-          {GUIDE_CATEGORIES.map((cat) => (
+          {GUIDE_CATEGORIES.filter((cat) => cat.value === "all" || reviewedGuides.some((guide) => guide.category === cat.value)).map((cat) => (
             <button
               key={cat.value}
               onClick={() => setCategory(cat.value)}
