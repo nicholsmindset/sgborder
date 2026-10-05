@@ -25,4 +25,4 @@
 
 ## Search measurement
 
-Connect the correct `sgborder.live` Google Search Console property and record page/query impressions, clicks, CTR, positions and indexing for the home, camera, checkpoint and direction pages. Ahrefs figures in `competitor-opportunity-2026-10.md` are competitor estimates and are not a release success metric.
+The `sc-domain:sgborder.live` property is available through the OnnGroup Search Console connection. Its pre-release baseline and sitemap status are recorded in `gsc-baseline-2026-10.md`. Compare later page/query impressions, clicks, CTR, positions and indexing for the home, camera, checkpoint and direction pages. Ahrefs figures in `competitor-opportunity-2026-10.md` are competitor estimates and are not a release success metric.
