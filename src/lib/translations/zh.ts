@@ -66,7 +66,7 @@ export const zh: Record<keyof typeof en, string> = {
   home_telegram_desc: "\u514d\u8d39\uff1a/status\u548c/bus\u547d\u4ee4\u3002\u9ad8\u7ea7\u7248\uff1a\u4e2a\u6027\u5316\u63d0\u9192\u3001\u51fa\u53d1\u9884\u6d4b\u548c\u65e0\u5e7f\u544a\u3002",
   home_telegram_btn: "\u4e86\u89e3\u66f4\u591a",
   home_faq_title: "\u5e38\u89c1\u95ee\u9898",
-  home_data_source_trust: "道路状态依据LTA DataMall车速数据，不包括出入境排队时间。出行前请查看数据时间和摄像头。",
+  home_data_source_trust: "LTA摄像头仅显示新加坡路段，无法反映完整的通关队伍。道路状态数据源正在核验，功能暂时停用；出行前请查看每张图片的时间。",
   home_loading: "\u6b63\u5728\u52a0\u8f7d\u4ea4\u901a\u6570\u636e\u2026",
   home_no_data: "目前没有最新道路数据。出行前请查看摄像头。",
   home_traffic_cameras: "\u4ea4\u901a\u6444\u50cf\u5934",
