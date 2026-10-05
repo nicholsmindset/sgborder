@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/shared/JsonLd";
 import LiveClient from "@/page-components/LivePage";
+import { getCheckpointCameras } from "@/lib/server-cameras";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "JB Traffic Now — Live LTA CCTV Camera & Causeway Checkpoint Status",
@@ -9,7 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.sgborder.live/live" },
 };
 
-export default function LivePage() {
+export default async function LivePage() {
+  const initialCameras = await getCheckpointCameras();
   return (
     <>
       <JsonLd
@@ -22,7 +26,7 @@ export default function LivePage() {
         }}
       />
 
-      <LiveClient />
+      <LiveClient initialCameras={initialCameras} />
     </>
   );
 }

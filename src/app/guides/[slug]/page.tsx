@@ -10,8 +10,9 @@ export function generateStaticParams() {
   return GUIDES.map((g) => ({ slug: g.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const guide = GUIDES.find((g) => g.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const guide = GUIDES.find((g) => g.slug === slug);
   if (!guide) return { title: "Guide Not Found" };
   if (!INDEXABLE_GUIDE_SLUGS.has(guide.slug)) {
     return {
@@ -34,8 +35,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function GuidePage({ params }: { params: { slug: string } }) {
-  const guide = GUIDES.find((g) => g.slug === params.slug);
+export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const guide = GUIDES.find((g) => g.slug === slug);
 
   return (
     <>
@@ -49,7 +51,6 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                 headline: guide.metaTitle || guide.title,
                 description: guide.metaDescription || guide.description,
                 url: `https://www.sgborder.live/guides/${guide.slug}`,
-                datePublished: "2026-03-01",
                 dateModified: guide.lastUpdated,
                 author: { "@type": "Organization", name: "SG Border Live", url: "https://www.sgborder.live" },
                 publisher: { "@type": "Organization", name: "SG Border Live", url: "https://www.sgborder.live" },

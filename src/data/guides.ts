@@ -25,6 +25,110 @@ export interface FAQ {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "sg-arrival-card-land-checkpoint",
+    title: "SG Arrival Card for the JB–Singapore Land Crossing",
+    description: "Check who must submit SGAC when entering Singapore through Woodlands or Tuas, and use ICA's free official service.",
+    category: "regulations",
+    readTime: 3,
+    lastUpdated: "2026-10-05",
+    metaTitle: "SG Arrival Card by Land: Woodlands and Tuas Rules",
+    metaDescription: "ICA's current SG Arrival Card exemptions for citizens, PRs and long-term pass holders entering by land, plus the official free submission link and timing.",
+    relatedSlugs: ["myica-qr-code-guide", "ktm-shuttle-tebrau-jb-woodlands"],
+    sections: [
+      {
+        id: "who-needs-it",
+        heading: "Who needs to submit at a land checkpoint?",
+        content: `<p><a href="https://www.ica.gov.sg/enter-transit-depart/entering-singapore/sg-arrival-card" target="_blank" rel="noopener noreferrer">ICA's current SG Arrival Card guidance</a> says Singapore citizens, permanent residents and long-term pass holders entering Singapore through Woodlands or Tuas are exempt. ICA includes Student's Pass, Dependant's Pass, Long-Term Visit Pass and Work Pass among long-term passes. Other travellers should check the current requirements for their travel status.</p><p>This land-checkpoint exemption is specific to the arrival card. It does not remove normal immigration, passport or entry requirements.</p>`
+      },
+      {
+        id: "official-submission",
+        heading: "When and where to submit",
+        content: `<p>If you need to submit SGAC, ICA says to do so <strong>within three days, including the day of arrival</strong>. Submission is <strong>free</strong> through <a href="https://www.ica.gov.sg/enter-transit-depart/entering-singapore/sg-arrival-card" target="_blank" rel="noopener noreferrer">ICA's SGAC page and its Submit Online link</a> or the MyICA app. Check the confirmation and keep your travel document ready for clearance.</p><p>A paid third-party form does not improve your place in a checkpoint queue. ICA advises travellers to use its official free channels.</p>`
+      },
+      {
+        id: "return-trip",
+        heading: "Separate the paperwork from traffic conditions",
+        content: `<p>Submitting SGAC does not show or reduce the current road queue. For a return trip, inspect the <a href="/jb-to-sg">JB → SG crossing guide</a>, the latest <a href="/cameras">timestamped LTA camera images</a> and ICA advisories. Camera views are limited to selected Singapore road sections.</p>`
+      }
+    ],
+    faqs: [
+      { question: "Do Singapore PRs need SG Arrival Card when returning from JB by land?", answer: "ICA says Singapore permanent residents entering through Woodlands or Tuas are exempt from SGAC submission." },
+      { question: "Do Work Pass holders need SGAC at Woodlands or Tuas?", answer: "ICA includes Work Pass holders in its long-term pass category and exempts long-term pass holders entering by land. Check the current ICA guidance for your exact pass status." },
+      { question: "Is SG Arrival Card free?", answer: "Yes. ICA's official SGAC e-Service and MyICA submission are free." }
+    ]
+  },
+  {
+    slug: "malaysia-digital-arrival-card-mdac",
+    title: "Malaysia Digital Arrival Card (MDAC): Official Portal and Land Entry Checklist",
+    description: "Find the official MDAC form and check what to do before travelling from Singapore into Johor Bahru.",
+    category: "regulations",
+    readTime: 3,
+    lastUpdated: "2026-10-05",
+    metaTitle: "Malaysia Digital Arrival Card (MDAC) for SG–JB Travel",
+    metaDescription: "Use Malaysia Immigration's official MDAC portal, check the current eligibility guide and keep your travel details ready before crossing into Johor.",
+    relatedSlugs: ["vep-malaysia-guide", "myica-qr-code-guide"],
+    sections: [
+      {
+        id: "official-portal",
+        heading: "Go straight to the official MDAC portal",
+        content: `<p>The Malaysia Immigration Department links to its <a href="https://imigresen-online.imi.gov.my/mdac/main" target="_blank" rel="noopener noreferrer">Malaysia Digital Arrival Card portal</a> from its <a href="https://www.imi.gov.my/index.php/pengumuman/url-bagi-portal-malaysia-digital-arrival-card-dan-infografik-2/" target="_blank" rel="noopener noreferrer">official announcement</a>. The portal labels the service for foreign visitors and provides current registration and eligibility infographics. Use that address directly when entering passport details.</p>`
+      },
+      {
+        id: "before-crossing",
+        heading: "Before you leave Singapore",
+        content: `<ol><li>Open the official MDAC portal and read its eligibility guidance for your passport and pass status.</li><li>If the form applies to you, enter your passport and trip details exactly as shown on your documents, then keep the submission confirmation available.</li><li>Check that your passport and any Malaysian entry permission are valid for your trip. MDAC is an arrival declaration; it does not replace entry permission.</li><li>Check <a href="/cameras">checkpoint cameras</a> separately for road conditions. A submitted form does not predict the queue.</li></ol>`
+      },
+      {
+        id: "edge-cases",
+        heading: "Permanent residents and pass holders",
+        content: `<p>Eligibility can depend on your nationality and Malaysian immigration status. Do not assume that Singapore permanent residence or a Singapore work pass, by itself, creates an exemption. Use the official portal's <a href="https://imigresen-online.imi.gov.my/mdac/main" target="_blank" rel="noopener noreferrer">current eligibility infographic</a> or ask Malaysia Immigration when your status is unclear.</p>`
+      }
+    ],
+    faqs: [
+      { question: "What is the official MDAC website?", answer: "Malaysia Immigration links to https://imigresen-online.imi.gov.my/mdac/main as its MDAC portal." },
+      { question: "Do Singapore PRs need MDAC?", answer: "Singapore PR status alone is not enough to establish an exemption. Check the Malaysia Immigration eligibility guidance against your nationality and Malaysian pass status." },
+      { question: "Does MDAC replace a visa or passport?", answer: "No. It is an arrival declaration; normal passport and entry requirements still apply." }
+    ]
+  },
+  {
+    slug: "ktm-shuttle-tebrau-jb-woodlands",
+    title: "KTM Shuttle Tebrau: JB Sentral–Woodlands Tickets, Fares and Boarding",
+    description: "Plan the cross-border train with KTMB's booking site, fare FAQ and boarding cutoffs.",
+    category: "tips",
+    readTime: 4,
+    lastUpdated: "2026-10-05",
+    metaTitle: "KTM Shuttle Tebrau: JB–Woodlands Train Guide (2026)",
+    metaDescription: "Official KTM Shuttle Tebrau booking links, JB Sentral and Woodlands boarding cutoffs, and published fare guidance for the cross-border train.",
+    relatedSlugs: ["best-time-to-cross-causeway", "malaysia-digital-arrival-card-mdac"],
+    sections: [
+      {
+        id: "route-and-booking",
+        heading: "Route and current departures",
+        content: `<p>Shuttle Tebrau runs between JB Sentral and Woodlands Train Checkpoint. Check the <a href="https://shuttleonline.ktmb.com.my/Home/Shuttle" target="_blank" rel="noopener noreferrer">KTMB booking page</a> for the departure, seat availability and payable fare for your date. We do not publish a fixed timetable because departure times and inventory can change.</p><p>KTMB says tickets can be purchased online or at JB Sentral and Woodlands counters. Passport number and expiry date are needed for booking, and the passport serves as the boarding pass. See the <a href="https://online.ktmb.com.my/Home/ShuttleFAQ" target="_blank" rel="noopener noreferrer">KTMB Shuttle FAQ</a>.</p>`
+      },
+      {
+        id: "boarding",
+        heading: "When to reach the gate",
+        content: `<p>KTMB states that the gate at <strong>JB Sentral</strong> opens 30 minutes and closes 10 minutes before departure. At <strong>Woodlands</strong> it opens 40 minutes and closes 20 minutes before departure. The ticket counter stops sales 20 minutes before departure. Allow extra time to reach the station and follow the instructions on your ticket.</p>`
+      },
+      {
+        id: "fares",
+        heading: "Published fare guidance",
+        content: `<p>The <a href="https://online.ktmb.com.my/Home/ShuttleFAQ" target="_blank" rel="noopener noreferrer">KTMB fare FAQ</a> lists JB Sentral → Woodlands at <strong>RM5</strong>. For Woodlands → JB Sentral, it lists <strong>RM5 for Malaysians</strong> and <strong>SGD5 for non-Malaysians</strong>, with the latter converted to ringgit in the booking flow. Check the actual checkout amount before paying. KTMB says there is no concession fare for Shuttle Tebrau.</p>`
+      },
+      {
+        id: "compare-options",
+        heading: "Train or road crossing?",
+        content: `<p>A train seat gives you a specific departure, but getting to the station, gate closure and clearance procedures still matter. Compare the available train with <a href="/bus">cross-border buses</a> and current <a href="/cameras">road camera frames</a>. Camera images cannot tell you the train's border clearance time.</p>`
+      }
+    ],
+    faqs: [
+      { question: "Where can I book KTM Shuttle Tebrau?", answer: "Use KTMB's official online booking site or its counters at JB Sentral and Woodlands. Check availability for your exact travel date." },
+      { question: "When does Shuttle Tebrau boarding close?", answer: "KTMB says boarding closes 10 minutes before departure at JB Sentral and 20 minutes before departure at Woodlands." },
+      { question: "Can I board without my passport?", answer: "KTMB says your passport serves as the boarding pass and a valid passport is required to board." }
+    ]
+  },
+  {
     slug: "best-time-to-cross-causeway",
     title: "Best Time to Cross the Causeway",
     description: "Plan around official peak-period advisories, holidays and current camera images.",

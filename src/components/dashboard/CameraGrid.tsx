@@ -4,6 +4,7 @@ import { useLiveCameras } from "@/hooks/useLiveData";
 import type { CameraFeed } from "@/lib/types";
 import { X, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
+import { CHECKPOINT_CAMERAS } from "@/data/checkpoint-cameras";
 
 function cameraTime(timestamp?: string) {
   if (!timestamp || !Number.isFinite(Date.parse(timestamp))) return "Image time unavailable";
@@ -32,14 +33,15 @@ export const CameraGrid = ({
   const { data: liveCameras, isLoading } = useLiveCameras(checkpoint);
   const { t } = useTranslation();
 
+  const initialCameras = propCameras?.filter((camera) => !checkpoint || camera.checkpoint === checkpoint) ?? [];
   const cameras =
     liveCameras && liveCameras.length > 0
       ? liveCameras
-      : propCameras && propCameras.length > 0
-        ? propCameras
+      : initialCameras.length > 0
+        ? initialCameras
         : [];
 
-  if (isLoading) {
+  if (isLoading && cameras.length === 0) {
     return (
       <div className="flex items-center justify-center py-12">
         <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
@@ -68,7 +70,7 @@ export const CameraGrid = ({
             <div className="aspect-video overflow-hidden bg-muted">
               <img
                 src={cam.image_url}
-                alt={cam.label}
+                alt={`${cam.label} traffic camera snapshot`}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading={i === 0 ? "eager" : "lazy"}
                 fetchPriority={i === 0 ? "high" : "auto"}
@@ -81,11 +83,14 @@ export const CameraGrid = ({
             <div className="px-3 py-2">
               <p className="text-label-sm font-medium text-foreground">{cam.label}</p>
               <p className="mt-0.5 text-[11px] text-muted-foreground">{cameraTime(cam.timestamp)}</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">
+                {CHECKPOINT_CAMERAS[cam.camera_id as keyof typeof CHECKPOINT_CAMERAS]?.context ?? "Singapore road camera"}
+              </p>
             </div>
           </button>
         ))}
       </div>
-      <p className="mt-2 text-label-sm text-muted-foreground">{t("camera_refresh_note")}</p>
+      <p className="mt-2 text-label-sm text-muted-foreground">LTA still images via data.gov.sg. Check each frame time; images do not show the full immigration queue.</p>
 
       {/* Modal */}
       {modalIdx !== null && (

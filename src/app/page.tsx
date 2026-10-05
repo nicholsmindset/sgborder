@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/shared/JsonLd";
 import IndexClient from "@/page-components/Index";
+import { getCheckpointCameras } from "@/lib/server-cameras";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Causeway Traffic Live — Woodlands & Tuas Checkpoint CCTV Camera Status",
@@ -29,11 +32,12 @@ const homeFaqs = [
   },
   {
     question: "How often is the causeway traffic data updated?",
-    answer: "The road feed is checked every 5 minutes. Each observation shows its timestamp and older readings are hidden. Camera and bus feeds refresh separately.",
+    answer: "We check LTA camera images on a five-minute cycle and show each source time. Road status is paused while its data source is validated. Camera images do not measure the full immigration queue.",
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const initialCameras = await getCheckpointCameras();
   return (
     <>
       <JsonLd
@@ -69,7 +73,7 @@ export default function HomePage() {
       />
       {/* Static SEO content visible to crawlers */}
 
-      <IndexClient />
+      <IndexClient initialCameras={initialCameras} />
     </>
   );
 }

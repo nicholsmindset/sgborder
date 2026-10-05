@@ -3,10 +3,11 @@ import { useParams } from "next/navigation";
 import { CameraGrid } from "@/components/dashboard/CameraGrid";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Camera } from "lucide-react";
 import { SEOHead } from "@/components/shared/SEOHead";
-import { LivePulse } from "@/components/dashboard/LivePulse";
 import { useTranslation } from "@/lib/i18n";
+import { CHECKPOINT_CAMERAS, CHECKPOINT_CAMERA_DETAILS, type CheckpointName } from "@/data/checkpoint-cameras";
+import type { CameraFeed } from "@/lib/types";
 
 const CHECKPOINT_META: Record<
   string,
@@ -24,27 +25,27 @@ const CHECKPOINT_META: Record<
     label: "Woodlands",
     title: "Woodlands Checkpoint Camera Live — Traffic CCTV Today",
     description:
-      "Live Woodlands checkpoint camera feeds. BKE approach, Causeway lanes & Centre Road CCTV updated every 5 min. See real-time traffic before you cross.",
+      "Timestamped Woodlands camera images from the BKE approach and Singapore side of the Causeway.",
     lat: 1.44643,
     lng: 103.76932,
     statusPath: "/woodlands",
     cameraHint:
-      "Cameras cover the BKE approach, Causeway lanes, and Woodlands Centre Road.",
+      "Inspect the BKE approach and Causeway road sections near the Singapore checkpoint.",
   },
   tuas: {
     label: "Tuas",
     title: "Tuas Checkpoint Camera Live — Traffic CCTV Today",
     description:
-      "Live Tuas checkpoint camera feeds. AYE approach, Second Link & Tuas West Road CCTV updated every 5 min. Check traffic before crossing.",
+      "Timestamped Tuas camera images from the AYE approach, Tuas Checkpoint and Second Link.",
     lat: 1.34029,
     lng: 103.63649,
     statusPath: "/tuas",
     cameraHint:
-      "Cameras cover the AYE approach, Second Link, and Tuas West Road.",
+      "Inspect the AYE approach, checkpoint and Second Link road sections on the Singapore side.",
   },
 };
 
-const CamerasCheckpointPage = () => {
+const CamerasCheckpointPage = ({ initialCameras }: { initialCameras: CameraFeed[] }) => {
   const params = useParams();
   const checkpoint = params?.checkpoint as string | undefined;
   const { t } = useTranslation();
@@ -108,14 +109,14 @@ const CamerasCheckpointPage = () => {
             <ArrowLeft className="h-3.5 w-3.5" /> {t("cameras_all_cameras")}
           </Link>
           <div className="flex items-center gap-3 mb-3">
-            <LivePulse size="lg" />
-            <span className="text-sm font-bold uppercase tracking-widest text-status-smooth">{t("home_live")}</span>
+            <Camera className="h-5 w-5 text-status-smooth" />
+            <span className="text-sm font-bold uppercase tracking-widest text-status-smooth">LTA camera feed</span>
           </div>
           <h1 className="font-heading text-display-sm font-bold md:text-display">
             {meta.label} Checkpoint Cameras — Live CCTV Traffic
           </h1>
           <p className="mt-1.5 text-sm text-primary-foreground/60">
-            {meta.cameraHint} Updated every 5 minutes.
+            {meta.cameraHint} Check each image timestamp before travelling.
           </p>
         </div>
       </section>
@@ -123,7 +124,23 @@ const CamerasCheckpointPage = () => {
       {/* Camera grid */}
       <RevealSection>
         <div className="container">
-          <CameraGrid checkpoint={checkpoint} />
+          <CameraGrid checkpoint={checkpoint} cameras={initialCameras} />
+        </div>
+      </RevealSection>
+
+      <RevealSection>
+        <div className="container">
+          <h2 className="font-heading text-title font-bold">What these cameras show</h2>
+          <p className="mt-2 text-sm text-muted-foreground">{CHECKPOINT_CAMERA_DETAILS[checkpoint as CheckpointName].explanation}</p>
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {Object.entries(CHECKPOINT_CAMERAS).filter(([, camera]) => camera.checkpoint === checkpoint).map(([id, camera]) => (
+              <li key={id} className="rounded-lg border border-border bg-card p-3">
+                <span className="text-sm font-semibold text-foreground">{camera.label}</span>
+                <span className="block text-xs text-muted-foreground">{camera.context}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs text-muted-foreground">Source: <a className="text-accent underline" href="https://api.data.gov.sg/v1/transport/traffic-images" target="_blank" rel="noopener noreferrer">LTA traffic images via data.gov.sg</a>. A clear road frame does not establish a short immigration wait.</p>
         </div>
       </RevealSection>
 

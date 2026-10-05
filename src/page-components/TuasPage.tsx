@@ -1,21 +1,20 @@
 "use client";
 import { StatusCard } from "@/components/dashboard/StatusCard";
 import { CameraGrid } from "@/components/dashboard/CameraGrid";
-import { HourlyHeatmap } from "@/components/dashboard/HourlyHeatmap";
 import { BusRouteCard } from "@/components/bus/BusRouteCard";
 import { FAQAccordion } from "@/components/content/FAQAccordion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { BUS_ROUTES } from "@/lib/bus-data";
-import { useLiveTraffic, useLiveHourlyPattern } from "@/hooks/useLiveData";
+import { useLiveTraffic } from "@/hooks/useLiveData";
 import Link from "next/link";
-import { ArrowRight, MapPin, DollarSign, Loader2 } from "lucide-react";
+import { ArrowRight, MapPin, Loader2 } from "lucide-react";
 import { SEOHead } from "@/components/shared/SEOHead";
 import { LiveDataTicker } from "@/components/dashboard/LiveDataTicker";
 import { useTranslation } from "@/lib/i18n";
+import type { CameraFeed } from "@/lib/types";
 
-const TuasPage = () => {
+const TuasPage = ({ initialCameras }: { initialCameras: CameraFeed[] }) => {
   const { data: snapshots, isLoading: trafficLoading } = useLiveTraffic("tuas");
-  const { data: hourlyData, isLoading: hourlyLoading } = useLiveHourlyPattern("tuas");
   const busRoutes = BUS_ROUTES.filter((r) => r.via_checkpoint === "tuas");
   const { t } = useTranslation();
 
@@ -50,13 +49,17 @@ const TuasPage = () => {
         </div>
       </section>
 
+      <RevealSection>
+        <div className="container">
+          <h2 className="font-heading text-title font-bold mb-3">Tuas Second Link cameras</h2>
+          <CameraGrid checkpoint="tuas" cameras={initialCameras} />
+        </div>
+      </RevealSection>
+
       {/* Quick facts */}
       <RevealSection>
         <div className="container">
           <div className="flex flex-wrap gap-4 rounded-xl border border-border bg-card p-4 shadow-card text-sm">
-            <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-              <DollarSign className="h-4 w-4 text-accent" /> Car exit toll: S$2.10
-            </span>
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
               Road feed does not include immigration queues
             </span>
@@ -68,14 +71,14 @@ const TuasPage = () => {
       </RevealSection>
 
       {/* Live data ticker */}
-      <RevealSection>
+      {snapshots && snapshots.length > 0 && <RevealSection>
         <div className="container">
           <LiveDataTicker
             lastUpdated={snapshots?.[0]?.updated_at}
             status={snapshots?.[0]?.status}
           />
         </div>
-      </RevealSection>
+      </RevealSection>}
 
       {/* Live status */}
       <RevealSection>
@@ -94,35 +97,8 @@ const TuasPage = () => {
             </div>
           ) : (
             <div className="rounded-xl border border-border bg-card p-6 text-center">
-              <p className="text-sm text-muted-foreground">Current road data is unavailable. Use the cameras below before travelling.</p>
+              <p className="text-sm text-muted-foreground">Road status is under validation. Use the camera frames above before travelling.</p>
             </div>
-          )}
-        </div>
-      </RevealSection>
-
-      {/* Cameras */}
-      <RevealSection>
-        <div className="container">
-          <h2 className="font-heading text-title font-bold mb-3">{t("checkpoint_traffic_cameras")}</h2>
-          <CameraGrid checkpoint="tuas" />
-        </div>
-      </RevealSection>
-
-      {/* Heatmap */}
-      <RevealSection>
-        <div className="container">
-          <h2 className="font-heading text-title font-bold mb-1">{t("checkpoint_todays_pattern")}</h2>
-          <p className="text-label-sm text-muted-foreground mb-3">
-            {t("checkpoint_historical_avg")} {new Date().toLocaleDateString("en-SG", { weekday: "long" })}
-          </p>
-          {hourlyLoading ? (
-            <div className="flex items-center justify-center py-8">
-              <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-            </div>
-          ) : hourlyData && hourlyData.length > 0 ? (
-            <HourlyHeatmap data={hourlyData} />
-          ) : (
-            <p className="text-label-sm text-muted-foreground py-4">{t("checkpoint_pattern_collecting")}</p>
           )}
         </div>
       </RevealSection>
@@ -148,12 +124,11 @@ const TuasPage = () => {
       <RevealSection>
         <div className="container">
           <div className="rounded-xl bg-muted/50 border border-border p-4">
-            <h2 className="font-heading text-sm font-semibold text-foreground mb-2">{t("tuas_why_choose")}</h2>
+            <h2 className="font-heading text-sm font-semibold text-foreground mb-2">When to consider Tuas</h2>
             <ul className="space-y-1 text-sm text-muted-foreground">
-              <li>{t("tuas_why_1")}</li>
-              <li>{t("tuas_why_2")}</li>
-              <li>{t("tuas_why_3")}</li>
-              <li>{t("tuas_why_4")}</li>
+              <li>Tuas connects to western Johor via the Second Link.</li>
+              <li>It may suit journeys starting in western Singapore or ending around Iskandar Puteri.</li>
+              <li>Compare current camera frames and the full driving distance before choosing a route.</li>
             </ul>
           </div>
         </div>
@@ -164,11 +139,11 @@ const TuasPage = () => {
         <div className="container">
           <h2 className="font-heading text-title font-bold mb-4">{t("tuas_faq_title")}</h2>
           <FAQAccordion faqs={[
-            { question: "How long does it take to cross at Tuas?", answer: "Off-peak: 10-20 minutes. Moderate: 25-40 minutes. Peak: 45-75 minutes. Tuas rarely hits the extreme waits seen at Woodlands." },
-            { question: "What is the toll at Tuas?", answer: "S$2.10 for cars — higher than Woodlands (S$0.80) due to the longer bridge. The time saved during peak hours usually makes it worthwhile." },
-            { question: "When should I choose Tuas over Woodlands?", answer: "During Friday evening (4-10 PM), Saturday morning (7 AM-12 PM), public holidays, and any time Woodlands shows Heavy or Jammed on our dashboard." },
-            { question: "What buses go through Tuas?", answer: "CW3 (Jurong Town Hall), CW7 (Tuas Link MRT), 160 (Jurong Town Hall to JB Sentral), CW4 (Jurong to Gelang Patah), and CW6 (Boon Lay to Perling Mall)." },
-            { question: "Where does Tuas Second Link lead to in JB?", answer: "Tuas Second Link connects to the western side of Johor. It's closest to Gelang Patah, Nusajaya (Iskandar Puteri), and Legoland. For JB city centre, you'll need to drive east (~30 min)." },
+            { question: "How long does it take to cross at Tuas?", answer: "We do not have a verified end-to-end wait estimate. Singapore camera images and road speed bands cannot measure both immigration clearances." },
+            { question: "What is the toll at Tuas?", answer: "Toll and road-charge amounts may change. Check the current published rates from Singapore LTA and the Malaysian authorities before travelling." },
+            { question: "When should I choose Tuas over Woodlands?", answer: "Tuas may suit a western Singapore origin or western Johor destination. Compare current camera frames and total driving distance; no route is always faster." },
+            { question: "What buses go through Tuas?", answer: "See the route cards on this page for services using the Tuas crossing, and verify the latest timetable with the operator." },
+            { question: "Where does Tuas Second Link lead?", answer: "The Second Link reaches western Johor near Iskandar Puteri. Travellers heading into JB city centre should account for the onward drive." },
           ]} />
         </div>
       </RevealSection>

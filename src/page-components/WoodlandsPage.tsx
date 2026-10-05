@@ -1,21 +1,20 @@
 "use client";
 import { StatusCard } from "@/components/dashboard/StatusCard";
 import { CameraGrid } from "@/components/dashboard/CameraGrid";
-import { HourlyHeatmap } from "@/components/dashboard/HourlyHeatmap";
 import { BusRouteCard } from "@/components/bus/BusRouteCard";
 import { FAQAccordion } from "@/components/content/FAQAccordion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { BUS_ROUTES } from "@/lib/bus-data";
-import { useLiveTraffic, useLiveHourlyPattern } from "@/hooks/useLiveData";
+import { useLiveTraffic } from "@/hooks/useLiveData";
 import Link from "next/link";
-import { ArrowRight, MapPin, DollarSign, Loader2 } from "lucide-react";
+import { ArrowRight, MapPin, Loader2 } from "lucide-react";
 import { SEOHead } from "@/components/shared/SEOHead";
 import { LiveDataTicker } from "@/components/dashboard/LiveDataTicker";
 import { useTranslation } from "@/lib/i18n";
+import type { CameraFeed } from "@/lib/types";
 
-const WoodlandsPage = () => {
+const WoodlandsPage = ({ initialCameras }: { initialCameras: CameraFeed[] }) => {
   const { data: snapshots, isLoading: trafficLoading } = useLiveTraffic("woodlands");
-  const { data: hourlyData, isLoading: hourlyLoading } = useLiveHourlyPattern("woodlands");
   const busRoutes = BUS_ROUTES.filter((r) => r.via_checkpoint === "woodlands");
   const { t } = useTranslation();
 
@@ -50,13 +49,17 @@ const WoodlandsPage = () => {
         </div>
       </section>
 
+      <RevealSection>
+        <div className="container">
+          <h2 className="font-heading text-title font-bold mb-3">Woodlands Causeway cameras</h2>
+          <CameraGrid checkpoint="woodlands" cameras={initialCameras} />
+        </div>
+      </RevealSection>
+
       {/* Quick facts */}
       <RevealSection>
         <div className="container">
           <div className="flex flex-wrap gap-4 rounded-xl border border-border bg-card p-4 shadow-card text-sm">
-            <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-              <DollarSign className="h-4 w-4 text-accent" /> Car exit toll: S$0.80
-            </span>
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
               Road feed does not include immigration queues
             </span>
@@ -68,14 +71,14 @@ const WoodlandsPage = () => {
       </RevealSection>
 
       {/* Live data ticker */}
-      <RevealSection>
+      {snapshots && snapshots.length > 0 && <RevealSection>
         <div className="container">
           <LiveDataTicker
             lastUpdated={snapshots?.[0]?.updated_at}
             status={snapshots?.[0]?.status}
           />
         </div>
-      </RevealSection>
+      </RevealSection>}
 
       {/* Live status */}
       <RevealSection>
@@ -94,35 +97,8 @@ const WoodlandsPage = () => {
             </div>
           ) : (
             <div className="rounded-xl border border-border bg-card p-6 text-center">
-              <p className="text-sm text-muted-foreground">Current road data is unavailable. Use the cameras below before travelling.</p>
+              <p className="text-sm text-muted-foreground">Road status is under validation. Use the camera frames above before travelling.</p>
             </div>
-          )}
-        </div>
-      </RevealSection>
-
-      {/* Cameras */}
-      <RevealSection>
-        <div className="container">
-          <h2 className="font-heading text-title font-bold mb-3">{t("checkpoint_traffic_cameras")}</h2>
-          <CameraGrid checkpoint="woodlands" />
-        </div>
-      </RevealSection>
-
-      {/* Heatmap */}
-      <RevealSection>
-        <div className="container">
-          <h2 className="font-heading text-title font-bold mb-1">{t("checkpoint_todays_pattern")}</h2>
-          <p className="text-label-sm text-muted-foreground mb-3">
-            {t("checkpoint_historical_avg")} {new Date().toLocaleDateString("en-SG", { weekday: "long" })}
-          </p>
-          {hourlyLoading ? (
-            <div className="flex items-center justify-center py-8">
-              <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-            </div>
-          ) : hourlyData && hourlyData.length > 0 ? (
-            <HourlyHeatmap data={hourlyData} />
-          ) : (
-            <p className="text-label-sm text-muted-foreground py-4">{t("checkpoint_pattern_collecting")}</p>
           )}
         </div>
       </RevealSection>
@@ -149,9 +125,6 @@ const WoodlandsPage = () => {
         <div className="container">
           <h2 className="font-heading text-title font-bold mb-3">{t("checkpoint_related_guides")}</h2>
           <div className="flex flex-wrap gap-2">
-            <Link href="/guides/friday-woodlands-traffic" className="rounded-lg border border-border bg-card px-3 py-2 text-label font-medium text-foreground hover:bg-muted transition-colors">
-              {t("guide_friday")}
-            </Link>
             <Link href="/guides/best-time-to-cross-causeway" className="rounded-lg border border-border bg-card px-3 py-2 text-label font-medium text-foreground hover:bg-muted transition-colors">
               {t("guide_best_time")}
             </Link>
@@ -167,11 +140,10 @@ const WoodlandsPage = () => {
         <div className="container">
           <h2 className="font-heading text-title font-bold mb-4">{t("woodlands_faq_title")}</h2>
           <FAQAccordion faqs={[
-            { question: "How long does it take to cross at Woodlands?", answer: "Off-peak: 15-25 minutes. Moderate traffic: 35-50 minutes. Peak hours (Friday evening, Saturday morning): 60-120+ minutes. Check our live dashboard for real-time estimates." },
-            { question: "What is the toll at Woodlands Checkpoint?", answer: "LTA lists a S$0.80 Singapore exit toll for cars at Woodlands and no Singapore re-entry toll there. JPJ separately lists a RM20 Road Charge per entry for private foreign registered vehicles entering Malaysia. Malaysia road tolls and any VEP RFID tag cost are separate." },
-            { question: "Is Woodlands or Tuas faster?", answer: "Tuas is typically 20-40% less congested, especially during peak hours. However, Woodlands is more accessible from central/northern Singapore and has cheaper tolls." },
-            { question: "What buses go through Woodlands?", answer: "CW1 (Kranji), CW2 (Queen Street), CW5 (Newton), 170 (Queen Street to Larkin), 170X (Kranji to JB Sentral), and 950 (Woodlands Interchange to JB CIQ)." },
-            { question: "Can I use MyICA QR at Woodlands?", answer: "Yes, Woodlands Checkpoint has automated gates that accept MyICA QR codes for Singapore Citizens and PRs. The QR lanes are typically faster than manual counters." },
+            { question: "How long does it take to cross at Woodlands?", answer: "We do not have a verified end-to-end wait estimate. The camera frames show sections of the road, and Singapore road status does not include immigration or Malaysia-side queues." },
+            { question: "Is Woodlands or Tuas faster?", answer: "There is no consistently faster checkpoint. Compare current camera frames, consider your destination and include the drive to each checkpoint." },
+            { question: "What buses go through Woodlands?", answer: "See the route cards on this page for services using the Woodlands crossing. Confirm the latest service details with each operator." },
+            { question: "Can I use MyICA QR at Woodlands?", answer: "Eligibility and supported clearance lanes depend on your document and vehicle. Check the current ICA guidance before using a QR code." },
           ]} />
         </div>
       </RevealSection>

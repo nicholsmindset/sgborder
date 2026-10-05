@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/shared/JsonLd";
 import WoodlandsClient from "@/page-components/WoodlandsPage";
+import { getCheckpointCameras } from "@/lib/server-cameras";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Woodlands Checkpoint Live Camera & Traffic Today (2026) — CCTV & Road Status",
@@ -14,7 +17,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function WoodlandsPage() {
+export default async function WoodlandsPage() {
+  const initialCameras = await getCheckpointCameras("woodlands");
   return (
     <>
       <JsonLd
@@ -28,7 +32,7 @@ export default function WoodlandsPage() {
         }}
       />
 
-      <WoodlandsClient />
+      <WoodlandsClient initialCameras={initialCameras} />
     </>
   );
 }

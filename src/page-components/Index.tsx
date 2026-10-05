@@ -2,11 +2,10 @@
 import { useEffect, useState } from "react";
 import { LiveDataTicker } from "@/components/dashboard/LiveDataTicker";
 import { StatusCard } from "@/components/dashboard/StatusCard";
-import { CheckpointToggle } from "@/components/dashboard/Toggles";
-import { HourlyHeatmap } from "@/components/dashboard/HourlyHeatmap";
+import { CheckpointToggle, DirectionToggle } from "@/components/dashboard/Toggles";
 import { CameraGrid } from "@/components/dashboard/CameraGrid";
 import { QuickBusWidget } from "@/components/bus/BusArrivalCard";
-import { useLiveTraffic, useLiveHourlyPattern } from "@/hooks/useLiveData";
+import { useLiveTraffic } from "@/hooks/useLiveData";
 import Link from "next/link";
 import { ArrowRight, Camera, Loader2, Train, MapPin, Bus } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -14,6 +13,7 @@ import { SEOHead } from "@/components/shared/SEOHead";
 import { FAQAccordion } from "@/components/content/FAQAccordion";
 import { useTranslation } from "@/lib/i18n";
 import { SG_PUBLIC_HOLIDAYS_2026, type PublicHoliday } from "@/data/public-holidays";
+import type { CameraFeed } from "@/lib/types";
 
 const homeFaqs = [
   {
@@ -29,22 +29,22 @@ const homeFaqs = [
   {
     question: "What is the best time to cross the causeway?",
     answer:
-      "Patterns vary by weekday, school holiday and public holiday. Use the historical road pattern as a guide, and check current cameras before setting off.",
+      "No hour guarantees a short crossing. Check ICA advisories, holiday dates and timestamped camera frames shortly before leaving.",
   },
   {
     question: "How often is the causeway traffic data updated?",
     answer:
-      "The road feed is checked every 5 minutes. Each card shows when its underlying observation was recorded; missing or old observations are hidden. Camera and bus data can refresh on separate schedules.",
+      "We check LTA camera images on a five-minute cycle and show each source time. Road status is paused while its data source is validated. Camera images do not measure the full immigration queue.",
   },
 ];
 
-const Index = () => {
+const Index = ({ initialCameras }: { initialCameras: CameraFeed[] }) => {
   const [checkpoint, setCheckpoint] = useState("all");
+  const [direction, setDirection] = useState("sg_to_jb");
   const [upcomingHolidays, setUpcomingHolidays] = useState<PublicHoliday[]>([]);
   const { t } = useTranslation();
 
   const { data: snapshots, isLoading: trafficLoading } = useLiveTraffic();
-  const { data: hourlyData, isLoading: hourlyLoading } = useLiveHourlyPattern();
 
   const filteredSnapshots = (snapshots ?? []).filter(
     (s) =>
@@ -57,7 +57,7 @@ const Index = () => {
     setUpcomingHolidays(SG_PUBLIC_HOLIDAYS_2026.filter((h) => h.date >= today && h.type === "gazetted").slice(0, 2));
   }, []);
 
-  const cameraCheckpoint = checkpoint === "all" ? "woodlands" : checkpoint;
+  const cameraCheckpoint = checkpoint === "all" ? undefined : checkpoint;
 
   return (
     <div className="pb-mobile-nav">
@@ -107,7 +107,7 @@ const Index = () => {
         ]}
       />
 
-      {/* ── Hero Banner with Background Image ── */}
+      {/* ── Crossing dashboard ── */}
       <section className="relative overflow-hidden text-primary-foreground">
         {/* Background image */}
         <div
@@ -119,34 +119,39 @@ const Index = () => {
         {/* Bottom edge blend into page background */}
         <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-background to-transparent" />
 
-        <div className="container relative py-8 md:py-10">
-          <div className="flex items-center gap-3 mb-3">
+        <div className="container relative py-5 md:py-8">
+          <div className="flex items-center gap-3 mb-2">
             <Camera className="h-4 w-4 text-status-smooth" />
             <div className="flex items-center gap-2">
-              <span className="text-sm font-bold uppercase tracking-widest text-status-smooth">{t("home_live")}</span>
+              <span className="text-sm font-bold uppercase tracking-widest text-status-smooth">Crossing dashboard</span>
               <span className="h-1 w-1 rounded-full bg-primary-foreground/30" />
-              <span className="text-label-sm text-primary-foreground/50">{t("home_updates_every_5min")}</span>
+              <span className="text-label-sm text-primary-foreground/70">Camera images with source times</span>
             </div>
           </div>
           <h1 className="font-heading text-display-sm font-bold md:text-display">
-            {t("home_title")}
+            Woodlands and Tuas traffic cameras
           </h1>
-          <p className="mt-1.5 text-sm text-primary-foreground/60 max-w-lg">
-            {t("home_hero_desc")}
+          <p className="mt-1.5 text-sm text-primary-foreground/80 max-w-2xl">
+            Check the Singapore approaches before crossing between Singapore and Johor Bahru. Frame times and source limits are shown below.
           </p>
 
-          {/* Toggles inside the hero */}
-          <div className="mt-5 flex flex-wrap items-center gap-2">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            <DirectionToggle value={direction} onChange={setDirection} variant="dark" />
             <CheckpointToggle value={checkpoint} onChange={setCheckpoint} variant="dark" />
-            <Link href="/cameras" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary-foreground/30 px-3 text-xs font-semibold text-primary-foreground hover:bg-primary-foreground/10">
-              <Camera className="h-4 w-4" /> Check cameras for both directions
-            </Link>
           </div>
         </div>
       </section>
 
+      {direction === "jb_to_sg" && <section className="container pt-3">
+        <div className="rounded-xl border border-border bg-card p-4">
+          <p className="text-sm font-semibold text-foreground">Returning from JB to Singapore?</p>
+          <p className="mt-1 text-xs text-muted-foreground">These LTA cameras cover Singapore road sections only. They cannot show Malaysia-side queues or provide a JB→SG wait time. Check the latest frame and allow time for both immigration checkpoints.</p>
+          <Link href="/jb-to-sg" className="mt-2 inline-flex min-h-11 items-center text-xs font-semibold text-accent underline">View the JB → SG return guide <ArrowRight className="ml-1 h-3 w-3" /></Link>
+        </div>
+      </section>}
+
       {/* ── Live Data Ticker ── */}
-      {filteredSnapshots.length > 0 && <section className="-mt-1 relative">
+      {direction === "sg_to_jb" && filteredSnapshots.length > 0 && <section className="-mt-1 relative">
         <div className="container pt-4 pb-1">
           <LiveDataTicker
             lastUpdated={filteredSnapshots[0]?.updated_at}
@@ -156,7 +161,7 @@ const Index = () => {
       </section>}
 
       {/* ── Status Cards ── */}
-      <section className="relative">
+      {direction === "sg_to_jb" && <section className="relative">
         <div className="container pt-3 pb-2">
           {trafficLoading ? (
             <div className="flex items-center justify-center py-12">
@@ -174,12 +179,12 @@ const Index = () => {
             </div>
           ) : (
             <div className="rounded-xl border border-border bg-card p-4 text-center">
-              <p className="text-sm font-medium text-foreground">Current road data is unavailable.</p>
-              <p className="mt-1 text-xs text-muted-foreground">Check the camera images below before you travel.</p>
+              <p className="text-sm font-medium text-foreground">Road status is under validation.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Use the timestamped camera images below before you travel.</p>
             </div>
           )}
         </div>
-      </section>
+      </section>}
 
       {/* Cameras */}
         <Section>
@@ -188,7 +193,7 @@ const Index = () => {
               <Camera className="h-4 w-4 text-muted-foreground" />
               <h2 className="font-heading text-title font-bold">{t("home_traffic_cameras")}</h2>
             </div>
-            <CameraGrid checkpoint={cameraCheckpoint} />
+            <CameraGrid checkpoint={cameraCheckpoint} cameras={initialCameras} />
           </div>
         </Section>
 
@@ -200,27 +205,8 @@ const Index = () => {
             <QuickLink to="/tuas" icon={MapPin} label={t("checkpoint_tuas")} sub={t("quick_link_second_link")} />
             <QuickLink to="/cameras" icon={Camera} label={t("nav_cameras")} sub={t("quick_link_live_cctv")} />
             <QuickLink to="/rts-link" icon={Train} label="RTS Link" sub={t("quick_link_opening_2027")} />
-          </div>
-        </div>
-      </Section>
-
-      {/* Hourly Pattern */}
-      <Section>
-        <div className="container">
-          <h2 className="font-heading text-title font-bold">{t("home_todays_pattern")}</h2>
-          <p className="mt-0.5 text-label-sm text-muted-foreground">
-            {t("home_pattern_desc")} {new Date().toLocaleDateString("en-SG", { weekday: "long" })}
-          </p>
-          <div className="mt-3">
-            {hourlyLoading ? (
-              <div className="flex items-center justify-center py-8">
-                <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-              </div>
-            ) : hourlyData && hourlyData.length > 0 ? (
-              <HourlyHeatmap data={hourlyData} />
-            ) : (
-              <p className="text-label-sm text-muted-foreground py-4">{t("home_pattern_collecting")}</p>
-            )}
+            <QuickLink to="/sg-to-jb" icon={ArrowRight} label="SG → JB" sub="Outbound trip checklist" />
+            <QuickLink to="/jb-to-sg" icon={ArrowRight} label="JB → SG" sub="Return trip checklist" />
           </div>
         </div>
       </Section>
@@ -291,6 +277,18 @@ const Index = () => {
             <Link href="/bus/cw1" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
               <p className="font-heading text-sm font-semibold text-foreground">{t("guide_cw1")}</p>
               <p className="mt-0.5 text-label-sm text-muted-foreground">{t("guide_cw1_sub")}</p>
+            </Link>
+            <Link href="/guides/malaysia-digital-arrival-card-mdac" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
+              <p className="font-heading text-sm font-semibold text-foreground">Malaysia Digital Arrival Card</p>
+              <p className="mt-0.5 text-label-sm text-muted-foreground">Official MDAC link and land-entry checklist</p>
+            </Link>
+            <Link href="/guides/ktm-shuttle-tebrau-jb-woodlands" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
+              <p className="font-heading text-sm font-semibold text-foreground">KTM Shuttle Tebrau</p>
+              <p className="mt-0.5 text-label-sm text-muted-foreground">Booking, fares and boarding cutoffs</p>
+            </Link>
+            <Link href="/guides/sg-arrival-card-land-checkpoint" className="rounded-xl border border-border bg-card p-3 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
+              <p className="font-heading text-sm font-semibold text-foreground">SG Arrival Card by land</p>
+              <p className="mt-0.5 text-label-sm text-muted-foreground">Who needs SGAC at Woodlands and Tuas</p>
             </Link>
           </div>
         </div>

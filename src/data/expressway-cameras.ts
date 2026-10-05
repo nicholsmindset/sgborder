@@ -17,10 +17,10 @@ export const EXPRESSWAYS: Record<string, ExpresswayConfig> = {
     slug: "bke",
     name: "Bukit Timah Expressway",
     shortName: "BKE",
-    title: "BKE Traffic Camera Live — Bukit Timah Expressway CCTV (2026)",
-    description: "Live BKE traffic cameras from LTA. Bukit Timah Expressway CCTV feeds updated every 5 min. Check BKE before heading to Woodlands Checkpoint.",
-    relevance: "BKE is the direct expressway route to Woodlands Checkpoint. Always check BKE cameras before crossing to JB.",
-    cameraIds: ["2701", "2702", "2703", "2704", "2705", "2706", "2707", "2708", "9701", "9702", "9703", "9704", "9705", "9706"],
+    title: "BKE to Woodlands Camera — LTA Checkpoint Approach Images",
+    description: "Timestamped LTA camera images from the BKE approach to Woodlands Checkpoint and the Singapore side of the Causeway.",
+    relevance: "The retained LTA cameras show selected BKE and Causeway road sections near Woodlands Checkpoint. They do not show the full immigration queue.",
+    cameraIds: ["2701", "2702", "2704"],
     relatedCheckpoint: "woodlands",
     faqs: [
       {
@@ -29,7 +29,7 @@ export const EXPRESSWAYS: Record<string, ExpresswayConfig> = {
       },
       {
         question: "How often are BKE cameras updated?",
-        answer: "BKE traffic cameras are refreshed every 5 minutes with live snapshots from LTA (Land Transport Authority of Singapore).",
+        answer: "We check for LTA still images on a five-minute cycle. Each available frame shows its own source timestamp; a new image is not guaranteed every five minutes.",
       },
     ],
   },
@@ -37,10 +37,10 @@ export const EXPRESSWAYS: Record<string, ExpresswayConfig> = {
     slug: "aye",
     name: "Ayer Rajah Expressway",
     shortName: "AYE",
-    title: "AYE Traffic Camera Live — Ayer Rajah Expressway CCTV (2026)",
-    description: "Live AYE traffic cameras from LTA. Ayer Rajah Expressway CCTV feeds updated every 5 min. Check AYE before heading to Tuas Checkpoint.",
-    relevance: "AYE connects to Tuas Checkpoint (Second Link). Check AYE cameras before crossing to JB via Second Link.",
-    cameraIds: ["4701", "4702", "4703", "4704", "4705", "4706", "4707", "4708", "4709", "4710", "4712", "4713", "4714", "4716", "1701", "1702", "1703", "1704", "1705", "1706", "1707", "1709", "1711"],
+    title: "AYE to Tuas Camera — LTA Second Link Approach Images",
+    description: "Timestamped LTA camera images from the AYE approach, Tuas Checkpoint and Singapore side of the Second Link.",
+    relevance: "The retained LTA cameras show selected AYE, Tuas Checkpoint and Second Link road sections. They do not show the full immigration queue.",
+    cameraIds: ["4703", "4707", "4708"],
     relatedCheckpoint: "tuas",
     faqs: [
       {
@@ -49,7 +49,7 @@ export const EXPRESSWAYS: Record<string, ExpresswayConfig> = {
       },
       {
         question: "Is AYE faster than BKE to reach JB?",
-        answer: "AYE leads to Tuas (Second Link) while BKE leads to Woodlands (Causeway). Tuas is often less congested but the detour adds distance. Compare both on our live dashboard.",
+        answer: "AYE leads to Tuas and BKE leads to Woodlands. Compare current camera frames and your total driving distance; neither crossing is consistently faster.",
       },
     ],
   },

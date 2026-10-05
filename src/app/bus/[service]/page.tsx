@@ -9,8 +9,9 @@ export function generateStaticParams() {
   return BUS_ROUTES.map((route) => ({ service: route.slug }));
 }
 
-export function generateMetadata({ params }: { params: { service: string } }): Metadata {
-  const route = BUS_ROUTES.find((r) => r.slug === params.service);
+export async function generateMetadata({ params }: { params: Promise<{ service: string }> }): Promise<Metadata> {
+  const { service } = await params;
+  const route = BUS_ROUTES.find((r) => r.slug === service);
   if (!route) return { title: "Bus Route Not Found" };
 
   return {
@@ -20,8 +21,9 @@ export function generateMetadata({ params }: { params: { service: string } }): M
   };
 }
 
-export default function BusRoutePage({ params }: { params: { service: string } }) {
-  const route = BUS_ROUTES.find((r) => r.slug === params.service);
+export default async function BusRoutePage({ params }: { params: Promise<{ service: string }> }) {
+  const { service } = await params;
+  const route = BUS_ROUTES.find((r) => r.slug === service);
 
   return (
     <>

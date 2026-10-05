@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_SG",
     siteName: "SG Border Live",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image.png"],
+    images: ["/opengraph-image"],
   },
   verification: {
     google: "-ssVsE4wM4Vy9jNlw6fKX0l24rkWvcnDIuYOnpBaH6M",

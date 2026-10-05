@@ -2,41 +2,48 @@ import type { Metadata } from "next";
 import { EXPRESSWAYS } from "@/data/expressway-cameras";
 import CamerasCheckpointClient from "@/page-components/CamerasCheckpointPage";
 import ExpresswayCamerasClient from "@/page-components/ExpresswayCamerasPage";
+import { getCheckpointCameras } from "@/lib/server-cameras";
+
+export const revalidate = 300;
 
 export const dynamicParams = false;
 
 const checkpoints = ["woodlands", "tuas"];
-const expresswayKeys = Object.keys(EXPRESSWAYS);
+const expresswayKeys = ["bke", "aye"];
 
 export function generateStaticParams() {
   return [...checkpoints.map((c) => ({ checkpoint: c })), ...expresswayKeys.map((e) => ({ checkpoint: e }))];
 }
 
-export function generateMetadata({ params }: { params: { checkpoint: string } }): Metadata {
-  const expressway = EXPRESSWAYS[params.checkpoint];
+export async function generateMetadata({ params }: { params: Promise<{ checkpoint: string }> }): Promise<Metadata> {
+  const { checkpoint } = await params;
+  const expressway = EXPRESSWAYS[checkpoint];
   if (expressway) {
     return {
       title: expressway.title,
       description: expressway.description,
-      alternates: { canonical: `https://www.sgborder.live/cameras/${params.checkpoint}` },
+      alternates: { canonical: `https://www.sgborder.live/cameras/${checkpoint}` },
     };
   }
 
-  const name = params.checkpoint === "woodlands" ? "Woodlands" : "Tuas";
+  const name = checkpoint === "woodlands" ? "Woodlands" : "Tuas";
   return {
     title: `${name} Checkpoint Live Cameras — LTA CCTV Traffic (2026)`,
-    description: `Live LTA traffic cameras at ${name} Checkpoint. View real-time CCTV images updated every 5 minutes.`,
-    alternates: { canonical: `https://www.sgborder.live/cameras/${params.checkpoint}` },
+    description: `Timestamped LTA camera images for the Singapore road approach to ${name} Checkpoint. See each frame time and camera location.`,
+    alternates: { canonical: `https://www.sgborder.live/cameras/${checkpoint}` },
   };
 }
 
-export default function CheckpointCameraPage({ params }: { params: { checkpoint: string } }) {
-  const isExpressway = params.checkpoint in EXPRESSWAYS;
+export default async function CheckpointCameraPage({ params }: { params: Promise<{ checkpoint: string }> }) {
+  const { checkpoint } = await params;
+  const isExpressway = checkpoint in EXPRESSWAYS;
+  const sourceCheckpoint = checkpoint === "bke" ? "woodlands" : checkpoint === "aye" ? "tuas" : checkpoint as "woodlands" | "tuas";
+  const initialCameras = await getCheckpointCameras(sourceCheckpoint);
 
   return (
     <>
 
-      {isExpressway ? <ExpresswayCamerasClient /> : <CamerasCheckpointClient />}
+      {isExpressway ? <ExpresswayCamerasClient initialCameras={initialCameras} /> : <CamerasCheckpointClient initialCameras={initialCameras} />}
     </>
   );
 }

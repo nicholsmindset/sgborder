@@ -9,8 +9,9 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { SEOHead } from "@/components/shared/SEOHead";
 import { Loader2, Camera, ArrowRight } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
+import type { CameraFeed } from "@/lib/types";
 
-const LivePage = () => {
+const LivePage = ({ initialCameras }: { initialCameras: CameraFeed[] }) => {
   const [checkpoint, setCheckpoint] = useState("all");
   const { t } = useTranslation();
 
@@ -22,7 +23,7 @@ const LivePage = () => {
       s.direction === "sg_to_jb"
   );
 
-  const cameraCheckpoint = checkpoint === "all" ? "woodlands" : checkpoint;
+  const cameraCheckpoint = checkpoint === "all" ? undefined : checkpoint;
 
   return (
     <div className="pb-mobile-nav">
@@ -57,7 +58,7 @@ const LivePage = () => {
             <div className="flex items-center gap-2">
               <span className="text-sm font-bold uppercase tracking-widest text-status-smooth">{t("home_live")}</span>
               <span className="h-1 w-1 rounded-full bg-primary-foreground/30" />
-              <span className="text-label-sm text-primary-foreground/50">{t("live_real_time")}</span>
+              <span className="text-label-sm text-primary-foreground/70">Timestamped camera frames</span>
             </div>
           </div>
           <h1 className="font-heading text-display-sm font-bold md:text-display">
@@ -69,7 +70,7 @@ const LivePage = () => {
 
           <div className="mt-5 flex flex-wrap items-center gap-2">
             <CheckpointToggle value={checkpoint} onChange={setCheckpoint} variant="dark" />
-            <Link href="/cameras" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary-foreground/30 px-3 text-xs font-semibold text-primary-foreground hover:bg-primary-foreground/10"><Camera className="h-4 w-4" /> View both directions on camera</Link>
+            <Link href="/cameras" className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-primary-foreground/30 px-3 text-xs font-semibold text-primary-foreground hover:bg-primary-foreground/10"><Camera className="h-4 w-4" /> View all checkpoint cameras</Link>
           </div>
         </div>
       </section>
@@ -93,8 +94,8 @@ const LivePage = () => {
             </div>
           ) : (
             <div className="rounded-xl border border-border bg-card p-6 text-center">
-              <p className="text-sm font-medium text-foreground">Current road data is unavailable.</p>
-              <p className="mt-1 text-xs text-muted-foreground">Use the checkpoint cameras while the road feed is unavailable.</p>
+              <p className="text-sm font-medium text-foreground">Road status is under validation.</p>
+              <p className="mt-1 text-xs text-muted-foreground">Use timestamped checkpoint cameras while the road signal is being checked.</p>
               <Link href="/cameras" className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-accent hover:underline">Open traffic cameras <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </div>
           )}
@@ -108,7 +109,7 @@ const LivePage = () => {
               <Camera className="h-4 w-4 text-muted-foreground" />
               <h2 className="font-heading text-title font-bold">{t("live_cameras_title")}</h2>
             </div>
-            <CameraGrid checkpoint={cameraCheckpoint} />
+            <CameraGrid checkpoint={cameraCheckpoint} cameras={initialCameras} />
           </div>
         </Section>
 
@@ -119,11 +120,11 @@ const LivePage = () => {
           <div className="grid grid-cols-2 gap-3">
             <Link href="/woodlands" className="rounded-xl border border-border bg-card p-4 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
               <p className="font-heading text-sm font-bold text-foreground">{t("checkpoint_woodlands")}</p>
-              <p className="mt-0.5 text-label-sm text-muted-foreground">{t("quick_link_causeway")} &middot; S$0.80 {t("checkpoint_toll").toLowerCase()}</p>
+              <p className="mt-0.5 text-label-sm text-muted-foreground">{t("quick_link_causeway")} · Camera and road approach</p>
             </Link>
             <Link href="/tuas" className="rounded-xl border border-border bg-card p-4 shadow-card transition-all duration-200 hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]">
               <p className="font-heading text-sm font-bold text-foreground">{t("checkpoint_tuas")}</p>
-              <p className="mt-0.5 text-label-sm text-muted-foreground">{t("quick_link_second_link")} &middot; S$2.10 {t("checkpoint_toll").toLowerCase()}</p>
+              <p className="mt-0.5 text-label-sm text-muted-foreground">{t("quick_link_second_link")} · Camera and road approach</p>
             </Link>
           </div>
           <div className="mt-3">
