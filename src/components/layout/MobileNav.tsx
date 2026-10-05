@@ -22,7 +22,11 @@ export const MobileNav = () => {
     >
       <div className="flex h-14 items-stretch">
         {tabs.map((tab) => {
-          const active = tab.to === "/" ? pathname === "/" : pathname.startsWith(tab.to);
+          const active = tab.to === "/"
+            ? pathname === "/"
+            : tab.to === "/guides"
+              ? pathname.startsWith("/guides") || pathname.startsWith("/rules") || pathname.startsWith("/routes") || pathname.startsWith("/holidays")
+              : pathname.startsWith(tab.to);
           return (
             <Link
               key={tab.to}

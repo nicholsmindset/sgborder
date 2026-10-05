@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { BUS_ROUTES } from "@/lib/bus-data";
 import { GUIDES } from "@/data/guides";
 import { INDEXABLE_GUIDE_SLUGS } from "@/lib/indexable-guides";
+import { CROSSING_GUIDES } from "@/lib/crossing-guides";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.sgborder.live";
@@ -22,8 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/bus`, lastModified: reviewedAt, changeFrequency: "daily", priority: 0.8 },
     { url: `${baseUrl}/rts-link`, lastModified: reviewedAt, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/guides`, lastModified: reviewedAt, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/rules`, lastModified: checkpointReviewedAt, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/routes`, lastModified: checkpointReviewedAt, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/holidays`, lastModified: reviewedAt, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/holidays/2027`, lastModified: checkpointReviewedAt, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/calculator`, lastModified: reviewedAt, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/calculator/singapore-vep-2027`, lastModified: new Date("2026-10-06"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/methodology`, lastModified: reviewedAt, changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/about`, lastModified: reviewedAt, changeFrequency: "monthly", priority: 0.4 },
     { url: `${baseUrl}/privacy`, lastModified: reviewedAt, changeFrequency: "monthly", priority: 0.3 },
@@ -50,6 +55,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const crossingGuidePages: MetadataRoute.Sitemap = CROSSING_GUIDES.map((guide) => ({
+    url: `${baseUrl}/${guide.group}/${guide.slug}`,
+    lastModified: checkpointReviewedAt,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   // Calendar pages
   const calendarPages: MetadataRoute.Sitemap = [
     "singapore-public-holidays-2026",
@@ -65,6 +77,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticPages,
     ...busPages,
     ...guidePages,
+    ...crossingGuidePages,
     ...expresswayPages,
     ...calendarPages,
   ];

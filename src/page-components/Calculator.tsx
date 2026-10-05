@@ -67,7 +67,7 @@ export default function Calculator() {
             <div className="flex justify-between gap-3 border-t border-border pt-3"><dt className="font-semibold">Malaysia road charge per entry</dt><dd className="font-heading text-lg font-bold tabular-nums">RM{malaysiaRoadCharge.toFixed(2)}</dd></div>
           </dl>
           <p className="mt-5 rounded-lg bg-muted p-3 text-xs leading-relaxed text-muted-foreground">
-            Malaysia road tolls, fuel, parking and any one-time VEP RFID tag cost are separate. Malaysia does not charge Singapore cars the S$35/day Singapore VEP fee; that fee applies to foreign registered vehicles entering Singapore.
+            Malaysia road tolls, fuel, parking and any one-time VEP RFID tag cost are separate. Singapore's daily VEP fee is for foreign-registered vehicles entering Singapore; it does not apply to a Singapore car entering Malaysia.
           </p>
           <div className="mt-4 flex flex-wrap gap-3 text-xs font-semibold text-accent">
             <a href="https://onemotoring.lta.gov.sg/content/onemotoring/home/driving/entering_and_exiting_singapore/vehicles-registered-in-singapore.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:underline">LTA toll rates <ExternalLink className="h-3 w-3" /></a>
@@ -77,7 +77,10 @@ export default function Calculator() {
       </div>
 
       <section className="container pb-8">
-        <Link href="/guides/vep-malaysia-guide" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-border bg-card px-4 text-sm font-semibold text-foreground shadow-card hover:bg-muted">Malaysia VEP registration guide <ArrowRight className="h-4 w-4 text-accent" /></Link>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Link href="/guides/vep-malaysia-guide" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-border bg-card px-4 text-sm font-semibold text-foreground shadow-card hover:bg-muted">Malaysia VEP registration guide <ArrowRight className="h-4 w-4 text-accent" /></Link>
+          <Link href="/calculator/singapore-vep-2027" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-border bg-card px-4 text-sm font-semibold text-foreground shadow-card hover:bg-muted">Malaysia car entering SG? Calculate 2027 Singapore VEP <ArrowRight className="h-4 w-4 text-accent" /></Link>
+        </div>
       </section>
     </div>
   );
