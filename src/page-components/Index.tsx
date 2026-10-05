@@ -19,12 +19,12 @@ const homeFaqs = [
   {
     question: "How do I check causeway traffic before crossing to JB?",
     answer:
-      "Compare the Singapore road approaches to Woodlands and Tuas, then inspect the latest checkpoint camera images. Road conditions do not measure immigration queues or the Malaysia side.",
+      "Inspect the latest Woodlands and Tuas camera images and their frame times. These Singapore views do not measure immigration queues or conditions on the Malaysia side.",
   },
   {
     question: "Which checkpoint is faster — Woodlands or Tuas?",
     answer:
-      "Compare both road status cards and cameras before leaving. Your destination and the longer drive to Tuas also matter; this dashboard cannot measure the full border crossing time.",
+      "Compare the camera images before leaving and consider your destination and the drive to each checkpoint. This dashboard cannot measure the full crossing time at either checkpoint.",
   },
   {
     question: "What is the best time to cross the causeway?",

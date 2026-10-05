@@ -47,8 +47,7 @@ export const Footer = () => {
           <div>
             <p className="text-label-sm font-semibold uppercase tracking-wider text-primary-foreground/40">{t("footer_data_sources")}</p>
             <div className="mt-3 flex flex-col gap-2 text-label-sm text-primary-foreground/60">
-              <span>LTA DataMall</span>
-              <span>Google Routes API</span>
+              <span>LTA cameras via data.gov.sg</span>
               <span>ArriveLah Bus API</span>
             </div>
             <div className="mt-4 flex flex-col gap-2">

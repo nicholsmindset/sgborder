@@ -64,7 +64,7 @@ export const en = {
   home_telegram_desc: "Free: /status and /bus commands. Premium: personalised alerts, departure predictions, and ad-free.",
   home_telegram_btn: "Learn More",
   home_faq_title: "Frequently Asked Questions",
-  home_data_source_trust: "Road status uses LTA DataMall speed bands and excludes immigration queues. Check the observation time and camera images before travelling.",
+  home_data_source_trust: "LTA camera images show Singapore road sections, not the full immigration queue. Road status is paused while its source is validated; check each camera frame time before travelling.",
   home_loading: "Loading traffic data\u2026",
   home_no_data: "Current road data is unavailable. Check the cameras before travelling.",
   home_traffic_cameras: "Traffic Cameras",

@@ -20,15 +20,15 @@ export const metadata: Metadata = {
 const homeFaqs = [
   {
     question: "How do I check causeway traffic before crossing to JB?",
-    answer: "Compare recent road conditions near Woodlands and Tuas, then inspect checkpoint cameras. Road status does not include immigration queues or Malaysia-side travel.",
+    answer: "Inspect the latest Woodlands and Tuas camera images and their frame times. These Singapore views do not measure immigration queues or conditions on the Malaysia side.",
   },
   {
     question: "Which checkpoint is faster — Woodlands or Tuas?",
-    answer: "Compare current road conditions and cameras, then consider your destination and the drive to each checkpoint. Conditions can change before you arrive.",
+    answer: "Compare the camera images before leaving and consider your destination and the drive to each checkpoint. This dashboard cannot measure the full crossing time at either checkpoint.",
   },
   {
     question: "What is the best time to cross the causeway?",
-    answer: "Patterns vary by weekday and holiday. Check recent camera images before travelling and treat historical patterns as a guide.",
+    answer: "No hour guarantees a short crossing. Check ICA advisories, holiday dates and timestamped camera frames shortly before leaving.",
   },
   {
     question: "How often is the causeway traffic data updated?",

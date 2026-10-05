@@ -66,7 +66,7 @@ export const ms: Record<keyof typeof en, string> = {
   home_telegram_desc: "Percuma: arahan /status dan /bus. Premium: makluman peribadi, ramalan perjalanan, dan tanpa iklan.",
   home_telegram_btn: "Ketahui Lagi",
   home_faq_title: "Soalan Lazim",
-  home_data_source_trust: "Status jalan menggunakan data kelajuan LTA DataMall dan tidak termasuk barisan imigresen. Semak masa pemerhatian dan kamera sebelum bergerak.",
+  home_data_source_trust: "Imej kamera LTA hanya menunjukkan jalan di Singapura, bukan keseluruhan barisan imigresen. Status jalan dijeda sementara sumbernya disahkan; semak masa setiap imej sebelum bergerak.",
   home_loading: "Memuatkan data trafik\u2026",
   home_no_data: "Data jalan terkini tidak tersedia. Semak kamera sebelum bergerak.",
   home_traffic_cameras: "Kamera Trafik",

@@ -115,7 +115,7 @@ const PrivacyPage = () => {
           <section>
             <h2 className="font-heading text-lg font-bold mb-2">5. Data Sources & Attribution</h2>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Traffic camera images and road speed data are sourced from the{" "}
+              Traffic camera images are provided by the{" "}
               <strong>Singapore Land Transport Authority (LTA)</strong> via the{" "}
               <a
                 href="https://data.gov.sg"
@@ -126,7 +126,7 @@ const PrivacyPage = () => {
                 data.gov.sg
               </a>{" "}
               public API under the Singapore Open Data Licence. Bus arrival times are provided by the
-              ArriveLah community API. Travel time estimates use the Google Routes API. All data is
+              ArriveLah community API. Road status is paused while its source is validated. All data is
               provided for informational purposes only.
             </p>
           </section>
