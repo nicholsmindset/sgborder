@@ -8,7 +8,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Woodlands Checkpoint Live Camera & Traffic Today (2026) — CCTV & Road Status",
   description:
-    "Woodlands Checkpoint traffic today: inspect LTA camera images, recent Singapore road conditions and cross-border bus information before leaving for JB.",
+    "Woodlands Checkpoint is open 24 hours. Check timestamped LTA camera images, Singapore approach conditions when available, and cross-border bus routes before leaving for JB.",
   alternates: { canonical: "https://www.sgborder.live/woodlands" },
   openGraph: {
     title: "Woodlands Checkpoint Live Traffic & Cameras",

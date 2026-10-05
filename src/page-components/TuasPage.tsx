@@ -60,11 +60,14 @@ const TuasPage = ({ initialCameras }: { initialCameras: CameraFeed[] }) => {
       <RevealSection>
         <div className="container">
           <div className="flex flex-wrap gap-4 rounded-xl border border-border bg-card p-4 shadow-card text-sm">
+            <span className="text-muted-foreground">
+              Open 24 hours · <a href="https://www.ica.gov.sg/about-us/our-checkpoints" target="_blank" rel="noopener noreferrer" className="text-accent underline">ICA checkpoint listing</a>
+            </span>
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
               Road feed does not include immigration queues
             </span>
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-              <MapPin className="h-4 w-4 text-accent" /> Tuas Checkpoint
+              <MapPin className="h-4 w-4 text-accent" /> 501 Jalan Ahmad Ibrahim
             </span>
           </div>
         </div>
@@ -139,6 +142,7 @@ const TuasPage = ({ initialCameras }: { initialCameras: CameraFeed[] }) => {
         <div className="container">
           <h2 className="font-heading text-title font-bold mb-4">{t("tuas_faq_title")}</h2>
           <FAQAccordion faqs={[
+            { question: "Is Tuas Checkpoint open 24 hours?", answer: "Yes. ICA lists Tuas Checkpoint at 501 Jalan Ahmad Ibrahim as open 24 hours. Check current camera frames and advisories before travelling." },
             { question: "How long does it take to cross at Tuas?", answer: "We do not have a verified end-to-end wait estimate. Singapore camera images and road speed bands cannot measure both immigration clearances." },
             { question: "What is the toll at Tuas?", answer: "Toll and road-charge amounts may change. Check the current published rates from Singapore LTA and the Malaysian authorities before travelling." },
             { question: "When should I choose Tuas over Woodlands?", answer: "Tuas may suit a western Singapore origin or western Johor destination. Compare current camera frames and total driving distance; no route is always faster." },

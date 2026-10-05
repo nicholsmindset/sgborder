@@ -60,6 +60,9 @@ const WoodlandsPage = ({ initialCameras }: { initialCameras: CameraFeed[] }) => 
       <RevealSection>
         <div className="container">
           <div className="flex flex-wrap gap-4 rounded-xl border border-border bg-card p-4 shadow-card text-sm">
+            <span className="text-muted-foreground">
+              Open 24 hours · <a href="https://www.ica.gov.sg/about-us/our-checkpoints" target="_blank" rel="noopener noreferrer" className="text-accent underline">ICA checkpoint listing</a>
+            </span>
             <span className="inline-flex items-center gap-1.5 text-muted-foreground">
               Road feed does not include immigration queues
             </span>
@@ -140,6 +143,7 @@ const WoodlandsPage = ({ initialCameras }: { initialCameras: CameraFeed[] }) => 
         <div className="container">
           <h2 className="font-heading text-title font-bold mb-4">{t("woodlands_faq_title")}</h2>
           <FAQAccordion faqs={[
+            { question: "Is Woodlands Checkpoint open 24 hours?", answer: "Yes. ICA lists Woodlands Checkpoint at 21 Woodlands Crossing as open 24 hours. Operating hours do not indicate current traffic or queue length." },
             { question: "How long does it take to cross at Woodlands?", answer: "We do not have a verified end-to-end wait estimate. The camera frames show sections of the road, and Singapore road status does not include immigration or Malaysia-side queues." },
             { question: "Is Woodlands or Tuas faster?", answer: "There is no consistently faster checkpoint. Compare current camera frames, consider your destination and include the drive to each checkpoint." },
             { question: "What buses go through Woodlands?", answer: "See the route cards on this page for services using the Woodlands crossing. Confirm the latest service details with each operator." },

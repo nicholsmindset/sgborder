@@ -7,14 +7,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.sgborder.live";
   const reviewedAt = new Date("2026-09-27");
   const cameraReviewedAt = new Date("2026-10-05");
+  const checkpointReviewedAt = new Date("2026-10-06");
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: cameraReviewedAt, changeFrequency: "daily", priority: 1.0 },
     { url: `${baseUrl}/live`, lastModified: cameraReviewedAt, changeFrequency: "daily", priority: 0.9 },
     { url: `${baseUrl}/sg-to-jb`, lastModified: cameraReviewedAt, changeFrequency: "daily", priority: 0.8 },
     { url: `${baseUrl}/jb-to-sg`, lastModified: cameraReviewedAt, changeFrequency: "daily", priority: 0.8 },
-    { url: `${baseUrl}/woodlands`, lastModified: reviewedAt, changeFrequency: "always", priority: 0.9 },
-    { url: `${baseUrl}/tuas`, lastModified: reviewedAt, changeFrequency: "always", priority: 0.9 },
+    { url: `${baseUrl}/woodlands`, lastModified: checkpointReviewedAt, changeFrequency: "daily", priority: 0.9 },
+    { url: `${baseUrl}/tuas`, lastModified: checkpointReviewedAt, changeFrequency: "daily", priority: 0.9 },
     { url: `${baseUrl}/cameras`, lastModified: cameraReviewedAt, changeFrequency: "daily", priority: 0.8 },
     { url: `${baseUrl}/cameras/woodlands`, lastModified: cameraReviewedAt, changeFrequency: "daily", priority: 0.8 },
     { url: `${baseUrl}/cameras/tuas`, lastModified: cameraReviewedAt, changeFrequency: "daily", priority: 0.8 },

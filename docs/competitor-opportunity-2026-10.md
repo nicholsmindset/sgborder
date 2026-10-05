@@ -1,6 +1,6 @@
 # SG Border Live vs CausewayTraffic.sg: opportunity review
 
-**Reviewed:** 5 October 2026. **Scope:** live desktop and mobile pages, SG Border Live repository, Ahrefs Site Explorer and Keywords Explorer for Singapore, HTTP checks, and Google Search guidance. Ahrefs traffic and positions are third-party estimates, not measured clicks. Google Search Console for `sgborder.live` is absent from the connected account, so indexing, actual clicks, CTR, and manual actions remain unverified.
+**Reviewed:** 5 October 2026; Search Console baseline added 6 October. **Scope:** live desktop and mobile pages, SG Border Live repository, Ahrefs Site Explorer and Keywords Explorer for Singapore, HTTP checks, and Google Search guidance. Ahrefs traffic and positions are third-party estimates, not measured clicks. The `sc-domain:sgborder.live` Google Search Console property was subsequently found in the OnnGroup GSC connection. See `gsc-baseline-2026-10.md` for measured pre-release clicks, indexing and the corrected sitemap submission.
 
 ## Implementation prepared on 5 October
 
@@ -56,7 +56,7 @@ The competitor's page is not flawless. Its camera view showed “No frame time�
 
 ## SEO, AI answers and measurement
 
-- Keep the sitemap and canonical URLs; both were present in the live source. Verify actual indexing and query/page CTR in the correct Google Search Console property, which is not connected here. Segment mobile versus desktop and Singapore versus Malaysia.
+- Keep the sitemap and canonical URLs; both were present in the live source. The correct Search Console property is now connected through the OnnGroup account, and the working `/sitemap.xml` was submitted on 6 October. Segment mobile versus desktop and Singapore versus Malaysia; use `gsc-baseline-2026-10.md` as the pre-release baseline.
 - Watch `/cameras/woodlands` (currently rank 22), `/cameras`/homepage for “causeway camera” (rank 19), and “woodlands camera” (rank 13) as the first 30-day query set. Record impressions, clicks, CTR, average position and engaged visits before and after each change. Ahrefs is useful for competitor discovery, not outcome measurement.
 - Put short, sourced answers in crawlable text beside the live module: what is being measured, observation age, direction, coverage and limitations. Google says AI Overviews/AI Mode use ordinary Search eligibility and have no special schema requirement. Structured data should match visible content. FAQPage and HowTo markup are not a shortcut to rich results for this site. See [Google's AI features guidance](https://developers.google.com/search/docs/appearance/ai-features) and [FAQ/HowTo changes](https://developers.google.com/search/blog/2023/08/howto-faq-changes).
 - Avoid scaling to hundreds of near-identical amount, destination or holiday pages before the underlying tools and data are useful. Prioritize a small group of strong pages that answer distinct crossing decisions.

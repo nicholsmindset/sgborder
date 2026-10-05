@@ -8,7 +8,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Tuas Checkpoint Live CCTV Camera & Traffic Today (2026) — Second Link Status",
   description:
-    "Tuas Second Link traffic today: inspect LTA camera images, recent Singapore road conditions and bus routes before leaving for JB.",
+    "Tuas Checkpoint is open 24 hours. Check timestamped LTA camera images, Singapore approach conditions when available, and Second Link bus routes before leaving for JB.",
   alternates: { canonical: "https://www.sgborder.live/tuas" },
   openGraph: {
     title: "Tuas Checkpoint Live Traffic — Second Link Status",
