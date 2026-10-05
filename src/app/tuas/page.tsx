@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/shared/JsonLd";
 import TuasClient from "@/page-components/TuasPage";
+import { getCheckpointCameras } from "@/lib/server-cameras";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Tuas Checkpoint Live CCTV Camera & Traffic Today (2026) — Second Link Status",
@@ -14,7 +17,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TuasPage() {
+export default async function TuasPage() {
+  const initialCameras = await getCheckpointCameras("tuas");
   return (
     <>
       <JsonLd
@@ -28,7 +32,7 @@ export default function TuasPage() {
         }}
       />
 
-      <TuasClient />
+      <TuasClient initialCameras={initialCameras} />
     </>
   );
 }

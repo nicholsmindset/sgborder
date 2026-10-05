@@ -20,12 +20,14 @@ export const SegmentedToggle = ({ value, onChange, options, variant = "light" }:
         return (
           <button
             key={opt.value}
+            type="button"
+            aria-pressed={active}
             onClick={() => onChange(opt.value)}
-            className={`rounded-md px-3.5 py-1.5 text-label font-medium transition-all duration-200 ${
+            className={`min-h-11 rounded-md px-3.5 py-1.5 text-label font-medium transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
               active
                 ? isLight
                   ? "bg-card text-foreground shadow-sm"
-                  : "bg-primary-foreground/20 text-primary-foreground shadow-sm"
+                  : "bg-primary-foreground text-primary shadow-sm"
                 : isLight
                   ? "text-muted-foreground hover:text-foreground"
                   : "text-primary-foreground/50 hover:text-primary-foreground/80"

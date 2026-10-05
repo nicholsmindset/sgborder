@@ -20,11 +20,11 @@ export default function MethodologyPage() {
       <div className="mt-7 grid gap-3 sm:grid-cols-2">
         <div className="rounded-xl border border-border bg-card p-4 shadow-card">
           <h2 className="font-heading text-base font-bold">Road signal</h2>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">We classify nearby road speed bands from LTA DataMall into smooth, moderate, heavy or jammed. This is an indicative road approach signal.</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">The road model uses LTA DataMall speed bands as an indicative Singapore approach signal. It is paused while segment choice, direction mapping and collection reliability are checked.</p>
         </div>
         <div className="rounded-xl border border-border bg-card p-4 shadow-card">
           <h2 className="font-heading text-base font-bold">Freshness rule</h2>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">A road status card appears only when its latest recorded sample is less than 15 minutes old. Older samples are hidden, and the page shows an unavailable state.</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Road status cards are paused while the collection source and direction mapping are validated. When enabled, samples older than 15 minutes will be hidden.</p>
         </div>
       </div>
 
@@ -47,7 +47,7 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      <p className="mt-8 text-xs text-muted-foreground">Method reviewed 27 September 2026.</p>
+      <p className="mt-8 text-xs text-muted-foreground">Method reviewed 5 October 2026.</p>
       <Link href="/cameras" className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-accent hover:underline">View checkpoint cameras <ArrowRight className="h-4 w-4" /></Link>
     </div>
   );

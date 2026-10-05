@@ -14,7 +14,7 @@ const AboutPage = () => {
 
       <div className="container py-8 max-w-3xl">
         <h1 className="font-heading text-2xl font-bold mb-1">About SG Border Live</h1>
-        <p className="text-sm text-muted-foreground mb-8">The real-time causeway commuter dashboard</p>
+        <p className="text-sm text-muted-foreground mb-8">An independent Singapore–Johor crossing dashboard</p>
 
         <div className="space-y-8">
 
@@ -23,14 +23,13 @@ const AboutPage = () => {
             <h2 className="font-heading text-lg font-bold mb-3">What is SG Border Live?</h2>
             <p className="text-sm text-muted-foreground leading-relaxed mb-3">
               SG Border Live is a free, independent traffic information service for the Singapore–Johor Bahru
-              border crossing. We aggregate live data from official Singapore government APIs to give
-              commuters, daily workers, and weekend travellers a fast, clear view of current conditions
-              before they head to the causeway.
+              border crossing. We show timestamped LTA road camera images, Singapore bus arrivals and
+              source-backed travel guidance to help commuters inspect conditions before they leave.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
               We are not affiliated with the Land Transport Authority (LTA), ICA, JIM, or any government
-              body in Singapore or Malaysia. All traffic data is sourced from publicly available APIs and
-              displayed as-is for informational purposes.
+              body in Singapore or Malaysia. Camera images cover only the views available from Singapore
+              government feeds; they do not measure border clearance times.
             </p>
           </section>
 
@@ -41,23 +40,23 @@ const AboutPage = () => {
               {[
                 {
                   icon: Clock,
-                  title: "Live Checkpoint Status",
-                  desc: "Real-time traffic status at Woodlands (Causeway) and Tuas (Second Link), updated every 5 minutes.",
+                  title: "Road Approach Status",
+                  desc: "A Singapore road-speed signal appears only when a recent observation is available. It does not measure the immigration queue.",
                 },
                 {
                   icon: Camera,
                   title: "LTA Traffic Cameras",
-                  desc: "Live CCTV feeds from LTA cameras at both checkpoints and all major expressways leading to the border.",
+                  desc: "Timestamped still images from selected LTA cameras near both checkpoints and Singapore expressways.",
                 },
                 {
                   icon: Bus,
                   title: "Cross-Border Bus Arrivals",
-                  desc: "Next bus times and crowd levels for CW1, CW2, 170, 170X, 950, and other cross-border services.",
+                  desc: "Singapore public bus arrival estimates at selected stops, where data is available. Operator services may use different data sources.",
                 },
                 {
                   icon: Map,
                   title: "Commuter Guides",
-                  desc: "In-depth guides on the best times to cross, VEP requirements, bus routes, and holiday traffic predictions.",
+                  desc: "Reviewed guides on crossing preparation, official forms, rail and bus options, and holiday dates.",
                 },
               ].map((item) => (
                 <div key={item.title} className="rounded-xl border border-border bg-card p-4">
@@ -79,15 +78,11 @@ const AboutPage = () => {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent mt-1.5" />
-                <span><strong className="text-foreground">LTA DataMall & data.gov.sg</strong> — Traffic camera images, road speed bands, and estimated travel times from the Land Transport Authority of Singapore.</span>
+                <span><strong className="text-foreground">LTA DataMall & data.gov.sg</strong> — Traffic camera images and, when the road feed is available, nearby Singapore road speed bands.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent mt-1.5" />
                 <span><strong className="text-foreground">ArriveLah API</strong> — Real-time bus arrival times and crowd load data for Singapore bus services.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent mt-1.5" />
-                <span><strong className="text-foreground">Google Routes API</strong> — Travel time estimates for causeway crossing routes.</span>
               </li>
             </ul>
           </section>

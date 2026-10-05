@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { CameraFeed, TrafficSnapshot, HourlyPattern } from "@/lib/types";
 import type { TrafficStatus } from "@/lib/constants";
+import { CHECKPOINT_CAMERAS } from "@/data/checkpoint-cameras";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
@@ -84,16 +85,8 @@ async function fetchFromEdge<T>(action: string, params?: Record<string, string>)
 }
 
 /** Camera metadata: ID → label + checkpoint */
-const CAMERA_META: Record<string, { label: string; checkpoint: string }> = {
-  "2701": { label: "Woodlands Causeway (SG Side)", checkpoint: "woodlands" },
-  "2702": { label: "BKE (Woodlands Flyover)", checkpoint: "woodlands" },
-  "2704": { label: "BKE Slip Road (Woodlands)", checkpoint: "woodlands" },
-  "4703": { label: "Second Link at Tuas", checkpoint: "tuas" },
-  "4707": { label: "AYE (Tuas West Extension)", checkpoint: "tuas" },
-  "4708": { label: "Tuas Checkpoint", checkpoint: "tuas" },
-};
-
-const ALL_CAMERA_IDS = new Set(Object.keys(CAMERA_META));
+const CAMERA_META: Record<string, { label: string; checkpoint: string }> = CHECKPOINT_CAMERAS;
+const ALL_CAMERA_IDS = new Set(Object.keys(CHECKPOINT_CAMERAS));
 
 interface DataGovCamera {
   camera_id: string;
@@ -114,8 +107,10 @@ async function fetchCamerasFromDataGov(checkpoint?: string): Promise<CameraFeed[
   const data: DataGovResponse = await res.json();
 
   const allCameras = data.items?.[0]?.cameras || [];
+  const cutoff = Date.now() - 15 * 60_000;
   return allCameras
     .filter((c) => ALL_CAMERA_IDS.has(c.camera_id))
+    .filter((c) => Number.isFinite(Date.parse(c.timestamp)) && Date.parse(c.timestamp) >= cutoff)
     .filter((c) => {
       const meta = CAMERA_META[c.camera_id];
       return !checkpoint || meta?.checkpoint === checkpoint;
@@ -150,6 +145,7 @@ export function useLiveCameras(checkpoint?: string) {
         const data = await fetchFromEdge<{ cameras: LiveCamera[] }>("cameras");
         const cameras = data.cameras
           .filter((c) => !checkpoint || c.checkpoint === checkpoint)
+          .filter((c) => Number.isFinite(Date.parse(c.timestamp || "")) && Date.parse(c.timestamp || "") >= Date.now() - 15 * 60_000)
           .map((c) => ({
             camera_id: c.camera_id,
             label: c.label,
@@ -201,8 +197,10 @@ export function useExpresswayCameras(cameraIds: string[]) {
         if (!res.ok) throw new Error(`data.gov.sg error: ${res.status}`);
         const data: DataGovResponse = await res.json();
         const allCameras = data.items?.[0]?.cameras || [];
+        const cutoff = Date.now() - 15 * 60_000;
         return allCameras
           .filter((c) => idSet.has(c.camera_id))
+          .filter((c) => Number.isFinite(Date.parse(c.timestamp)) && Date.parse(c.timestamp) >= cutoff)
           .map((c) => ({
             camera_id: c.camera_id,
             label: `Camera ${c.camera_id}`,
@@ -284,6 +282,10 @@ export function useLiveTraffic(checkpoint?: string, direction?: string) {
   return useQuery({
     queryKey: ["live-traffic", checkpoint, direction],
     queryFn: async (): Promise<TrafficSnapshot[]> => {
+      // The existing collector has not been validated as a direction-specific
+      // border signal. Keep its cards hidden until the source and schedule pass
+      // the checks recorded in docs/data-collection-runbook-2026-10.md.
+      if (process.env.NEXT_PUBLIC_ROAD_STATUS_VERIFIED !== "true") return [];
       try {
         let query = supabase
           .from("traffic_snapshots")

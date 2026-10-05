@@ -7,10 +7,10 @@ import { FAQAccordion } from "@/components/content/FAQAccordion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { SEOHead } from "@/components/shared/SEOHead";
 import { Camera, ArrowRight, ArrowLeft, Loader2, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { LivePulse } from "@/components/dashboard/LivePulse";
 import { useState } from "react";
+import type { CameraFeed } from "@/lib/types";
 
-const ExpresswayCamerasPage = () => {
+const ExpresswayCamerasPage = ({ initialCameras }: { initialCameras: CameraFeed[] }) => {
   const params = useParams();
   const checkpoint = params?.checkpoint as string | undefined;
   const config = checkpoint ? EXPRESSWAYS[checkpoint] : undefined;
@@ -26,14 +26,14 @@ const ExpresswayCamerasPage = () => {
     );
   }
 
-  return <ExpresswayContent config={config} />;
+  return <ExpresswayContent config={config} initialCameras={initialCameras} />;
 };
 
-const ExpresswayContent = ({ config }: { config: typeof EXPRESSWAYS[string] }) => {
+const ExpresswayContent = ({ config, initialCameras }: { config: typeof EXPRESSWAYS[string]; initialCameras: CameraFeed[] }) => {
   const { data: cameras, isLoading } = useExpresswayCameras(config.cameraIds);
   const [modalIdx, setModalIdx] = useState<number | null>(null);
 
-  const cameraList = cameras || [];
+  const cameraList = cameras && cameras.length > 0 ? cameras : initialCameras;
 
   return (
     <div className="pb-mobile-nav">
@@ -73,7 +73,7 @@ const ExpresswayContent = ({ config }: { config: typeof EXPRESSWAYS[string] }) =
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary-foreground/10">
               <Camera className="h-5 w-5" />
             </div>
-            <LivePulse />
+            <span className="text-xs font-semibold uppercase tracking-widest text-status-smooth">LTA camera feed</span>
           </div>
           <h1 className="font-heading text-display-sm font-bold md:text-display">
             {config.shortName} Traffic Cameras
@@ -92,7 +92,7 @@ const ExpresswayContent = ({ config }: { config: typeof EXPRESSWAYS[string] }) =
         <div className="container">
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-heading text-title font-bold">
-              Live CCTV Feeds
+              Timestamped camera images
             </h2>
             {config.cameraIds.length > 0 && (
               <span className="text-label-sm text-muted-foreground">
@@ -109,7 +109,7 @@ const ExpresswayContent = ({ config }: { config: typeof EXPRESSWAYS[string] }) =
                 LTA does not publish live camera feeds for {config.name} on data.gov.sg. Check a nearby expressway below for current road conditions.
               </p>
             </div>
-          ) : isLoading ? (
+          ) : isLoading && cameraList.length === 0 ? (
             <div className="flex items-center justify-center py-12">
               <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
               <span className="ml-2 text-label-sm text-muted-foreground">Loading cameras...</span>
@@ -117,7 +117,7 @@ const ExpresswayContent = ({ config }: { config: typeof EXPRESSWAYS[string] }) =
           ) : cameraList.length === 0 ? (
             <div className="rounded-xl border border-border bg-card p-6 text-center">
               <p className="text-sm text-muted-foreground">
-                No camera feeds available right now. Cameras refresh every 5 minutes.
+                No recent camera frames are available right now. Check the checkpoint camera hub again before travelling.
               </p>
             </div>
           ) : (
@@ -141,6 +141,7 @@ const ExpresswayContent = ({ config }: { config: typeof EXPRESSWAYS[string] }) =
                       </span>
                     </div>
                   </div>
+                  <p className="px-3 py-2 text-xs text-muted-foreground">{cam.timestamp ? `Frame: ${new Intl.DateTimeFormat("en-SG", { timeZone: "Asia/Singapore", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }).format(new Date(cam.timestamp))} SGT` : "Frame time unavailable"}</p>
                 </button>
               ))}
             </div>
@@ -227,9 +228,9 @@ const ExpresswayContent = ({ config }: { config: typeof EXPRESSWAYS[string] }) =
       {/* Other expressways */}
       <RevealSection>
         <div className="container">
-          <h2 className="font-heading text-title font-bold mb-3">Other Expressway Cameras</h2>
+          <h2 className="font-heading text-title font-bold mb-3">Other checkpoint approach</h2>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-            {EXPRESSWAY_LIST.filter((e) => e.slug !== config.slug).map((e) => (
+            {EXPRESSWAY_LIST.filter((e) => ["bke", "aye"].includes(e.slug) && e.slug !== config.slug).map((e) => (
               <Link
                 key={e.slug}
                 href={`/cameras/${e.slug}`}

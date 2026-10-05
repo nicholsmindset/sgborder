@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  outputFileTracingRoot: __dirname,
+  turbopack: { root: __dirname },
   images: {
     remotePatterns: [
       {
@@ -14,6 +16,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      ...['pie', 'cte', 'sle', 'tpe', 'ecp', 'kpe'].map((road) => ({
+        source: `/cameras/${road}`,
+        destination: '/cameras',
+        permanent: true,
+      })),
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'sgborder.live' }],

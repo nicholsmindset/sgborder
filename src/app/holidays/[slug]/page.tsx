@@ -11,21 +11,23 @@ export function generateStaticParams() {
   return [...HOLIDAYS_2026.map((h) => ({ slug: h.slug })), ...Object.keys(CALENDAR_PAGES).map((slug) => ({ slug }))];
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  if (INDEXABLE_CALENDARS.has(params.slug)) {
-    const country = params.slug.startsWith("singapore") ? "Singapore" : "Johor";
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  if (INDEXABLE_CALENDARS.has(slug)) {
+    const country = slug.startsWith("singapore") ? "Singapore" : "Johor";
     return {
       title: `${country} Public Holidays 2026 — Dates for Crossing Planning`,
       description: `Verified ${country} public holiday dates for 2026 and links to current land checkpoint advisories.`,
-      alternates: { canonical: `https://www.sgborder.live/holidays/${params.slug}` },
+      alternates: { canonical: `https://www.sgborder.live/holidays/${slug}` },
     };
   }
   return { title: "Holiday Traffic Guide — Under Review", robots: { index: false, follow: true } };
 }
 
-export default function HolidaySlugPage({ params }: { params: { slug: string } }) {
-  if (INDEXABLE_CALENDARS.has(params.slug)) {
-    const isSingapore = params.slug.startsWith("singapore");
+export default async function HolidaySlugPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  if (INDEXABLE_CALENDARS.has(slug)) {
+    const isSingapore = slug.startsWith("singapore");
     const country = isSingapore ? "Singapore" : "Johor";
     return (
       <div className="container max-w-3xl py-8 pb-mobile-nav md:py-12">

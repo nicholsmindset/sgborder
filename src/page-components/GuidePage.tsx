@@ -60,8 +60,7 @@ const GuidePage = () => {
     headline: guide.metaTitle || guide.title,
     description: guide.metaDescription || guide.description,
     url: `https://sgborder.live/guides/${guide.slug}`,
-    datePublished: "2026-03-01",
-    dateModified: "2026-03-22",
+    dateModified: guide.lastUpdated,
     author: { "@type": "Organization", name: "SG Border Live", url: "https://sgborder.live" },
     publisher: { "@type": "Organization", name: "SG Border Live", url: "https://sgborder.live" },
     mainEntityOfPage: { "@type": "WebPage", "@id": `https://sgborder.live/guides/${guide.slug}` },
@@ -87,8 +86,7 @@ const GuidePage = () => {
         description={guide.metaDescription || guide.description}
         path={`/guides/${guide.slug}`}
         type="article"
-        publishedAt="2026-03-01"
-        modifiedAt="2026-03-22"
+        modifiedAt={guide.lastUpdated}
         jsonLd={jsonLdItems}
         breadcrumbs={[{ name: "Guides", path: "/guides" }, { name: guide.title, path: `/guides/${guide.slug}` }]}
       />
