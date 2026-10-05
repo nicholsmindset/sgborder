@@ -37,9 +37,13 @@ export const Footer = () => {
             <p className="text-label-sm font-semibold uppercase tracking-wider text-primary-foreground/40">{t("footer_resources")}</p>
             <nav className="mt-3 flex flex-col gap-2">
               <Link href="/guides" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_commuter_guides")}</Link>
+              <Link href="/routes" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">Routes &amp; destinations</Link>
+              <Link href="/rules" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">Crossing rules</Link>
               <Link href="/holidays" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_holiday_calendar")}</Link>
+              <Link href="/holidays/2027" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">Singapore holidays 2027</Link>
               <Link href="/rts-link" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_rts_link")}</Link>
               <Link href="/calculator" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">{t("footer_trip_calculator")}</Link>
+              <Link href="/calculator/singapore-vep-2027" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">Singapore VEP 2027</Link>
             </nav>
           </div>
 

@@ -54,7 +54,11 @@ export const Navbar = () => {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-0.5 md:flex">
             {links.map((link) => {
-              const isActive = link.to === "/" ? pathname === "/" : pathname.startsWith(link.to);
+              const isActive = link.to === "/"
+                ? pathname === "/"
+                : link.to === "/guides"
+                  ? pathname.startsWith("/guides") || pathname.startsWith("/rules") || pathname.startsWith("/routes")
+                  : pathname.startsWith(link.to);
               return (
                 <Link
                   key={link.to}

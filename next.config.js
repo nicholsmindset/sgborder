@@ -18,6 +18,7 @@ const nextConfig = {
     return [
       { source: '/guides/woodlands-checkpoint-guide', destination: '/woodlands', permanent: true },
       { source: '/guides/tuas-checkpoint-guide', destination: '/tuas', permanent: true },
+      { source: '/guides/three-quarter-tank-rule', destination: '/rules/three-quarter-tank', permanent: true },
       ...['pie', 'cte', 'sle', 'tpe', 'ecp', 'kpe'].map((road) => ({
         source: `/cameras/${road}`,
         destination: '/cameras',

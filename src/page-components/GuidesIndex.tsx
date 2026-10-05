@@ -7,6 +7,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { SEOHead } from "@/components/shared/SEOHead";
 import { useTranslation } from "@/lib/i18n";
 import { BookOpen } from "lucide-react";
+import Link from "next/link";
 
 const GuidesIndex = () => {
   const { t } = useTranslation();
@@ -68,6 +69,21 @@ const GuidesIndex = () => {
           )}
         </div>
       </RevealSection>
+      <section className="container py-8" aria-labelledby="more-crossing-resources">
+        <h2 id="more-crossing-resources" className="font-heading text-title font-bold">More crossing resources</h2>
+        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">Plan the route, check official entry rules and estimate the 2027 Singapore VEP before travelling.</p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { href: "/routes", title: "Routes & destinations", detail: "JB Sentral, LEGOLAND and checkpoint choice" },
+            { href: "/rules", title: "Crossing rules", detail: "Fuel, Malaysia Road Charge and customs" },
+            { href: "/holidays/2027", title: "Singapore holidays 2027", detail: "Official dates for trip planning" },
+            { href: "/calculator/singapore-vep-2027", title: "Singapore VEP 2027", detail: "Calculate announced car and motorcycle rates" },
+          ].map((item) => <Link key={item.href} href={item.href} className="rounded-2xl border border-border bg-card p-4 shadow-card transition-colors hover:border-accent/40">
+            <h3 className="font-semibold text-foreground">{item.title}</h3>
+            <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>
+          </Link>)}
+        </div>
+      </section>
     </div>
   );
 };

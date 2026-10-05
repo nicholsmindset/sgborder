@@ -9,6 +9,8 @@ const NAME_MAP: Record<string, string> = {
   cameras: "Cameras",
   bus: "Buses",
   guides: "Guides",
+  routes: "Routes",
+  rules: "Crossing Rules",
   holidays: "Holidays",
   calculator: "Calculator",
   "rts-link": "RTS Link",

@@ -41,6 +41,10 @@ export default async function JbToSgPage() {
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Return traffic can vary with holidays, incidents and current operations. This page does not publish a fixed “best hour” or an unverified wait estimate. Recheck official advisories and camera frame times shortly before you leave. Read <Link className="text-accent underline" href="/methodology">what our data can and cannot show</Link>.</p>
         <p className="mt-3 text-sm"><Link className="font-semibold text-accent underline" href="/sg-to-jb">Travelling SG → JB instead?</Link></p>
       </section>
+      <section className="mt-6 max-w-3xl rounded-xl border border-border bg-card p-5">
+        <h2 className="font-heading text-title font-bold">Driving a Malaysia-registered vehicle?</h2>
+        <p className="mt-2 text-sm text-muted-foreground">From January 2027, Singapore's VEP and ERP rules change for foreign-registered cars and motorcycles. <Link className="font-semibold text-accent underline" href="/calculator/singapore-vep-2027">Estimate your 2027 VEP fee</Link> before travelling.</p>
+      </section>
     </main>
   </div>;
 }
