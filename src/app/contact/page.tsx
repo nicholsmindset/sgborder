@@ -10,7 +10,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return <div className="container max-w-3xl py-8 pb-mobile-nav">
     <h1 className="font-heading text-2xl font-bold">Contact & corrections</h1>
-    <p className="mt-4 text-muted-foreground leading-relaxed">SG Border Live is an independent information project. Report website problems and factual corrections through the project's public GitHub issue tracker. A GitHub account is required to submit a report.</p>
+    <p className="mt-4 text-muted-foreground leading-relaxed">SG Border Live is an independent information project. For website questions, factual corrections or privacy enquiries, email <a href="mailto:hello@sgborder.live" className="text-accent underline">hello@sgborder.live</a>.</p>
+    <p className="mt-3 text-sm text-muted-foreground">You can also report non-sensitive website problems through the project's public GitHub issue tracker. A GitHub account is required to submit a report there.</p>
     <a className="mt-5 inline-flex min-h-11 items-center rounded-lg bg-accent px-4 py-2 font-semibold text-accent-foreground" href="https://github.com/nicholsmindset/sgborder/issues/new" target="_blank" rel="noopener noreferrer">Report a website issue on GitHub</a>
     <section className="mt-8 space-y-3">
       <h2 className="font-heading text-lg font-bold">What to include</h2>
