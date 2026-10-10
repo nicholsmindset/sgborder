@@ -72,6 +72,7 @@ export const BreadcrumbNav = ({ items }: BreadcrumbNavProps) => {
         >
           <Link
             href="/"
+            aria-label="Home"
             className="hover:text-foreground transition-colors"
             itemProp="item"
           >

@@ -7,18 +7,29 @@ import Link from "next/link";
 const KEY = "sgborder-analytics-choice";
 type Choice = "accepted" | "declined" | null;
 
-/** Analytics only. This is not an advertising CMP; ad serving stays disabled. */
+/** Analytics only. This is not an advertising CMP; advertising is managed separately. */
 export function AnalyticsConsent() {
   const [choice, setChoice] = useState<Choice>(null);
+  const [productionHost, setProductionHost] = useState(false);
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
+    setProductionHost(["www.sgborder.live", "sgborder.live"].includes(location.hostname));
     try {
       const saved = localStorage.getItem(KEY);
       if (saved === "accepted" || saved === "declined") setChoice(saved);
       else setOpen(true);
     } catch { setOpen(true); }
     setReady(true);
+    // Synchronize withdrawal across tabs; unload any Analytics code already running.
+    const syncChoice = (event: StorageEvent) => {
+      if (event.storageArea === localStorage && (event.key === KEY || event.key === null)) {
+        (window as unknown as Record<string, unknown>)["ga-disable-G-CVM2KVL177"] = true;
+        location.reload();
+      }
+    };
+    window.addEventListener("storage", syncChoice);
+    return () => window.removeEventListener("storage", syncChoice);
   }, []);
 
   function choose(next: Exclude<Choice, null>) {
@@ -41,8 +52,8 @@ export function AnalyticsConsent() {
   }
 
   return <>
-    {choice === "accepted" && <>
-      <Script id="sgborder-analytics-init" strategy="afterInteractive">{`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-CVM2KVL177');`}</Script>
+    {productionHost && choice === "accepted" && <>
+      <Script id="sgborder-analytics-init" strategy="afterInteractive">{`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-CVM2KVL177', {allow_google_signals: false, allow_ad_personalization_signals: false});`}</Script>
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-CVM2KVL177" strategy="afterInteractive" />
     </>}
     <div className="bg-primary px-4 pb-20 text-center text-primary-foreground md:pb-4">

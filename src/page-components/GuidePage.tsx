@@ -119,6 +119,8 @@ const GuidePage = () => {
               </span>
             </div>
 
+            <p className="mt-3 text-label-sm text-muted-foreground">Published by <Link href="/about" className="text-accent underline">SG Border Live</Link>. <Link href="/contact" className="text-accent underline">Suggest a correction</Link>.</p>
+
             {/* Sections */}
             <div className="mt-8 space-y-8">
               {guide.sections.map((section) => (

@@ -44,20 +44,30 @@ export default async function HomePage() {
         data={[
           {
             "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": "https://www.sgborder.live/#website",
+            name: "SG Border Live",
+            url: "https://www.sgborder.live/",
+            publisher: { "@id": "https://www.sgborder.live/#organization" },
+          },
+          {
+            "@context": "https://schema.org",
             "@type": "WebApplication",
             name: "SG Border Live",
             url: "https://www.sgborder.live",
-            description: "Singapore-JB crossing dashboard with checkpoint cameras, road approach status and bus arrivals.",
+            description: "Singapore-JB crossing dashboard with timestamped checkpoint cameras and public bus arrivals.",
             applicationCategory: "TravelApplication",
             operatingSystem: "Web",
           },
           {
             "@context": "https://schema.org",
             "@type": "Organization",
+            "@id": "https://www.sgborder.live/#organization",
+            email: "hello@sgborder.live",
             name: "SG Border Live",
             url: "https://www.sgborder.live",
-            description: "Singapore-JB crossing information with checkpoint cameras, road approach status and travel guides.",
-            sameAs: ["https://sgborder.live"],
+            description: "Independent Singapore-JB crossing information with timestamped checkpoint cameras, public bus arrivals and travel guides.",
+            sameAs: ["https://github.com/nicholsmindset/sgborder"],
             areaServed: ["SG", "MY"],
           },
           {
