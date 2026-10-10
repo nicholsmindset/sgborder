@@ -31,7 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/calculator/singapore-vep-2027`, lastModified: new Date("2026-10-06"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/methodology`, lastModified: reviewedAt, changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/about`, lastModified: reviewedAt, changeFrequency: "monthly", priority: 0.4 },
-    { url: `${baseUrl}/privacy`, lastModified: reviewedAt, changeFrequency: "monthly", priority: 0.3 },
+    { url: `${baseUrl}/contact`, lastModified: new Date("2026-10-10"), changeFrequency: "monthly", priority: 0.3 },
+    { url: `${baseUrl}/privacy`, lastModified: new Date("2026-10-10"), changeFrequency: "monthly", priority: 0.3 },
   ];
 
   const busPages: MetadataRoute.Sitemap = BUS_ROUTES.map((route) => ({

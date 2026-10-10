@@ -56,6 +56,8 @@ export const Footer = () => {
             </div>
             <div className="mt-4 flex flex-col gap-2">
               <Link href="/about" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">About</Link>
+              <Link href="/contact" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">Contact & corrections</Link>
+              <Link href="/methodology" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">Data methodology</Link>
               <Link href="/privacy" className="text-label-sm text-primary-foreground/60 transition-colors hover:text-primary-foreground">Privacy Policy</Link>
             </div>
           </div>

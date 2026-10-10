@@ -8,7 +8,7 @@ const AboutPage = () => {
     <div className="pb-mobile-nav">
       <SEOHead
         title="About SG Border Live — Real-Time Causeway Traffic & Bus Info"
-        description="SG Border Live provides real-time Singapore–JB causeway traffic status, LTA camera feeds, cross-border bus arrivals, and commuter guides. Independent, free, updated every 5 minutes."
+        description="SG Border Live provides real-time Singapore–JB causeway traffic status, LTA camera feeds, cross-border bus arrivals, and commuter guides. Independent and free, with timestamps and source limitations."
         path="/about"
       />
 
@@ -41,7 +41,7 @@ const AboutPage = () => {
                 {
                   icon: Clock,
                   title: "Road Approach Status",
-                  desc: "A Singapore road-speed signal appears only when a recent observation is available. It does not measure the immigration queue.",
+                  desc: "Road status is currently paused while its source and direction mapping are validated. Camera images remain available with source timestamps.",
                 },
                 {
                   icon: Camera,
@@ -85,6 +85,12 @@ const AboutPage = () => {
                 <span><strong className="text-foreground">ArriveLah API</strong> — Real-time bus arrival times and crowd load data for Singapore bus services.</span>
               </li>
             </ul>
+          </section>
+
+          <section>
+            <h2 className="font-heading text-lg font-bold mb-3">Editorial responsibility and corrections</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">SG Border Live publishes its own crossing checklists, source explanations and calculators alongside third-party transport data. Official agencies and operators remain the authority for entry rules, charges and service changes. Guides link to their sources and show a review date; that date is not a guarantee that rules have remained unchanged.</p>
+            <p className="mt-3 text-sm text-muted-foreground leading-relaxed">When a feed or claim cannot be validated, we label it unavailable or withdraw the guide from browsing and search until it can be checked. To flag an error, use our <Link href="/contact" className="text-accent underline">contact and corrections page</Link>. Read the <Link href="/methodology" className="text-accent underline">data methodology</Link> for coverage and limitations.</p>
           </section>
 
           {/* Disclaimer */}

@@ -4,7 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { BreadcrumbNav } from "@/components/shared/BreadcrumbNav";
-import Script from "next/script";
+import { AnalyticsConsent } from "@/components/shared/AnalyticsConsent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     google: "-ssVsE4wM4Vy9jNlw6fKX0l24rkWvcnDIuYOnpBaH6M",
   },
   other: {
+    "google-adsense-account": "ca-pub-5441531660664467",
     "geo.region": "SG",
     "geo.placename": "Singapore",
     "geo.position": "1.3521;103.8198",
@@ -43,29 +44,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-CVM2KVL177"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-CVM2KVL177');`}
-        </Script>
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5441531660664467"
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body>
         <Providers>
           <Navbar />
           <BreadcrumbNav />
           <main className="min-h-[calc(100vh-3.5rem)]">{children}</main>
           <Footer />
+          <AnalyticsConsent />
           <MobileNav />
         </Providers>
       </body>
