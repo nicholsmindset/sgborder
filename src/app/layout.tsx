@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     google: "-ssVsE4wM4Vy9jNlw6fKX0l24rkWvcnDIuYOnpBaH6M",
   },
   other: {
-    "google-adsense-account": "ca-pub-5441531660664467",
+    "google-adsense-account": "ca-pub-7886081043408699",
     "geo.region": "SG",
     "geo.placename": "Singapore",
     "geo.position": "1.3521;103.8198",
@@ -44,6 +44,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7886081043408699" crossOrigin="anonymous" />
+      </head>
       <body>
         <Providers>
           <Navbar />
