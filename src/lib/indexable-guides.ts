@@ -1,5 +1,10 @@
 /** Guides whose claims and sources were reviewed against official sources. */
 export const INDEXABLE_GUIDE_SLUGS = new Set([
+  "jb-grocery-shopping-returning-to-singapore",
+  "first-time-cross-border-bus",
+  "jb-family-day-trip-checklist",
+  "driving-jb-budget-breakdown",
+  "causeway-camera-holiday-planning",
   "best-time-to-cross-causeway",
   "vep-malaysia-guide",
   "myica-qr-code-guide",
@@ -7,3 +12,4 @@ export const INDEXABLE_GUIDE_SLUGS = new Set([
   "ktm-shuttle-tebrau-jb-woodlands",
   "sg-arrival-card-land-checkpoint",
 ]);
+

@@ -121,6 +121,13 @@ const GuidePage = () => {
 
             <p className="mt-3 text-label-sm text-muted-foreground">Published by <Link href="/about" className="text-accent underline">SG Border Live</Link>. <Link href="/contact" className="text-accent underline">Suggest a correction</Link>.</p>
 
+            {guide.heroImage && (
+              <figure className="mt-6">
+                <img src={guide.heroImage.src} alt={guide.heroImage.alt} width={1200} height={675} className="w-full rounded-xl" fetchPriority="high" />
+                <figcaption className="mt-2 text-label-sm text-muted-foreground">AI-generated illustration; not an actual journey or current checkpoint conditions.</figcaption>
+              </figure>
+            )}
+
             {/* Sections */}
             <div className="mt-8 space-y-8">
               {guide.sections.map((section) => (
@@ -128,7 +135,7 @@ const GuidePage = () => {
                   <div id={section.id}>
                     <h2 className="font-heading text-title font-bold text-foreground">{section.heading}</h2>
                     <div
-                      className="mt-3 prose-content text-sm text-muted-foreground leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-1 [&_strong]:text-foreground [&_strong]:font-semibold [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_p]:mb-3 [&_table]:w-full [&_table]:text-left [&_td]:py-1.5 [&_td]:pr-4 [&_td:last-child]:font-medium [&_td:last-child]:text-foreground"
+                      className="mt-3 prose-content text-sm text-muted-foreground leading-relaxed [&_figure]:my-5 [&_img]:w-full [&_img]:rounded-xl [&_figcaption]:mt-2 [&_figcaption]:text-xs [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-1 [&_strong]:text-foreground [&_strong]:font-semibold [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-2 [&_p]:mb-3 [&_table]:w-full [&_table]:text-left [&_td]:py-1.5 [&_td]:pr-4 [&_td:last-child]:font-medium [&_td:last-child]:text-foreground"
                       dangerouslySetInnerHTML={{ __html: section.content }}
                     />
                   </div>
@@ -198,3 +205,4 @@ const RevealSection = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default GuidePage;
+

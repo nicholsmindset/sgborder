@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: guide.metaDescription || guide.description,
       url: `https://www.sgborder.live/guides/${guide.slug}`,
       type: "article",
+      ...(guide.heroImage ? { images: [{ url: guide.heroImage.src, alt: guide.heroImage.alt, width: 1200, height: 675 }] } : {}),
     },
   };
 }
@@ -48,10 +49,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
               {
                 "@context": "https://schema.org",
                 "@type": "Article",
-                headline: guide.metaTitle || guide.title,
+                headline: guide.title,
                 description: guide.metaDescription || guide.description,
                 url: `https://www.sgborder.live/guides/${guide.slug}`,
                 dateModified: guide.lastUpdated,
+                ...(guide.publishedAt ? { datePublished: guide.publishedAt } : {}),
+                ...(guide.heroImage ? { image: `https://www.sgborder.live${guide.heroImage.src}` } : {}),
                 author: { "@type": "Organization", name: "SG Border Live", url: "https://www.sgborder.live" },
                 publisher: { "@type": "Organization", name: "SG Border Live", url: "https://www.sgborder.live" },
               },
@@ -83,3 +86,4 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     </>
   );
 }
+
